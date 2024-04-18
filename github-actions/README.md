@@ -4,27 +4,27 @@
 
 To effectively understand and use GitHub Actions, you can focus on a few key topics that will provide substantial knowledge and utility. These topics form the core of what GitHub Actions can do and will cover about 80% of the typical use cases. Here's a streamlined guide:
 
-1. [Understanding GitHub Actions Basics](#):
+1. [Understanding GitHub Actions Basics](#understanding-github-actions-basics):
 
 * What are GitHub Actions? Learn what GitHub Actions are, including their purpose for automating tasks within your software development workflows directly in your GitHub repository.
 * Components of GitHub Actions: Understand the key components such as workflows, events, jobs, steps, actions, and runners. Knowing what each component does is crucial for creating effective automation.
 
-1. [Creating Workflows](#):
+2. [Creating Workflows](#creating-workflows):
 
 * Workflow Syntax: Study the YAML syntax used to define workflows. Learn how to structure a YAML file to create custom automated processes.
 * Events that Trigger Workflows: Grasp the different types of events that can trigger a workflow, such as pushes, pull requests, or scheduled events. This knowledge lets you automate tasks based on specific repository activities.
 
-3. [Common Actions and Usage](#):
+3. [Common Actions and Usage](#common-actions-and-usage):
 
 * Using Actions: Know how to use pre-built actions from the GitHub Marketplace or write your own custom actions. This includes understanding how to incorporate actions from other developers into your workflows.
 * Action Inputs, Outputs, and Secrets: Learn how to pass data to and from actions, and how to use encrypted secrets for sensitive information like API keys.
 
-4. [Testing and Debugging Workflows](#):
+4. [Testing and Debugging Workflows](#testing-and-debugging-workflows):
 
 * Debugging: Understand the tools and techniques for debugging your workflows. This includes using runner diagnostic logs, understanding job status, and using actions to debug issues.
 * Testing Workflows Locally: Learn about tools like act which can simulate GitHub Actions environment locally on your machine, allowing for faster iteration and testing without pushing every change.
 
-5. [Advanced Features and Best Practices](#):
+5. [Advanced Features and Best Practices](#advanced-features-and-best-practices):
 
 * Conditional Logic in Workflows: Understand how to control the flow of jobs and steps based on the outcomes of previous steps or the context of the event that triggered the workflow.
 * Optimizing Workflow Performance: Learn strategies for minimizing run times and costs, such as matrix builds, caching dependencies, and concurrency controls.
