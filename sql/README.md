@@ -62,7 +62,7 @@
 * Caching Strategies: Using caching mechanisms to reduce database load.
 * Partitioning: Implementing table partitioning to manage large datasets efficiently.
 
-## Basic Queries
+## 1. Basic Queries
 Understanding basic queries is foundational to working with SQL databases. Here are the critical components:
 
 1. SELECT Statements
@@ -177,8 +177,132 @@ Understanding basic queries is foundational to working with SQL databases. Here 
 
 Mastering these basic query elements will provide a solid foundation for more complex SQL operations. These fundamentals are essential for effectively retrieving and manipulating data in a relational database.
 
-## Joins
+## 2. Joins
+Joins are used in SQL to combine rows from two or more tables based on a related column between them. Here are the critical types of joins you need to know:
 
+1. INNER JOIN
+* **Syntax:** Returns records that have matching values in both tables.
+  ```SQL
+  SELECT columns
+  FROM table1
+  INNER JOIN table2
+  ON table1.common_column = table2.common_column;
+  ```
+* **Example:**
+  ```SQL
+  SELECT employees.first_name, employees.last_name, departments.department_name
+  FROM employees
+  INNER JOIN departments
+  ON employees.department_id = departments.department_id;
+  ```
+
+* **Explanation:** This query selects all employees and their respective department names where there is a match between employees.department_id and departments.department_id.
+
+2. LEFT JOIN (or LEFT OUTER JOIN)
+
+* **Syntax**: Returns all records from the left table, and the matched records from the right table. The result is NULL from the right side if there is no match.
+
+  ```SQL
+  SELECT columns
+  FROM table1
+  LEFT JOIN table2
+  ON table1.common_column = table2.common_column;
+  ```
+
+* **Example:**
+  ```SQL
+  SELECT employees.first_name, employees.last_name, departments.department_name
+  FROM employees
+  LEFT JOIN departments
+  ON employees.department_id = departments.department_id;
+  ```
+
+* **Explanation:** This query returns all employees and their department names. If an employee is not assigned to any department, the department_name will be NULL.
+
+3. RIGHT JOIN (or RIGHT OUTER JOIN)
+
+* **Syntax**: Returns all records from the right table, and the matched records from the left table. The result is NULL from the left side if there is no match.
+
+  ```SQL
+  SELECT columns
+  FROM table1
+  RIGHT JOIN table2
+  ON table1.common_column = table2.common_column;
+  ```
+
+* **Example:**
+
+  ```SQL
+  SELECT employees.first_name, employees.last_name, departments.department_name
+  FROM employees
+  RIGHT JOIN departments
+  ON employees.department_id = departments.department_id;
+  ```
+
+* **Explanation:** This query returns all departments and the employees in each department. If a department has no employees, the `first_name` and last_name will be NULL.
+
+4. FULL OUTER JOIN
+* **Syntax:** Returns all records when there is a match in either left or right table. Records with no match in left or right tables will be included as well.
+
+  ```SQL
+  SELECT columns
+  FROM table1
+  FULL OUTER JOIN table2
+  ON table1.common_column = table2.common_column;
+  ```
+
+* **Example:**
+  ```SQL
+  SELECT employees.first_name, employees.last_name, departments.department_name
+  FROM employees
+  FULL OUTER JOIN departments
+  ON employees.department_id = departments.department_id;
+  ```
+
+* **Explanation:** This query returns all employees and all departments, with NULL values in places where there is no match.
+
+5. Self Join
+* **Syntax:** A self join is a regular join but the table is joined with itself.
+
+  ```SQL
+  SELECT a.column_name, b.column_name
+  FROM table1 a, table1 b
+  WHERE condition;
+  ```
+
+* **Example:**
+  ```SQL
+  SELECT e1.first_name AS 'Employee', e2.first_name AS 'Manager'
+  FROM employees e1
+  INNER JOIN employees e2
+  ON e1.manager_id = e2.employee_id;
+  ```
+
+* **Explanation:** This query lists employees and their managers by joining the employees table with itself.
+
+6. Cross Join
+
+* Syntax: Returns the Cartesian product of the two tables (i.e., every row in the first table is combined with every row in the second table).
+
+  ```SQL
+  SELECT columns
+  FROM table1
+  CROSS JOIN table2;
+  ```
+
+* **Example:**
+
+  ```SQL
+  SELECT products.product_name, categories.category_name
+  FROM products
+  CROSS JOIN categories;
+  ```
+
+* **Explanation:** This query returns a combination of every product with every category.
+
+**Summary**
+
+Mastering joins is crucial for working with related data stored across multiple tables. Understanding these types of joins and when to use them will significantly enhance your ability to retrieve and analyze data effectively.
 ## Aggregation Functions
 
 ## Grouping Data
