@@ -303,9 +303,195 @@ Joins are used in SQL to combine rows from two or more tables based on a related
 **Summary**
 
 Mastering joins is crucial for working with related data stored across multiple tables. Understanding these types of joins and when to use them will significantly enhance your ability to retrieve and analyze data effectively.
-## Aggregation Functions
 
-## Grouping Data
+## 3. Aggregation Functions
+
+Aggregation functions in SQL are used to perform calculations on multiple rows of a table’s column and return a single value. They are often used with the GROUP BY clause to group the results based on one or more columns. Here are the essential aggregation functions you need to know:
+
+1. **COUNT()**
+* Purpose: Returns the number of rows that match a specified condition.
+* Syntax:
+	```SQL
+  SELECT COUNT(column_name)
+  FROM table_name
+  WHERE condition;
+  ```
+
+* Example:
+  ```SQL
+  SELECT COUNT(employee_id)
+  FROM employees
+  WHERE department_id = 1;
+  ```
+
+* Explanation: This query counts the number of employees in department 1.
+
+2. SUM()
+* Purpose: Returns the total sum of a numeric column.
+* Syntax:
+    ```SQL
+    SELECT SUM(column_name)
+    FROM table_name
+    WHERE condition;
+    ```
+
+  * Example:
+  ```SQL
+  SELECT SUM(salary)
+  FROM employees
+  WHERE department_id = 2;
+  ```
+
+* Explanation: This query calculates the total salary for all employees in department 2.
+
+3. AVG()
+* **Purpose:** Returns the average value of a numeric column.
+* **Syntax:**
+	```SQL
+	SELECT AVG(column_name)
+	FROM table_name
+	WHERE condition;
+	```
+
+* **Example:**
+  	```SQL
+   SELECT AVG(salary)
+  FROM employees
+  WHERE department_id = 3;
+  ```
+
+* Explanation: This query calculates the average salary for all employees in department 3.
+
+4. MAX()
+* Purpose: Returns the maximum value of a column.
+* Syntax:
+	```SQL
+	SELECT MAX(column_name)
+	FROM table_name
+	WHERE condition;
+	```
+* Example: 
+	```SQL
+	SELECT MAX(salary)
+	FROM employees
+	WHERE department_id = 4;
+	```
+
+* Explanation: This query finds the highest salary in department 4.
+
+5. MIN()	
+* Purpose: Returns the minimum value of a column.
+* Syntax: 
+	```SQL
+	SELECT MIN(column_name)
+	FROM table_name
+	WHERE condition;
+	```
+* Example:
+	```SQL
+	SELECT MIN(salary)
+	FROM employees
+	WHERE department_id = 5;
+	```
+
+* Explanation: This query finds the lowest salary in department 5.
+  
+## 4. Grouping Data
+
+Aggregation functions are often used in conjunction with the `GROUP BY` clause to group the results based on one or more columns.
+
+1. GROUP BY Clause
+   * Purpose: Groups rows that have the same values into summary rows, like “find the number of employees in each department”.
+   * Syntax:
+      ```SQL
+      SELECT column1, aggregation_function(column2)
+      FROM table_name
+      WHERE condition
+      GROUP BY column1;
+      ```
+   * Example:
+      ```SQL
+      SELECT department_id, COUNT(employee_id)
+      FROM employees
+      GROUP BY department_id;
+      ```
+
+   * Explanation: This query counts the number of employees in each department.
+
+2. Using Aggregate Functions with GROUP BY
+   * COUNT(): Counts the number of rows.
+     ```SQL
+     SELECT department_id, COUNT(employee_id) AS employee_count
+     FROM employees
+     GROUP BY department_id;
+     ```
+   * SUM(): Sums the values in a column.
+     ```SQL
+     SELECT department_id, SUM(salary) AS total_salary
+     FROM employees
+     GROUP BY department_id;
+     ```
+   * AVG(): Calculates the average value of a column.
+     ```SQL
+     SELECT department_id, AVG(salary) AS average_salary
+     FROM employees
+     GROUP BY department_id;
+     ```
+   * MAX(): Finds the maximum value in a column.
+     ```SQL
+     SELECT department_id, MAX(salary) AS highest_salary
+     FROM employees
+     GROUP BY department_id;
+     ```
+   * MIN(): Finds the minimum value in a column.
+     ```SQL
+     SELECT department_id, MIN(salary) AS lowest_salary
+     FROM employees
+     GROUP BY department_id;
+     ```
+
+3. `HAVING` Clause
+   * Purpose: Filters records that work on summarized `GROUP BY` results. It’s similar to the `WHERE` clause but used for aggregate functions.
+   * Syntax:
+     ```SQL
+     SELECT column1, aggregate_function(column2)
+     FROM table_name
+     WHERE condition
+     GROUP BY column1
+     HAVING aggregate_function(column2) condition;
+     ```
+   * Example:
+     ```SQL
+     SELECT department_id, COUNT(employee_id) AS employee_count
+     FROM employees
+     GROUP BY department_id
+     HAVING COUNT(employee_id) > 10;
+     ```
+  *	Explanation: This query groups employees by department and then filters to show only those departments with more than 10 employees.
+
+1. Combining `GROUP BY` with `ORDER BY`
+   * Purpose: You can order the results of your grouped data.
+   * Syntax:
+     ```SQL
+     SELECT column1, aggregate_function(column2)
+     FROM table_name
+     WHERE condition
+     GROUP BY column1
+     ORDER BY column1 [ASC|DESC];
+     ```
+   * Example:
+     ```SQL
+     SELECT department_id, COUNT(employee_id) AS employee_count
+     FROM employees
+     GROUP BY department_id
+     ORDER BY employee_count DESC;
+     ```
+   * Explanation: This query groups employees by department, counts them, and then orders the results by the number of employees in descending order.
+
+**Summary**
+
+Mastering the `GROUP BY` and `HAVING` clauses in conjunction with aggregate functions is essential for effective data summarization and analysis in SQL. These tools allow you to perform complex queries that can provide valuable insights from your data.
+
 
 ## Data Manipulation
 
