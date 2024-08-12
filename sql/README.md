@@ -1,60 +1,60 @@
 # SQL
 
 ## Table of Contents
-1. [Basic Queries](#basic-queries)
+1. [Basic Queries](#1-basic-queries)
 * SELECT Statements: How to retrieve data from a database.
 * FROM Clause: Understanding tables and how to select them.
 * WHERE Clause: Filtering data based on conditions.
 
-2. [Joins](#joins)
+2. [Joins](#2-joins)
 * INNER JOIN: Combining rows from two or more tables based on a related column.
 * LEFT JOIN: Returning all rows from the left table, and the matched rows from the right table.
 * RIGHT JOIN: Returning all rows from the right table, and the matched rows from the left table.
 * FULL OUTER JOIN: Returning all rows when there is a match in either left or right table.
 
-3. [Aggregation Functions](#aggregation-functions)
+3. [Aggregation Functions](#3-aggregation-functions)
 * COUNT(): Counting the number of rows.
 * SUM(): Summing the values of a column.
 * AVG(): Calculating the average value of a column.
 * MAX() and MIN(): Finding the maximum and minimum values.
 
-4. [Grouping Data](#grouping-data)
+4. [Grouping Data](#4-grouping-data)
 * GROUP BY: Aggregating data across multiple records.
 * HAVING: Filtering groups based on conditions.
 
-5. [Data Manipulation](#data-manipulation)
+5. [Data Manipulation](#5-data-manipulation)
 * INSERT: Adding new rows to a table.
 * UPDATE: Modifying existing rows in a table.
 * DELETE: Removing rows from a table.
 
-5. [Subqueries](#subqueries)
+6. [Subqueries](#6-subqueries)
 * Subqueries in SELECT: Using queries within other queries.
 * Subqueries in WHERE: Filtering data based on subquery results.
 
-6. [Data Types](#data-types)
+7. [Data Types](#7-data-types)
 * Understanding common data types such as INTEGER, VARCHAR, DATE, etc.
 
-7. [Indexes](#indexes)
+8. [Indexes](#8-indexes)
 * Basics of Indexing: Understanding how indexes work and their importance.
 * Creating Indexes: How to create indexes to improve query performance.
 * Composite Indexes: Using multiple columns in an index.
 * Index Maintenance: Keeping indexes healthy and up-to-date.
 
-8. [Query Optimization](#query-optimization)
+9. [Query Optimization](#9-query-optimization)
 * EXPLAIN/EXPLAIN PLAN: Analyzing query execution plans to identify bottlenecks.
 * Query Hints: Providing hints to the database engine for better query performance.
 * Query Rewrite: Techniques to rewrite queries for better performance.
 * Using LIMIT/OFFSET: Efficiently paging through large result sets.
 
-9. [Normalization](#normalization)
+10. [Normalization](#10-normalization)
 * Basic concepts of database normalization and why it is important.
 * Denormalization: When and how to denormalize for performance reasons.
 
-10. [Basic Transactions](#basic-transactions)
+11. [Basic Transactions](#11-basic-transactions)
 * BEGIN, COMMIT, ROLLBACK: Understanding transactions and how to ensure data integrity.
 
-11. [Performance Tuning Specifics](#performance-tuning-specifics)
-* Avoiding SELECT: Selecting only the necessary columns to reduce data load.
+12. [Performance Tuning Specifics](#12-performance-tuning-specifics)
+* Avoiding SELECT *: Selecting only the necessary columns to reduce data load.
 * Reducing Joins: Minimizing the number of joins in queries for better performance.
 * Use of Stored Procedures: Using stored procedures to encapsulate complex logic.
 * Proper Use of WHERE Clauses: Ensuring conditions are indexed properly.
@@ -603,7 +603,112 @@ Summary
 
 Mastering data manipulation commands in SQL is crucial for effectively managing and modifying data within a database. Understanding how to use INSERT, UPDATE, and DELETE statements allows you to add, change, and remove data as needed, ensuring that your database remains accurate and up-to-date. Using transactions helps maintain data integrity by ensuring that a series of related operations are all completed successfully.
 
-## Subqueries
+## 6. Subqueries
+### Subqueries
+A subquery, also known as an inner query or nested query, is a query within another SQL query and embedded within the WHERE clause, the FROM clause, or the SELECT clause. Subqueries can be used to return data that will be used in the main query as a condition to further restrict the data to be retrieved.
+
+1. Subqueries in the SELECT Clause
+* Purpose: To include a value in the SELECT list that is computed from another query.
+* Syntax:
+  ```SQL
+  SELECT column1, (SELECT column2 FROM table2 WHERE condition) AS alias_name
+  FROM table1;
+  ```
+
+* Example:
+  ```SQL
+  SELECT employee_id, first_name,
+       (SELECT department_name FROM departments WHERE departments.department_id = employees.department_id) AS department_name
+  FROM employees;
+  ```
+
+* Explanation: This query selects the `employee_id` and `first_name` from the employees table and also retrieves the `department_name` from the departments table based on the matching `department_id`.
+
+2. Subqueries in the WHERE Clause
+* Purpose: o use the result of another query to filter the results of the main query.
+* Syntax:
+  ```SQL
+  SELECT column1, column2
+  FROM table1
+  WHERE column3 = (SELECT column4 FROM table2 WHERE condition);
+  ```
+
+* Example:
+  ```SQL
+  SELECT first_name, last_name
+  FROM employees
+  WHERE department_id = (SELECT department_id FROM departments WHERE department_name = 'Sales');
+  ```
+
+* Explanation: This query selects the `first_name` and `last_name` of employees who are in the department named ‘Sales’.
+
+* Using Subqueries with IN:
+  ```SQL
+  SELECT first_name, last_name
+  FROM employees
+  WHERE department_id IN (SELECT department_id FROM departments WHERE location = 'New York');
+  ```
+
+* Explanation: This query selects the `first_name` and `last_name` of employees who work in departments located in ‘New York’.
+
+3. Subqueries in the FROM Clause
+* Purpose: To use the result of another query as a table in the main query.
+* Syntax:
+    ```SQL
+    SELECT column1, column2
+    FROM (SELECT column3, column4 FROM table2 WHERE condition) AS alias_name
+    WHERE condition;
+    ```
+* Example:
+  ```SQL
+  SELECT sub.department_name, COUNT(sub.employee_id) AS employee_count
+  FROM (SELECT department_id, department_name FROM departments) AS sub
+  INNER JOIN employees ON sub.department_id = employees.department_id
+  GROUP BY sub.department_name;
+  ```
+
+* Explanation: This query creates a subquery that selects the `department_id` and `department_name` from the departments table. The main query then counts the number of employees in each department.
+
+### Types of Subqueries
+#### Single-Row Subqueries
+* Purpose: Returns only one row:
+* Example:
+  ```SQL
+  SELECT first_name, last_name
+  FROM employees
+  WHERE salary > (SELECT AVG(salary) FROM employees);
+  ```
+
+* Explanation: This query selects the first_name and last_name of employees whose salary is greater than the average salary of all employees.
+
+#### Multiple-Row Subqueries
+* Purpose: Returns more than one row.
+* Example:
+  ```SQL
+  SELECT first_name, last_name
+  FROM employees
+  WHERE department_id IN (SELECT department_id FROM departments WHERE location = 'Chicago');
+  ```
+* Explanation: This query selects the first_name and last_name of employees who work in departments located in ‘Chicago’.
+
+#### Correlated Subqueries
+* Purpose: References columns from the outer query. It is evaluated once for each row processed by the outer query.
+* Syntax: 
+    ```SQL
+    SELECT column1, column2
+    FROM table1 outer
+    WHERE column3 operator (SELECT column4 FROM table2 WHERE table2.column5 = outer.column6);
+    ```
+* Example:
+  ```SQL
+  SELECT e1.first_name, e1.last_name, e1.salary
+  FROM employees e1
+  WHERE e1.salary > (SELECT AVG(e2.salary) FROM employees e2 WHERE e2.department_id = e1.department_id);
+  ```
+
+Summary
+
+Subqueries are a powerful feature in SQL that allow you to perform complex queries by embedding one query within another. Understanding how to use subqueries in the SELECT, WHERE, and FROM clauses, as well as the differences between single-row, multiple-row, and correlated subqueries, will significantly enhance your ability to retrieve and analyze data effectively.
 
 ## Data Types
 
