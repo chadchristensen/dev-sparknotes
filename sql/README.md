@@ -493,7 +493,115 @@ Aggregation functions are often used in conjunction with the `GROUP BY` clause t
 Mastering the `GROUP BY` and `HAVING` clauses in conjunction with aggregate functions is essential for effective data summarization and analysis in SQL. These tools allow you to perform complex queries that can provide valuable insights from your data.
 
 
-## Data Manipulation
+## 5. Data Manipulation
+
+### Data Manipulation
+
+Data manipulation in SQL involves performing operations to modify the data stored in a database. The three primary operations for data manipulation are INSERT, UPDATE, and DELETE.
+
+1. INSERT Statement
+  * Purpose: Adds new rows of data to a table.
+  * Syntax:
+      ```SQL
+      INSERT INTO table_name (column1, column2, column3, ...)
+      VALUES (value1, value2, value3, ...);
+      ```
+  * Example:
+    ```SQL
+    INSERT INTO employees (first_name, last_name, department_id, salary)
+    VALUES ('John', 'Doe', 1, 60000);
+    ```
+  * Explanation: This query inserts a new row into the employees table with the specified values for `first_name`, `last_name`, `department_id`, and `salary`.
+  * Inserting Multiple Rows:
+    ```SQL
+    INSERT INTO employees (first_name, last_name, department_id, salary)
+    VALUES 
+    ('Jane', 'Smith', 2, 75000),
+    ('Bill', 'Jones', 1, 65000),
+    ('Mary', 'Brown', 3, 80000);
+    ```
+  * Explanation: This query inserts multiple rows into the employees table in a single `INSERT` statement.
+
+2. UPDATE Statement
+   * Purpose: Modifies existing rows in a table.
+   * Syntax: 
+      ```SQL
+      UPDATE table_name
+      SET column1 = value1, column2 = value2, ...
+      WHERE condition;
+      ```
+   * Example: 
+      ```SQL
+      UPDATE employees
+      SET salary = 70000
+      WHERE employee_id = 1;
+      ```
+  * Explanation: This query updates the salary of the employee with employee_id 1 to 70000.
+  * Updating Multiple Columns:
+      ```SQL
+      UPDATE employees
+      SET salary = 75000, department_id = 2
+      WHERE employee_id = 2;
+      ```
+  * Explanation: This query updates both the `salary` and `department_id` of the `employee` with `employee_id` 2.
+  * Updating Multiple Rows:
+    ```SQL
+    UPDATE employees
+    SET salary = salary * 1.1
+    WHERE department_id = 3;
+    ```
+  * Explanation: This query gives a 10% salary increase to all employees in department 3.
+
+3. DELETE Statement
+  * Purpose: Removes rows from a table.
+  * Syntax:
+    ```SQL
+    DELETE FROM table_name
+    WHERE condition;
+    ```
+  * Example:
+    ```SQL
+    DELETE FROM employees
+    WHERE employee_id = 3;
+    ```
+  * Explanation: This query deletes all employees who are in department 4.
+  * Deleting All Rows (Use with caution):
+    ```SQL
+    DELETE FROM employees;
+    ```
+  * Explanation: This query deletes all rows from the employees table. It does not delete the table itself, only the data within it.
+
+### Using Transactions
+Transactions in SQL ensure that a series of operations are completed successfully before making any changes permanent. They are essential for maintaining data integrity.
+
+* Syntax:
+  ```SQL
+  BEGIN TRANSACTION;
+
+  -- Insert a new employee
+  INSERT INTO employees (first_name, last_name, department_id, salary)
+  VALUES ('Alice', 'Williams', 5, 90000);
+
+  -- Update another employee's salary
+  UPDATE employees
+  SET salary = 95000
+  WHERE employee_id = 4;
+
+  -- Delete an employee
+  DELETE FROM employees
+  WHERE employee_id = 6;
+
+  COMMIT;
+  ```
+
+* Explanation:
+	•	`BEGIN TRANSACTION` starts a transaction block.
+	•	Multiple `SQL` operations are performed within the transaction.
+	•	`COMMIT` makes all changes permanent. If any of the operations fail, you can use `ROLLBACK` to undo all changes within the transaction block.
+
+Summary
+
+Mastering data manipulation commands in SQL is crucial for effectively managing and modifying data within a database. Understanding how to use INSERT, UPDATE, and DELETE statements allows you to add, change, and remove data as needed, ensuring that your database remains accurate and up-to-date. Using transactions helps maintain data integrity by ensuring that a series of related operations are all completed successfully.
 
 ## Subqueries
 
