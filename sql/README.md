@@ -488,7 +488,7 @@ Aggregation functions are often used in conjunction with the `GROUP BY` clause t
      ```
    * Explanation: This query groups employees by department, counts them, and then orders the results by the number of employees in descending order.
 
-**Summary**
+### Summary
 
 Mastering the `GROUP BY` and `HAVING` clauses in conjunction with aggregate functions is essential for effective data summarization and analysis in SQL. These tools allow you to perform complex queries that can provide valuable insights from your data.
 
@@ -599,7 +599,7 @@ Transactions in SQL ensure that a series of operations are completed successfull
 	•	Multiple `SQL` operations are performed within the transaction.
 	•	`COMMIT` makes all changes permanent. If any of the operations fail, you can use `ROLLBACK` to undo all changes within the transaction block.
 
-Summary
+### Summary
 
 Mastering data manipulation commands in SQL is crucial for effectively managing and modifying data within a database. Understanding how to use INSERT, UPDATE, and DELETE statements allows you to add, change, and remove data as needed, ensuring that your database remains accurate and up-to-date. Using transactions helps maintain data integrity by ensuring that a series of related operations are all completed successfully.
 
@@ -706,11 +706,196 @@ A subquery, also known as an inner query or nested query, is a query within anot
   WHERE e1.salary > (SELECT AVG(e2.salary) FROM employees e2 WHERE e2.department_id = e1.department_id);
   ```
 
-Summary
+### Summary
 
 Subqueries are a powerful feature in SQL that allow you to perform complex queries by embedding one query within another. Understanding how to use subqueries in the SELECT, WHERE, and FROM clauses, as well as the differences between single-row, multiple-row, and correlated subqueries, will significantly enhance your ability to retrieve and analyze data effectively.
 
-## Data Types
+## 7. Data Types
+
+### Data Types 
+
+Data types define the type of data that a column can hold in a SQL database. Choosing the correct data type for each column is crucial for data integrity, performance, and storage efficiency. Here’s a comprehensive look at common data types:
+
+1. Numeric Data Types
+* INT (INTEGER): Stores whole numbers.
+   * Syntax:
+      ```SQL
+      column_name INT;
+      ```
+   * Example:
+      ```SQL
+      age INT;
+      ```
+* FLOAT: Stores floating-point numbers, which are numbers with a decimal point.
+  * Syntax:
+    ```sql
+    column_name FLOAT;
+    ```
+  * Example:
+    ```sql
+    price FLOAT;
+    ```
+* DOUBLE: Stores double-precision floating-point numbers, offering more precision than FLOAT.
+  * Syntax:
+    ```SQL
+    column_name DOUBLE;
+    ```
+  * Example:
+    ```sql
+    distance DOUBLE;
+    ```
+* DECIMAL (NUMERIC): Stores exact numeric data with a fixed precision and scale. Ideal for monetary values.
+  * Syntax:
+    ```sql
+    column_name DECIMAL(precision, scale);
+    ```
+  * Example:
+    ```sql
+    salary DECIMAL(10, 2);
+    ```
+  * Explanation: DECIMAL(10, 2) means the number can have up to 10 digits, with 2 digits after the decimal point.
+2. String Data Types
+* CHAR: Stores fixed-length strings.
+  * Syntax:
+    ```sql
+    column_name CHAR(length);
+    ```
+  * Example:
+    ```sql
+    gender CHAR(1);
+    ```
+  * Explanation: CHAR(1) can store a single character.
+* VARCHAR: Stores variable-length strings.
+  * Syntax:
+    ```sql
+    column_name VARCHAR(length);
+    ```
+  * Example:
+    ```sql
+    name VARCHAR(100);
+    ```
+  * Explanation: VARCHAR(100) can store a string with up to 100 characters.
+* TEXT: Stores large amounts of text.
+  * Syntax:
+    ```sql
+      column_name TEXT;
+    ```
+  * Example:
+    ```sql
+    description TEXT;
+    ```
+* Explanation: TEXT can store a string of any length (subject to the database system's limit).
+
+3. Date and Time Data Types
+* DATE: Stores dates in the format YYYY-MM-DD.
+  * Syntax:
+    ```sql
+    column_name DATE;
+    ```
+  * Example:
+    ```sql
+    birth_date DATE;
+    ```
+* TIME: Stores time in the format HH:MM:SS.
+  * Syntax:
+    ```sql
+    column_name TIME;
+    ```
+  * Example:
+    ```sql
+    start_time TIME;
+    ```
+* DATETIME: Stores both date and time in the format YYYY-MM-DD HH:MM:SS.
+  * Syntax:
+    ```sql
+    column_name DATETIME;
+    ```
+  * Example:
+    ```sql
+    created_at DATETIME;
+    ```
+* TIMESTAMP: Stores both date and time, typically used for tracking changes in records.
+  * Syntax:
+    ```sql
+    column_name TIMESTAMP;
+    ```
+  * Example:
+    ```sql
+    last_updated TIMESTAMP;
+    ```
+4. Binary Data Types
+* BLOB: Stores binary large objects, such as images or other multimedia files.
+  * Syntax:
+    ```sql
+    column_name BLOB;
+    ```
+  * Example:
+    ```sql
+    profile_picture BLOB;
+    ```
+5. Boolean Data Types
+* BOOLEAN: Stores true or false values.
+  * Syntax:
+    ```sql
+    column_name BOOLEAN;
+    ```
+  * Example:
+    ```sql
+    is_active BOOLEAN;
+    ```
+6. Enumerated Data Types
+* ENUM: Stores one value from a defined list of values.
+  * Syntax:
+    ```sql
+    column_name ENUM('value1', 'value2', ...);
+    ```
+  * Example:
+    ```sql
+    status ENUM('active', 'inactive', 'pending');
+    ```
+### Practical Examples
+* Creating a Table with Various Data Types:
+  ```sql
+  CREATE TABLE employees (
+      employee_id INT PRIMARY KEY,
+      first_name VARCHAR(50),
+      last_name VARCHAR(50),
+      birth_date DATE,
+      salary DECIMAL(10, 2),
+      is_active BOOLEAN,
+      profile_picture BLOB,
+      status ENUM('active', 'inactive', 'pending')
+  );
+  ```
+
+* Inserting Data with Various Data Types:
+  ```sql
+  INSERT INTO employees (employee_id, first_name, last_name, birth_date, salary, is_active, profile_picture, status)
+  VALUES (1, 'John', 'Doe', '1980-05-15', 75000.00, TRUE, LOAD_FILE('/path/to/picture.jpg'), 'active');
+  ```
+
+* Selecting Data with Various Data Types:
+  ```sql
+  SELECT employee_id, first_name, last_name, birth_date, salary, is_active, status
+  FROM employees;
+  ```
+
+* Updating Data with Various Data Types:
+  ```sql
+  UPDATE employees
+  SET salary = 80000.00, is_active = FALSE
+  WHERE employee_id = 1;
+  ```
+
+* Deleting Data with Various Data Types:
+  ```sql
+  DELETE FROM employees
+  WHERE is_active = FALSE;
+  ```
+
+### Summary
+
+Understanding and correctly using data types in SQL is fundamental for effective database design and operation. Different data types serve different purposes, and selecting the appropriate type for each column ensures that the database performs efficiently and maintains data integrity. Knowing how to define and manipulate various data types will significantly enhance your SQL skills and database management capabilities.
 
 ## Indexes
 
