@@ -1,13 +1,14 @@
-# Dev Sparknotes
-A collection of condensed, quality information for a variety of technologies
+# Dev Sparknotes :notebook: 
+A collection of distilled content (thanks to ChatGPT) following the Pareto principle to help you get up to speed on specific technologies quickly, or used as a quick reference.
 
 ### Table of Contents
 * [Docker](./docker/README.md)
 * [Github Actions](./github-actions/README.md)
 * [GraphQL](./graphql/README.md)
+* [React Hooks](./react-hooks/README.md)
+* [SQL](./sql/README.md)
 * [Three.js](./threejs/README.md)
 * [TypeScript](./typescript/README.md)
-* [SQL](./sql/README.md)
 
 ## Contact Me
 
