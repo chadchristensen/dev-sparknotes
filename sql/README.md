@@ -1287,10 +1287,217 @@ Optimizing SQL queries is crucial for ensuring that your database performs effic
 Optimizing SQL queries involves various techniques aimed at improving performance and efficiency. Understanding and utilizing tools like EXPLAIN, rewriting queries, using appropriate indexes, leveraging caching strategies, and partitioning tables can significantly enhance query performance. By applying these optimization strategies, you can ensure your database operations are fast, efficient, and scalable, especially as your data grows and query complexity increases.
 
 ## 10. Normalization
+### Normalization
+Normalization is a database design technique that organizes tables in a way that reduces redundancy and dependency. The goal is to decompose a table into smaller, more manageable pieces without losing data integrity. This is achieved through a series of normalization forms (NFs). Each form has specific rules and purposes.
+
+1. First Normal Form (1NF)
+   * Purpose: Ensures that the table is organized in such a way that each column contains atomic (indivisible) values, and each column contains only one type of data.
+   * Rules:
+      * Each table must have a primary key.
+      * Each column should contain atomic values (no repeating groups or arrays).
+      * Each column should contain values of a single type.
+  * Example:
+     * Non-1NF Table:
+        ```plaintext
+        Orders
+        --------------------------------
+        OrderID | CustomerName | Items
+        1       | John Doe     | Pen, Pencil
+        2       | Jane Smith   | Notebook
+        ```
+     * 1NF Table:
+        ```plaintext
+        Orders
+        --------------------------------
+        OrderID | CustomerName | Item
+        1       | John Doe     | Pen
+        1       | John Doe     | Pencil
+        2       | Jane Smith   | Notebook
+        ```
+2. Second Normal Form (2NF)
+   * Purpose: Ensures that the table is in 1NF and that all non-key attributes are fully functional dependent on the primary key.
+   * Rules:
+      * Must meet all the requirements of 1NF.
+      * All non-key attributes must be fully functional dependent on the primary key.
+      * Remove partial dependencies (a non-key attribute depends only on part of the composite primary key).
+   * Example:
+     * Non-2NF Table:
+        ```plaintext
+        Orders
+        --------------------------------------
+        OrderID | CustomerID | CustomerName  | ItemID | ItemName
+        1       | 1          | John Doe      | 1      | Pen
+        1       | 1          | John Doe      | 2      | Pencil
+        2       | 2          | Jane Smith    | 3      | Notebook
+        ```
+     * 2NF Tables:
+        ```plaintext
+        Orders
+        ----------------------------------
+        OrderID | CustomerID | ItemID
+        1       | 1          | 1
+        1       | 1          | 2
+        2       | 2          | 3
+
+        Customers
+        -----------------------------------
+        CustomerID | CustomerName
+        1          | John Doe
+        2          | Jane Smith
+
+        Items
+        -----------------------------------
+        ItemID | ItemName
+        1      | Pen
+        2      | Pencil
+        3      | Notebook
+        ```
+3. Third Normal Form (3NF)
+   * Purpose: Ensures that the table is in 2NF and that all the attributes are only dependent on the primary key.
+   * Rules:
+      * Must meet all the requirements of 2NF.
+      * Remove transitive dependencies (non-key attributes should not depend on other non-key attributes).
+   * Example:
+     * Non-3NF Table:
+        ```plaintext
+        Orders
+        ----------------------------------------------
+        OrderID | CustomerID | CustomerName | CustomerAddress
+        1       | 1          | John Doe     | 123 Main St
+        2       | 2          | Jane Smith   | 456 Oak St
+        ```
+
+     * 3NF Tables:
+        ```plaintext
+        Orders
+        ---------------------------
+        OrderID | CustomerID
+        1       | 1
+        2       | 2
+
+        Customers
+        ----------------------------
+        CustomerID | CustomerName | CustomerAddress
+        1          | John Doe     | 123 Main St
+        2          | Jane Smith   | 456 Oak St
+        ```
+4. Boyce-Codd Normal Form (BCNF)
+   * Purpose: A stronger version of 3NF. Ensures that every determinant is a candidate key.
+   * Rules:
+     * Must meet all the requirements of 3NF.
+     * For every functional dependency (X -> Y), X should be a super key.
+   * Example:
+     * Non-BCNF Table:
+        ```plaintext
+        Courses
+        -----------------------------------
+        CourseID | Instructor | Room
+        1        | Smith      | 101
+        2        | Jones      | 102
+        3        | Smith      | 103
+        ```
+
+     * BCNF Tables:
+        ```plaintext
+        Courses
+        -------------------------
+        CourseID | InstructorID
+        1        | 1
+        2        | 2
+        3        | 1
+
+        Instructors
+        --------------------------
+        InstructorID | InstructorName
+        1            | Smith
+        2            | Jones
+
+        InstructorRooms
+        ------------------------
+        InstructorID | Room
+        1            | 101
+        1            | 103
+        2            | 102
+        ```
+### Higher Normal Forms
+While the first three normal forms and BCNF are the most commonly used, there are higher normal forms such as Fourth Normal Form (4NF) and Fifth Normal Form (5NF), which deal with more complex scenarios involving multi-valued dependencies and join dependencies. These are less commonly needed in typical database design.
+
+**Denormalization**
+   * Purpose: Sometimes, to improve query performance, you may denormalize the data. This involves adding redundancy to the database to avoid complex joins and improve read performance.
+   * Trade-offs: While denormalization can improve read performance, it may increase storage requirements and complicate data modification operations.
+
+### Practical Examples
+* 1NF Example:
+    * Original Table (Not in 1NF):
+      ```plaintext
+      Orders
+      ----------------------------------
+      OrderID | Customer | Items
+      1       | John Doe | Pen, Pencil
+      ```
+
+  * Normalized Table (1NF):
+    ```plaintext
+    Orders
+    ---------------------------
+    OrderID | Customer | Item
+    1       | John Doe | Pen
+    1       | John Doe | Pencil
+    ```
+
+* 2NF Example:
+  * Original Table (Not in 2NF):
+    ```plaintext
+    Orders
+    --------------------------------------
+    OrderID | CustomerID | CustomerName  | ItemID | ItemName
+    1       | 1          | John Doe      | 1      | Pen
+    ```
+  * Normalized Tables (2NF):
+    ```plaintext
+    Orders
+    ---------------------------
+    OrderID | CustomerID | ItemID
+    1       | 1          | 1
+
+    Customers
+    ----------------------------
+    CustomerID | CustomerName
+    1          | John Doe
+
+    Items
+    ----------------------------
+    ItemID | ItemName
+    1      | Pen
+    ```
+
+* 3NF Example:
+  * Original Table (Not in 3NF):
+    ```plaintext
+    Orders
+    ----------------------------------------------
+    OrderID | CustomerID | CustomerName | Address
+    1       | 1          | John Doe     | 123 Main St
+    ```
+  * Normalized Tables (3NF):
+    ```plaintext
+    Orders
+    ---------------------------
+    OrderID | CustomerID
+    1       | 1
+
+    Customers
+    ----------------------------
+    CustomerID | CustomerName | Address
+    1          | John Doe     | 123 Main St
+    ```
+
+### Summary
+Normalization is essential for designing efficient and scalable databases. By following normalization principles, you can reduce redundancy, improve data integrity, and ensure that your database is easy to maintain. However, understanding when to denormalize for performance reasons is also crucial, as overly normalized databases can sometimes lead to complex and slow queries. Balancing normalization and denormalization based on your specific use case and performance requirements will help you design optimal database schemas.
 
 ## 11. Basic Transactions
 
-## 12 .Performance Tuning Specifics
+## 12. Performance Tuning Specifics
 
 
 
