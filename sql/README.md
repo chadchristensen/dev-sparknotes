@@ -1811,9 +1811,176 @@ Caching is a technique to store frequently accessed data in a fast storage mediu
 
   * Explanation: This query instructs MySQL to cache the result of the query. Subsequent identical queries will return the cached result instead of querying the database again.
 
+### Stored Procedures
+Stored procedures are precompiled collections of one or more SQL statements that are stored in the database. They can be used to encapsulate complex business logic, improve performance, and ensure consistent execution of operations.
+
+#### Benefits of Stored Procedures
+* Performance: Stored procedures are precompiled and stored in the database, which can lead to faster execution compared to ad-hoc queries.
+* Security: Stored procedures can help protect against SQL injection attacks by parameterizing inputs. Additionally, you can grant execute permissions to users without giving them direct access to the underlying tables.
+* Maintainability: Encapsulating complex logic within stored procedures makes it easier to maintain and update the logic without changing the application code.
+* Reusability: Once created, stored procedures can be reused across different applications and by different users.
+
+#### Creating Stored Procedures
+* Syntax:
+
+  ```sql
+  CREATE PROCEDURE procedure_name (parameters)
+  BEGIN
+      -- SQL statements
+  END;
+  ```
+* Example:
+
+  ```sql
+  CREATE PROCEDURE GetEmployeeDetails (IN emp_id INT)
+  BEGIN
+      SELECT first_name, last_name, department_id, salary
+      FROM employees
+      WHERE employee_id = emp_id;
+  END;
+  ```
+* Explanation: This stored procedure, GetEmployeeDetails, takes an employee ID as an input parameter and retrieves the corresponding employee details.
+
+#### Executing Stored Procedures
+* Syntax:
+
+  ```sql
+  CALL procedure_name (parameters);
+  ```
+* Example:
+  ```sql
+  CALL GetEmployeeDetails(1);
+  ```
+
+* Explanation: This command executes the GetEmployeeDetails stored procedure with the employee ID 1.
+
+#### Using Parameters in Stored Procedures
+* Input Parameters (IN): Used to pass values into the procedure.
+
+* Output Parameters (OUT): Used to return values from the procedure.
+
+* Input/Output Parameters (INOUT): Used to pass values into the procedure and return updated values.
+
+##### Example with Input and Output Parameters:
+
+```sql
+CREATE PROCEDURE GetEmployeeSalary (IN emp_id INT, OUT emp_salary DECIMAL(10, 2))
+BEGIN
+    SELECT salary INTO emp_salary
+    FROM employees
+    WHERE employee_id = emp_id;
+END;
+```
+##### Executing the Procedure with Output Parameter:
+
+```sql
+DECLARE @salary DECIMAL(10, 2);
+CALL GetEmployeeSalary(1, @salary);
+SELECT @salary;
+```
+
+* Explanation: This stored procedure, GetEmployeeSalary, takes an employee ID as an input parameter and returns the corresponding salary as an output parameter.
+
+#### Error Handling in Stored Procedures
+##### Example with Error Handling:
+
+```sql
+CREATE PROCEDURE UpdateEmployeeSalary (IN emp_id INT, IN new_salary DECIMAL(10, 2))
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- Rollback any changes on error
+        ROLLBACK;
+    END;
+
+    START TRANSACTION;
+    UPDATE employees
+    SET salary = new_salary
+    WHERE employee_id = emp_id;
+    COMMIT;
+END;
+```
+
+* Explanation: This stored procedure, UpdateEmployeeSalary, updates an employee's salary within a transaction. If an error occurs, the transaction is rolled back to ensure data integrity.
+
+#### Practical Examples
+1. Creating a Simple Stored Procedure:
+
+    ```sql
+    CREATE PROCEDURE ListAllEmployees()
+    BEGIN
+        SELECT * FROM employees;
+    END;
+    ```
+
+2. Executing the Simple Stored Procedure:
+
+    ```sql
+    CALL ListAllEmployees();
+    ```
+3. Stored Procedure with Input Parameter:
+
+      ```sql
+      CREATE PROCEDURE GetDepartmentEmployees (IN dept_id INT)
+      BEGIN
+          SELECT first_name, last_name
+          FROM employees
+          WHERE department_id = dept_id;
+      END;
+      ```
+4. Executing the Stored Procedure with Input Parameter:
+
+    ```sql
+    CALL GetDepartmentEmployees(2);
+    ```
+
+5. Stored Procedure with Input and Output Parameters:
+
+    ```sql
+    CREATE PROCEDURE CountDepartmentEmployees (IN dept_id INT, OUT emp_count INT)
+    BEGIN
+        SELECT COUNT(*) INTO emp_count
+        FROM employees
+        WHERE department_id = dept_id;
+    END;
+    ```
+6. Executing the Stored Procedure with Output Parameter:
+
+    ```sql
+    DECLARE @count INT;
+    CALL CountDepartmentEmployees(2, @count);
+    SELECT @count;
+    ```
+
+7. Stored Procedure with Error Handling:
+
+    ```sql
+    CREATE PROCEDURE DeleteEmployee (IN emp_id INT)
+    BEGIN
+        DECLARE EXIT HANDLER FOR SQLEXCEPTION
+        BEGIN
+            -- Rollback any changes on error
+            ROLLBACK;
+        END;
+
+        START TRANSACTION;
+        DELETE FROM employees
+        WHERE employee_id = emp_id;
+        COMMIT;
+    END;
+    ```
+8. Executing the Stored Procedure with Error Handling:
+    ```sql
+    CALL DeleteEmployee(3);
+    ```
+
 ### Summary
 Efficiently using LIMIT and OFFSET clauses for pagination and implementing effective caching strategies are essential techniques for optimizing SQL query performance. Proper pagination ensures that queries are manageable and performant, even for large datasets. Caching reduces the load on the database and accelerates data retrieval by storing frequently accessed data in a faster storage medium. Combining these techniques can significantly enhance the performance and scalability of your database-driven applications.
 
+Stored procedures are a powerful tool in SQL that can encapsulate complex business logic, improve performance, enhance security, and ensure consistent execution of operations. By using stored procedures, you can create reusable, maintainable, and efficient database operations that can be executed by different applications and users. Understanding how to create, execute, and manage stored procedures, along with proper error handling and use of parameters, is essential for effective database management and optimization.
+
 
 ## Notes:
-* In Postgres, SERIAL is now 
+* In Postgres, SERIAL is now
+
+## Resources
