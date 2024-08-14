@@ -1496,6 +1496,238 @@ While the first three normal forms and BCNF are the most commonly used, there ar
 Normalization is essential for designing efficient and scalable databases. By following normalization principles, you can reduce redundancy, improve data integrity, and ensure that your database is easy to maintain. However, understanding when to denormalize for performance reasons is also crucial, as overly normalized databases can sometimes lead to complex and slow queries. Balancing normalization and denormalization based on your specific use case and performance requirements will help you design optimal database schemas.
 
 ## 11. Basic Transactions
+### Basic Transactions
+Transactions in SQL are a sequence of one or more SQL operations treated as a single unit of work. They ensure data integrity and consistency, especially in environments where multiple users may be accessing and modifying the database simultaneously. Transactions follow the ACID properties: Atomicity, Consistency, Isolation, and Durability.
+
+#### 1. ACID Properties
+   * Atomicity: Ensures that all operations within a transaction are completed successfully; otherwise, the transaction is aborted and no operations are applied.
+   * Consistency: Ensures that the database transitions from one valid state to another valid state.
+   * Isolation: Ensures that concurrent execution of transactions leaves the database in the same state as if the transactions were executed sequentially.
+   * Durability: Ensures that once a transaction is committed, the changes are permanent, even in the event of a system failure.
+#### 2. Basic Transaction Commands
+   * BEGIN/START TRANSACTION: Starts a new transaction.
+      ```sql
+      BEGIN TRANSACTION;
+      ```
+   * COMMIT: Saves all changes made during the transaction.
+      ```sql
+      COMMIT;
+      ```
+   * ROLLBACK: Undoes all changes made during the transaction.
+      ```sql
+      ROLLBACK;
+      ```
+#### 3. Using Transactions
+   
+Transactions are used to ensure data integrity and consistency. They are especially useful for operations that involve multiple steps, such as transferring money between bank accounts, updating inventory, or placing an order.
+
+**Example Scenario: Transferring Money Between Bank Accounts**
+1. BEGIN TRANSACTION
+   * Starts the transaction.
+2. Update Account Balances
+   * Deducts the amount from one account and adds it to another.
+3. COMMIT
+   * Saves the changes if both updates are successful.
+4. ROLLBACK
+   * Undoes the changes if any update fails.
+  
+  ```sql
+  BEGIN TRANSACTION;
+
+  UPDATE accounts
+  SET balance = balance - 100
+  WHERE account_id = 1;
+
+  UPDATE accounts
+  SET balance = balance + 100
+  WHERE account_id = 2;
+
+  COMMIT;
+  ```
+
+**Handling Errors with Transactions**
+If an error occurs during a transaction, you can use ROLLBACK to revert all changes made up to that point, ensuring that the database remains in a consistent state.
+  ```sql
+  BEGIN TRANSACTION;
+
+  BEGIN TRY
+      UPDATE accounts
+      SET balance = balance - 100
+      WHERE account_id = 1;
+
+      UPDATE accounts
+      SET balance = balance + 100
+      WHERE account_id = 2;
+
+      COMMIT;
+  END TRY
+  BEGIN CATCH
+      ROLLBACK;
+  END CATCH;
+  ```
+
+#### 4. Savepoints
+Savepoints allow you to create points within a transaction to which you can roll back without affecting the entire transaction. They are useful for complex transactions where you want to partially commit some changes while retaining the option to roll back others.
+
+* SAVEPOINT: Creates a savepoint within the transaction.
+    ```sql
+    SAVEPOINT savepoint_name;
+    ```
+
+* ROLLBACK TO SAVEPOINT: Rolls back the transaction to the specified savepoint.
+    ```sql
+    ROLLBACK TO SAVEPOINT savepoint_name;
+    ```
+
+* RELEASE SAVEPOINT: Removes the specified savepoint.
+    ```sql
+    RELEASE SAVEPOINT savepoint_name;
+    ```
+Example:
+```sql
+BEGIN TRANSACTION;
+
+UPDATE accounts
+SET balance = balance - 100
+WHERE account_id = 1;
+
+SAVEPOINT sp1;
+
+UPDATE accounts
+SET balance = balance + 100
+WHERE account_id = 2;
+
+-- An error occurs, rollback to savepoint
+ROLLBACK TO SAVEPOINT sp1;
+
+-- Continue with other operations
+UPDATE accounts
+SET balance = balance + 50
+WHERE account_id = 3;
+
+COMMIT;
+```
+
+#### 5. Isolation Levels
+Isolation levels control the visibility of changes made by one transaction to other concurrent transactions. SQL defines several isolation levels, each with different trade-offs between performance and consistency.
+
+* READ UNCOMMITTED: Allows a transaction to read data that has not yet been committed by other transactions. This isolation level can lead to dirty reads.
+sql
+
+  ```sql
+  SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+  ```
+
+* READ COMMITTED: Ensures that a transaction cannot read data that has not been committed by other transactions. This isolation level prevents dirty reads.
+sql
+
+  ```sql
+  SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+  ```
+
+* REPEATABLE READ: Ensures that if a transaction reads the same row twice, the values are the same each time. This isolation level prevents non-repeatable reads but not phantom reads.
+  ```sql
+  SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+  ```
+
+* SERIALIZABLE: Ensures complete isolation from other transactions. This isolation level prevents dirty reads, non-repeatable reads, and phantom reads.
+  ```sql
+  SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+  ```
+
+Example:
+
+```sql
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+BEGIN TRANSACTION;
+
+SELECT balance
+FROM accounts
+WHERE account_id = 1;
+
+-- Perform other operations...
+
+COMMIT;
+```
+
+### Practical Examples
+1. Basic Transaction:
+
+    ```sql
+    BEGIN TRANSACTION;
+
+    INSERT INTO orders (customer_id, order_date, total)
+    VALUES (1, '2024-07-20', 150.00);
+
+    UPDATE inventory
+    SET quantity = quantity - 1
+    WHERE product_id = 101;
+
+    COMMIT;
+    ```
+
+2. Transaction with Error Handling:
+    ```sql
+    BEGIN TRANSACTION;
+
+    BEGIN TRY
+        INSERT INTO orders (customer_id, order_date, total)
+        VALUES (2, '2024-07-20', 200.00);
+
+        UPDATE inventory
+        SET quantity = quantity - 1
+        WHERE product_id = 102;
+
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK;
+    END CATCH;
+    ```
+
+3. Using Savepoints:
+
+    ```sql
+    BEGIN TRANSACTION;
+
+    UPDATE accounts
+    SET balance = balance - 50
+    WHERE account_id = 1;
+
+    SAVEPOINT sp1;
+
+    UPDATE accounts
+    SET balance = balance + 50
+    WHERE account_id = 2;
+
+    -- An error occurs
+    ROLLBACK TO SAVEPOINT sp1;
+
+    UPDATE accounts
+    SET balance = balance + 25
+    WHERE account_id = 3;
+
+    COMMIT;
+    ```
+
+4. Setting Isolation Levels:
+    ```sql
+    SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+    BEGIN TRANSACTION;
+
+    SELECT balance
+    FROM accounts
+    WHERE account_id = 1;
+
+    -- Perform other operations...
+
+    COMMIT;
+    ```
+
+### Summary
+Transactions are essential for ensuring data integrity and consistency in SQL databases, particularly in multi-user environments. By understanding and effectively using transaction commands (BEGIN TRANSACTION, COMMIT, ROLLBACK), savepoints, and isolation levels, you can manage complex operations and handle errors gracefully. Mastery of these concepts will help you maintain a robust and reliable database system.
 
 ## 12. Performance Tuning Specifics
 
