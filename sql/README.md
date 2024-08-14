@@ -53,7 +53,13 @@
 11. [Basic Transactions](#11-basic-transactions)
 * BEGIN, COMMIT, ROLLBACK: Understanding transactions and how to ensure data integrity.
 
-12.  [More Performance Tuning](#12-more-performance-tuning)
+12. [Database Views](#12-database-views)
+* Creating Views: Define virtual tables using SELECT queries to simplify data access and enhance security.
+* Querying Views: Retrieve data from views, using them as virtual tables in your queries.
+* Updating Views: Modifying underlying data through views and how to perform updates.
+* Managing Views: Alter, replace, or drop views to maintain database structure and functionality.
+
+1.    [More Performance Tuning](#13-more-performance-tuning)
 * Avoiding SELECT *: Selecting only the necessary columns to reduce data load.
 * Reducing Joins: Minimizing the number of joins in queries for better performance.
 * Use of Stored Procedures: Using stored procedures to encapsulate complex logic.
@@ -1729,7 +1735,134 @@ COMMIT;
 ### Summary
 Transactions are essential for ensuring data integrity and consistency in SQL databases, particularly in multi-user environments. By understanding and effectively using transaction commands (BEGIN TRANSACTION, COMMIT, ROLLBACK), savepoints, and isolation levels, you can manage complex operations and handle errors gracefully. Mastery of these concepts will help you maintain a robust and reliable database system.
 
-## 12. More Performance Tuning
+## 12. Database Views
+### Database Views
+A database view is a virtual table that provides a way to present data from one or more tables in a specific, pre-defined format. Views do not store data themselves; instead, they store a query that retrieves data from the underlying tables. This can simplify complex queries, enhance security by restricting access to certain data, and provide a consistent, abstracted way to access data.
+
+
+#### Benefits of Views
+* Simplification: Simplify complex queries by encapsulating them in a view.
+* Security: Restrict access to specific rows and columns in the tables by providing selective access through views.
+* Consistency: Ensure that users see consistent, formatted data.
+Abstraction: Hide the complexity of the underlying database schema.
+
+
+#### Creating Views
+* Syntax:
+    ```sql
+    CREATE VIEW view_name AS
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition;
+    ```
+
+* Example:
+    ```sql
+    CREATE VIEW EmployeeDetails AS
+    SELECT first_name, last_name, department_id, salary
+    FROM employees
+    WHERE status = 'Active';
+    ```
+* Explanation: This view, EmployeeDetails, selects the first name, last name, department ID, and salary of active employees.
+
+#### Querying Views
+* Syntax:
+    ```sql  
+    SELECT column1, column2, ...
+    FROM view_name
+    WHERE condition;
+    ```
+
+* Example:
+    ```sql
+    SELECT * FROM EmployeeDetails WHERE department_id = 2;
+    ```
+
+* Explanation: This query retrieves all columns from the EmployeeDetails view for employees in department 2.
+
+#### Updating Views
+Views can sometimes be updatable, allowing you to insert, update, or delete rows in the underlying tables through the view. However, certain conditions must be met for a view to be updatable, such as not using aggregate functions, DISTINCT, GROUP BY, etc.
+
+* Example:
+    ```sql
+    UPDATE EmployeeDetails
+    SET salary = salary + 5000
+    WHERE department_id = 2;
+    ```
+
+* Explanation: This query increases the salary of employees in department 2 by 5000 through the EmployeeDetails view.
+
+#### Managing Views
+* Altering Views:
+    ```sql
+    CREATE OR REPLACE VIEW view_name AS
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition;
+    ```
+
+* Dropping Views:
+    ```sql
+    DROP VIEW view_name;
+    ```
+* Example:
+    ```sql
+    DROP VIEW EmployeeDetails;
+    ```
+* Explanation: This query removes the EmployeeDetails view from the database.
+
+### Practical Examples
+1. Creating a View:
+    ```sql
+    CREATE VIEW ActiveEmployees AS
+    SELECT employee_id, first_name, last_name, department_id
+    FROM employees
+    WHERE status = 'Active';
+    ```
+
+2. Querying a View:
+    ```sql
+    SELECT * FROM ActiveEmployees WHERE department_id = 3;
+    ```
+
+3. Updating Data Through a View:
+    ```sql
+    UPDATE ActiveEmployees
+    SET department_id = 4
+    WHERE employee_id = 10;
+    ```
+
+4. Creating a Complex View:
+    ```sql
+    CREATE VIEW DepartmentSummary AS
+    SELECT d.department_id, d.department_name, COUNT(e.employee_id) AS employee_count, AVG(e.salary) AS average_salary
+    FROM departments d
+    LEFT JOIN employees e ON d.department_id = e.department_id
+    GROUP BY d.department_id, d.department_name;
+    ```
+
+5. Querying the Complex View:
+    ```sql
+    SELECT * FROM DepartmentSummary WHERE employee_count > 10;
+    ```
+
+6. Altering a View:
+    ```sql
+    CREATE OR REPLACE VIEW ActiveEmployees AS
+    SELECT employee_id, first_name, last_name, department_id, hire_date
+    FROM employees
+    WHERE status = 'Active';
+    ```
+
+7. Dropping a View:
+    ```sql
+    DROP VIEW ActiveEmployees;
+    ```
+
+### Summary
+Database views are powerful tools that provide a way to simplify complex queries, enhance security, ensure consistent data presentation, and abstract the underlying database schema. By using views, you can create virtual tables that encapsulate query logic, making it easier to manage and access data. Understanding how to create, query, update, and manage views is essential for effective database management and optimization.
+
+## 13. More Performance Tuning
 ### Using LIMIT/OFFSET Efficiently
 The LIMIT and OFFSET clauses are used to paginate through a large dataset by specifying the number of rows to return and the starting point within the result set. This is particularly useful for displaying results in a user-friendly way, such as in web applications.
 
