@@ -1,65 +1,70 @@
 # SQL
 
 ## Table of Contents
-1. [Basic Queries](#1-basic-queries)
-* SELECT Statements: How to retrieve data from a database.
-* FROM Clause: Understanding tables and how to select them.
-* WHERE Clause: Filtering data based on conditions.
+### 1. [Basic Queries](#1-basic-queries)
+* [SELECT Statements:](#1-select-statements) How to retrieve data from a database.
+* [FROM Clause](#2-from-clause): Understanding tables and how to select them.
+* [WHERE Clause](#3-where-clause): Filtering data based on conditions.
 
-2. [Joins](#2-joins)
-* INNER JOIN: Combining rows from two or more tables based on a related column.
-* LEFT JOIN: Returning all rows from the left table, and the matched rows from the right table.
-* RIGHT JOIN: Returning all rows from the right table, and the matched rows from the left table.
-* FULL OUTER JOIN: Returning all rows when there is a match in either left or right table.
+### 2. [Joins](#2-joins)
+* [INNER JOIN](#1-inner-join): Combining rows from two or more tables based on a related column.
+* [LEFT JOIN](#2-left-join-or-left-outer-join): Returning all rows from the left table, and the matched rows from the right table.
+* [RIGHT JOIN](#3-right-join-or-right-outer-join): Returning all rows from the right table, and the matched rows from the left table.
+* [FULL OUTER JOIN](#4-full-outer-join): Returning all rows when there is a match in either left or right table.
 
-3. [Aggregation Functions](#3-aggregation-functions)
-* COUNT(): Counting the number of rows.
-* SUM(): Summing the values of a column.
-* AVG(): Calculating the average value of a column.
-* MAX() and MIN(): Finding the maximum and minimum values.
+### 3. [Aggregation Functions](#3-aggregation-functions)
+* [COUNT()](#1-count): Counting the number of rows.
+* [SUM()](#2-sum): Summing the values of a column.
+* [AVG()](#3-avg): Calculating the average value of a column.
+* [MAX() and MIN()](#5-min): Finding the maximum and minimum values.
 
-4. [Grouping Data](#4-grouping-data)
-* GROUP BY: Aggregating data across multiple records.
-* HAVING: Filtering groups based on conditions.
+### 4. [Grouping Data](#4-grouping-data)
+* [GROUP BY](#1-group-by-clause): Aggregating data across multiple records.
+* [HAVING](#3-having-clause): Filtering groups based on conditions.
 
-5. [Data Manipulation](#5-data-manipulation)
-* INSERT: Adding new rows to a table.
-* UPDATE: Modifying existing rows in a table.
-* DELETE: Removing rows from a table.
+### 5. [Data Manipulation](#5-data-manipulation)
+* [INSERT](#1-insert-statement): Adding new rows to a table.
+* [UPDATE](#2-update-statement): Modifying existing rows in a table.
+* [DELETE](#3-delete-statement): Removing rows from a table.
 
-6. [Subqueries](#6-subqueries)
+### 6. [Subqueries](#6-subqueries)
 * Subqueries in SELECT: Using queries within other queries.
 * Subqueries in WHERE: Filtering data based on subquery results.
 
-7. [Data Types](#7-data-types)
-* Understanding common data types such as INTEGER, VARCHAR, DATE, etc.
+### 7. [Data Types](#7-data-types)
+* [Numeric Data Types](#1-numeric-data-types)
+* [String Data Types](#2-string-data-types)
+* [Date and Time Data Types](#3-date-and-time-data-types)
+* [Binary Data Types](#4-binary-data-types)
+* [Boolean Data Types](#5-boolean-data-types)
+* [Enumerated Data Types](#6-enumerated-data-types)
 
-8. [Indexes](#8-indexes)
+### 8. [Indexes](#8-indexes)
 * Basics of Indexing: Understanding how indexes work and their importance.
 * Creating Indexes: How to create indexes to improve query performance.
 * Composite Indexes: Using multiple columns in an index.
 * Index Maintenance: Keeping indexes healthy and up-to-date.
 
-9. [Query Optimization](#9-query-optimization)
+### 9. [Query Optimization](#9-query-optimization)
 * EXPLAIN/EXPLAIN PLAN: Analyzing query execution plans to identify bottlenecks.
 * Query Hints: Providing hints to the database engine for better query performance.
 * Query Rewrite: Techniques to rewrite queries for better performance.
 * Using LIMIT/OFFSET: Efficiently paging through large result sets.
 
-10. [Normalization](#10-normalization)
+### 10.  [Normalization](#10-normalization)
 * Basic concepts of database normalization and why it is important.
 * Denormalization: When and how to denormalize for performance reasons.
 
-11. [Basic Transactions](#11-basic-transactions)
+### 11.  [Basic Transactions](#11-basic-transactions)
 * BEGIN, COMMIT, ROLLBACK: Understanding transactions and how to ensure data integrity.
 
-12. [Database Views](#12-database-views)
+### 12.  [Database Views](#12-database-views)
 * Creating Views: Define virtual tables using SELECT queries to simplify data access and enhance security.
 * Querying Views: Retrieve data from views, using them as virtual tables in your queries.
 * Updating Views: Modifying underlying data through views and how to perform updates.
 * Managing Views: Alter, replace, or drop views to maintain database structure and functionality.
 
-1.    [More Performance Tuning](#13-more-performance-tuning)
+### 13.  [More Performance Tuning](#13-more-performance-tuning)
 * Avoiding SELECT *: Selecting only the necessary columns to reduce data load.
 * Reducing Joins: Minimizing the number of joins in queries for better performance.
 * Use of Stored Procedures: Using stored procedures to encapsulate complex logic.
@@ -70,8 +75,8 @@
 
 ## 1. Basic Queries
 Understanding basic queries is foundational to working with SQL databases. Here are the critical components:
-
-1. SELECT Statements
+### Basic Queries
+#### 1. SELECT Statements
 
 * Syntax: The basic syntax for a SELECT statement is:
 	
@@ -85,7 +90,7 @@ Understanding basic queries is foundational to working with SQL databases. Here 
   FROM employees;
   ```
 
-2. FROM Clause
+#### 2. FROM Clause
    
 * Syntax: Specifies the table from which to retrieve the data.
 	```SQL
@@ -98,7 +103,7 @@ Understanding basic queries is foundational to working with SQL databases. Here 
 	FROM products;
 	```
 
-3. WHERE Clause
+#### 3. WHERE Clause
    
 * Syntax: Used to filter records that meet certain conditions.
 	```SQL
@@ -124,7 +129,7 @@ Understanding basic queries is foundational to working with SQL databases. Here 
 	SELECT * FROM orders WHERE status IN ('Shipped', 'Pending');
 	```
 
-4. ORDER BY Clause
+#### 4. ORDER BY Clause
 * Syntax: Used to sort the result set by one or more columns.
 	```SQL
   SELECT column1, column2
@@ -139,7 +144,7 @@ Understanding basic queries is foundational to working with SQL databases. Here 
   ORDER BY last_name ASC;
   ```
 
-5. LIMIT Clause
+#### 5. LIMIT Clause
 * Syntax: Used to specify the number of records to return.
   ```SQL
   SELECT column1, column2
@@ -154,7 +159,7 @@ Understanding basic queries is foundational to working with SQL databases. Here 
   LIMIT 10;
   ```
 
-6. DISTINCT Keyword
+#### 6. DISTINCT Keyword
 * Syntax: Used to return only distinct (different) values.
   
   ```SQL
@@ -167,7 +172,7 @@ Understanding basic queries is foundational to working with SQL databases. Here 
   FROM customers;
   ```
 
-7. Aliasing
+#### 7. Aliasing
 * Syntax: Used to give a table or a column a temporary name.
   ```SQL
   SELECT column_name AS alias_name
@@ -185,8 +190,8 @@ Mastering these basic query elements will provide a solid foundation for more co
 
 ## 2. Joins
 Joins are used in SQL to combine rows from two or more tables based on a related column between them. Here are the critical types of joins you need to know:
-
-1. INNER JOIN
+### Joins
+#### 1. INNER JOIN
 * **Syntax:** Returns records that have matching values in both tables.
   ```SQL
   SELECT columns
@@ -204,7 +209,7 @@ Joins are used in SQL to combine rows from two or more tables based on a related
 
 * **Explanation:** This query selects all employees and their respective department names where there is a match between employees.department_id and departments.department_id.
 
-2. LEFT JOIN (or LEFT OUTER JOIN)
+#### 2. LEFT JOIN (or LEFT OUTER JOIN)
 
 * **Syntax**: Returns all records from the left table, and the matched records from the right table. The result is NULL from the right side if there is no match.
 
@@ -225,7 +230,7 @@ Joins are used in SQL to combine rows from two or more tables based on a related
 
 * **Explanation:** This query returns all employees and their department names. If an employee is not assigned to any department, the department_name will be NULL.
 
-3. RIGHT JOIN (or RIGHT OUTER JOIN)
+#### 3. RIGHT JOIN (or RIGHT OUTER JOIN)
 
 * **Syntax**: Returns all records from the right table, and the matched records from the left table. The result is NULL from the left side if there is no match.
 
@@ -247,7 +252,7 @@ Joins are used in SQL to combine rows from two or more tables based on a related
 
 * **Explanation:** This query returns all departments and the employees in each department. If a department has no employees, the `first_name` and last_name will be NULL.
 
-4. FULL OUTER JOIN
+#### 4. FULL OUTER JOIN
 * **Syntax:** Returns all records when there is a match in either left or right table. Records with no match in left or right tables will be included as well.
 
   ```SQL
@@ -267,7 +272,7 @@ Joins are used in SQL to combine rows from two or more tables based on a related
 
 * **Explanation:** This query returns all employees and all departments, with NULL values in places where there is no match.
 
-5. Self Join
+#### 5. Self Join
 * **Syntax:** A self join is a regular join but the table is joined with itself.
 
   ```SQL
@@ -286,7 +291,7 @@ Joins are used in SQL to combine rows from two or more tables based on a related
 
 * **Explanation:** This query lists employees and their managers by joining the employees table with itself.
 
-6. Cross Join
+#### 6. Cross Join
 
 * Syntax: Returns the Cartesian product of the two tables (i.e., every row in the first table is combined with every row in the second table).
 
@@ -314,7 +319,8 @@ Mastering joins is crucial for working with related data stored across multiple 
 
 Aggregation functions in SQL are used to perform calculations on multiple rows of a table’s column and return a single value. They are often used with the GROUP BY clause to group the results based on one or more columns. Here are the essential aggregation functions you need to know:
 
-1. **COUNT()**
+### Aggregation Functions
+#### 1. **COUNT()**
 * Purpose: Returns the number of rows that match a specified condition.
 * Syntax:
 	```SQL
@@ -332,7 +338,7 @@ Aggregation functions in SQL are used to perform calculations on multiple rows o
 
 * Explanation: This query counts the number of employees in department 1.
 
-2. SUM()
+#### 2. SUM()
 * Purpose: Returns the total sum of a numeric column.
 * Syntax:
     ```SQL
@@ -350,7 +356,7 @@ Aggregation functions in SQL are used to perform calculations on multiple rows o
 
 * Explanation: This query calculates the total salary for all employees in department 2.
 
-3. AVG()
+#### 3. AVG()
 * **Purpose:** Returns the average value of a numeric column.
 * **Syntax:**
 	```SQL
@@ -368,7 +374,7 @@ Aggregation functions in SQL are used to perform calculations on multiple rows o
 
 * Explanation: This query calculates the average salary for all employees in department 3.
 
-4. MAX()
+#### 4. MAX()
 * Purpose: Returns the maximum value of a column.
 * Syntax:
 	```SQL
@@ -385,7 +391,7 @@ Aggregation functions in SQL are used to perform calculations on multiple rows o
 
 * Explanation: This query finds the highest salary in department 4.
 
-5. MIN()	
+#### 5. MIN()	
 * Purpose: Returns the minimum value of a column.
 * Syntax: 
 	```SQL
@@ -406,7 +412,8 @@ Aggregation functions in SQL are used to perform calculations on multiple rows o
 
 Aggregation functions are often used in conjunction with the `GROUP BY` clause to group the results based on one or more columns.
 
-1. GROUP BY Clause
+### Grouping Data
+#### 1. GROUP BY Clause
    * Purpose: Groups rows that have the same values into summary rows, like “find the number of employees in each department”.
    * Syntax:
       ```SQL
@@ -424,7 +431,7 @@ Aggregation functions are often used in conjunction with the `GROUP BY` clause t
 
    * Explanation: This query counts the number of employees in each department.
 
-2. Using Aggregate Functions with GROUP BY
+#### 2. Using Aggregate Functions with GROUP BY
    * COUNT(): Counts the number of rows.
      ```SQL
      SELECT department_id, COUNT(employee_id) AS employee_count
@@ -456,7 +463,7 @@ Aggregation functions are often used in conjunction with the `GROUP BY` clause t
      GROUP BY department_id;
      ```
 
-3. `HAVING` Clause
+#### 3. `HAVING` Clause
    * Purpose: Filters records that work on summarized `GROUP BY` results. It’s similar to the `WHERE` clause but used for aggregate functions.
    * Syntax:
      ```SQL
@@ -505,7 +512,7 @@ Mastering the `GROUP BY` and `HAVING` clauses in conjunction with aggregate func
 
 Data manipulation in SQL involves performing operations to modify the data stored in a database. The three primary operations for data manipulation are INSERT, UPDATE, and DELETE.
 
-1. INSERT Statement
+#### 1. INSERT Statement
   * Purpose: Adds new rows of data to a table.
   * Syntax:
       ```SQL
@@ -528,7 +535,7 @@ Data manipulation in SQL involves performing operations to modify the data store
     ```
   * Explanation: This query inserts multiple rows into the employees table in a single `INSERT` statement.
 
-2. UPDATE Statement
+#### 2. UPDATE Statement
    * Purpose: Modifies existing rows in a table.
    * Syntax: 
       ```SQL
@@ -558,7 +565,7 @@ Data manipulation in SQL involves performing operations to modify the data store
     ```
   * Explanation: This query gives a 10% salary increase to all employees in department 3.
 
-3. DELETE Statement
+#### 3. DELETE Statement
   * Purpose: Removes rows from a table.
   * Syntax:
     ```SQL
@@ -613,7 +620,7 @@ Mastering data manipulation commands in SQL is crucial for effectively managing 
 ### Subqueries
 A subquery, also known as an inner query or nested query, is a query within another SQL query and embedded within the WHERE clause, the FROM clause, or the SELECT clause. Subqueries can be used to return data that will be used in the main query as a condition to further restrict the data to be retrieved.
 
-1. Subqueries in the SELECT Clause
+#### 1. Subqueries in the SELECT Clause
 * Purpose: To include a value in the SELECT list that is computed from another query.
 * Syntax:
   ```SQL
@@ -630,7 +637,7 @@ A subquery, also known as an inner query or nested query, is a query within anot
 
 * Explanation: This query selects the `employee_id` and `first_name` from the employees table and also retrieves the `department_name` from the departments table based on the matching `department_id`.
 
-2. Subqueries in the WHERE Clause
+#### 2. Subqueries in the WHERE Clause
 * Purpose: o use the result of another query to filter the results of the main query.
 * Syntax:
   ```SQL
@@ -657,7 +664,7 @@ A subquery, also known as an inner query or nested query, is a query within anot
 
 * Explanation: This query selects the `first_name` and `last_name` of employees who work in departments located in ‘New York’.
 
-3. Subqueries in the FROM Clause
+#### 3. Subqueries in the FROM Clause
 * Purpose: To use the result of another query as a table in the main query.
 * Syntax:
     ```SQL
@@ -722,7 +729,7 @@ Subqueries are a powerful feature in SQL that allow you to perform complex queri
 
 Data types define the type of data that a column can hold in a SQL database. Choosing the correct data type for each column is crucial for data integrity, performance, and storage efficiency. Here’s a comprehensive look at common data types:
 
-1. Numeric Data Types
+#### 1. Numeric Data Types
 * INT (INTEGER): Stores whole numbers.
    * Syntax:
       ```SQL
@@ -760,7 +767,8 @@ Data types define the type of data that a column can hold in a SQL database. Cho
     salary DECIMAL(10, 2);
     ```
   * Explanation: DECIMAL(10, 2) means the number can have up to 10 digits, with 2 digits after the decimal point.
-2. String Data Types
+  
+#### 2. String Data Types
 * CHAR: Stores fixed-length strings.
   * Syntax:
     ```sql
@@ -792,7 +800,7 @@ Data types define the type of data that a column can hold in a SQL database. Cho
     ```
 * Explanation: TEXT can store a string of any length (subject to the database system's limit).
 
-3. Date and Time Data Types
+#### 3. Date and Time Data Types
 * DATE: Stores dates in the format YYYY-MM-DD.
   * Syntax:
     ```sql
@@ -829,7 +837,7 @@ Data types define the type of data that a column can hold in a SQL database. Cho
     ```sql
     last_updated TIMESTAMP;
     ```
-4. Binary Data Types
+#### 4. Binary Data Types
 * BLOB: Stores binary large objects, such as images or other multimedia files.
   * Syntax:
     ```sql
@@ -839,7 +847,7 @@ Data types define the type of data that a column can hold in a SQL database. Cho
     ```sql
     profile_picture BLOB;
     ```
-5. Boolean Data Types
+#### 5. Boolean Data Types
 * BOOLEAN: Stores true or false values.
   * Syntax:
     ```sql
@@ -849,7 +857,7 @@ Data types define the type of data that a column can hold in a SQL database. Cho
     ```sql
     is_active BOOLEAN;
     ```
-6. Enumerated Data Types
+#### 6. Enumerated Data Types
 * ENUM: Stores one value from a defined list of values.
   * Syntax:
     ```sql
