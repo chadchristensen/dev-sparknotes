@@ -41,23 +41,23 @@ By focusing on these areas, you'll cover the essential tools and concepts that f
 ### 1. Understanding the Layout
 Blender's interface is divided into several key areas:
 
-* Editor Types: Blender’s UI consists of multiple editors, such as the 3D Viewport, Outliner, Properties Editor, and Timeline. Each editor has a specific function, and you can switch between them using the dropdown menus in the top-left corner of each area.
+* **Editor Types:** Blender’s UI consists of multiple editors, such as the 3D Viewport, Outliner, Properties Editor, and Timeline. Each editor has a specific function, and you can switch between them using the dropdown menus in the top-left corner of each area.
 
-* Workspaces: Workspaces are pre-configured layouts tailored for specific tasks like Modeling, Sculpting, UV Editing, Shading, and Animation. On a Mac, you can switch between these using the tabs at the top of the window or by customizing shortcuts.
+* **Workspaces:** Workspaces are pre-configured layouts tailored for specific tasks like Modeling, Sculpting, UV Editing, Shading, and Animation. On a Mac, you can switch between these using the tabs at the top of the window or by customizing shortcuts.
 
 ### 2. Navigating the 3D Viewport
-* Orbit, Pan, and Zoom:
+* **Orbit, Pan, and Zoom:**
   * **Orbit:** Hold down the middle mouse button (or two-finger drag on a Mac trackpad) and move the mouse to orbit around your scene.
   * **Pan:** Hold down Shift + middle mouse button (or Shift + two-finger drag) to pan the view.
   * **Zoom:** Scroll with the mouse wheel or use pinch gestures on the trackpad.
-* NumPad Shortcuts:
+* **NumPad Shortcuts:**
   * **1, 3, 7:** Switch to front, side, and top orthographic views respectively. Use Cmd + the number to view the opposite direction (e.g., Cmd + 1 for back view).
   * **5:** Toggles between orthographic and perspective views.
   * **0:** Switches to the camera view.
 Tip: If your keyboard lacks a NumPad, you can enable "Emulate Numpad" in the Preferences under Input, allowing you to use the regular number keys for these functions.
 
 ### 3. Hotkeys & Custom Shortcuts
-* Blender’s Keymap Preferences:
+* **Blender’s Keymap Preferences:**
   * Blender has a steep learning curve for hotkeys. On a Mac, it’s worth familiarizing yourself with common shortcuts, such as:
     * G: Grab/move
     * R: Rotate
@@ -66,37 +66,35 @@ Tip: If your keyboard lacks a NumPad, you can enable "Emulate Numpad" in the Pre
     * A: Select all/deselect all
     * Cmd + Z: Undo
     * Cmd + Shift + Z: Redo
-* Customizing Shortcuts:
-
-You can customize key bindings by going to Preferences > Keymap. This is especially useful if you want to optimize your workflow or prefer different shortcuts based on other software you're familiar with.
+* **Customizing Shortcuts:**
+    * You can customize key bindings by going to Preferences > Keymap. This is especially useful if you want to optimize your workflow or prefer different shortcuts based on other software you're familiar with.
 ### 4. Panels & Properties
-Properties Editor:
+* **Properties Editor:**
+  * Located on the right, this editor contains panels that control object data, modifiers, materials, and render settings. Each panel can be collapsed and expanded, and it’s essential to understand what each section does for efficient workflow management.
+* **Tool Shelf & Sidebar:**
+  * The Tool Shelf (T) contains frequently used tools and the Sidebar (N) has options related to the active tool, item, and view. Mastering the quick toggling of these panels is crucial for speeding up your work process.
 
-Located on the right, this editor contains panels that control object data, modifiers, materials, and render settings. Each panel can be collapsed and expanded, and it’s essential to understand what each section does for efficient workflow management.
-Tool Shelf & Sidebar:
-
-The Tool Shelf (T) contains frequently used tools and the Sidebar (N) has options related to the active tool, item, and view. Mastering the quick toggling of these panels is crucial for speeding up your work process.
 ### 5. Customizing the Interface
-Splitting & Joining Areas:
+* **Splitting & Joining Areas:**
+  * You can split the Blender interface into multiple sections by dragging from the corners of the editors. To join areas, drag one corner into another. This is helpful for creating a customized workspace that fits your specific needs.
 
-You can split the Blender interface into multiple sections by dragging from the corners of the editors. To join areas, drag one corner into another. This is helpful for creating a customized workspace that fits your specific needs.
-Saving Your Layout:
+* **Saving Your Layout:**
+  * Once you’ve configured your layout to your liking, save it as a custom workspace. Go to the top of the screen, click on the + next to the workspaces, and choose “Save Startup File” to ensure Blender always opens with your preferred layout.
 
-Once you’ve configured your layout to your liking, save it as a custom workspace. Go to the top of the screen, click on the + next to the workspaces, and choose “Save Startup File” to ensure Blender always opens with your preferred layout.
 ### 6. Preferences & Add-ons
-Accessing Preferences:
+* **Accessing Preferences:**
+  * Access the preferences by going to Blender > Preferences (Cmd + ,). Here, you can tweak everything from the interface theme to input settings, and install and manage add-ons that extend Blender’s capabilities.
 
-Access the preferences by going to Blender > Preferences (Cmd + ,). Here, you can tweak everything from the interface theme to input settings, and install and manage add-ons that extend Blender’s capabilities.
-Setting Up Auto-Save:
+* **Setting Up Auto-Save:**
+  * Under Preferences > Save & Load, enable auto-save to prevent losing your work. On a Mac, you can also set specific paths for temporary files and backups.
 
-Under Preferences > Save & Load, enable auto-save to prevent losing your work. On a Mac, you can also set specific paths for temporary files and backups.
 ### 7. Mac-Specific Considerations
-Mac Trackpad Gestures:
+* **Mac Trackpad Gestures:**
+  * Make use of the trackpad gestures (two-finger drag, pinch) for navigation. Additionally, consider enabling "Emulate 3 Button Mouse" in the preferences if you don't have a traditional three-button mouse.
 
-Make use of the trackpad gestures (two-finger drag, pinch) for navigation. Additionally, consider enabling "Emulate 3 Button Mouse" in the preferences if you don't have a traditional three-button mouse.
-Cmd Key Usage:
+* **Cmd Key Usage:**
+  * On a Mac, the Cmd key often substitutes for the Ctrl key in shortcuts you might find in Windows-specific Blender tutorials. Keep this in mind when following online resources.
 
-On a Mac, the Cmd key often substitutes for the Ctrl key in shortcuts you might find in Windows-specific Blender tutorials. Keep this in mind when following online resources.
 By mastering these aspects of Blender’s interface on a Mac, you’ll significantly improve your efficiency and comfort while using the software.
 
 ## 2. 3D Modeling Basics:
