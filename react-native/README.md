@@ -165,6 +165,148 @@ React Native provides a set of built-in components that are specifically designe
     ```
 
 ## 2. State and Props Management
+State and props are crucial concepts in React Native (and React in general), as they determine how your app's UI behaves and responds to user interactions.
+
+### Props in React Native
+**Props** (short for "properties") are used to pass data from a parent component to a child component. They are read-only, meaning the child component cannot modify them; they are meant to configure the child component.
+
+#### Key Points about Props:
+
+* Props are passed down from a parent component to a child component.
+* They are immutable within the child component.
+* Props allow you to pass data and event handlers to child components.
+* A child component can access props via this.props in class components or directly as a parameter in functional components.
+
+**Example**
+```jsx
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const Greeting = (props) => {
+  return (
+    <Text>Hello, {props.name}!</Text>
+  );
+};
+
+const App = () => {
+  return (
+    <View>
+      <Greeting name="John" />
+      <Greeting name="Jane" />
+    </View>
+  );
+};
+```
+
+In this example, the `Greeting` component receives the `name` prop from the parent component (`App`), allowing it to display different greetings based on the prop value.
+
+### State in React Native
+**State** is used to manage data that can change over time. Unlike props, state is mutable and can be updated based on user interactions, API responses, or other events within the component.
+
+#### Key Points about State:
+* State is managed within the component and can be changed using the `setState` function in class components or the `useState` hook in functional components.
+* Changes in state trigger a re-render of the component, allowing the UI to update in response to state changes.
+* State is useful for handling dynamic data, such as user input, fetched data, or the result of user actions.
+
+Example using Functional Components with useState:
+```jsx
+import React, { useState } from 'react';
+import { View, Text, Button } from 'react-native';
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <View>
+      <Text>Count: {count}</Text>
+      <Button title="Increase" onPress={() => setCount(count + 1)} />
+      <Button title="Decrease" onPress={() => setCount(count - 1)} />
+    </View>
+  );
+};
+
+const App = () => {
+  return (
+    <View>
+      <Counter />
+    </View>
+  );
+};
+```
+
+In this example, the **`Counter`** component manages its own state (count). The state is initialized to 0 using the useState hook, and it's updated whenever the "Increase" or "Decrease" button is pressed, which triggers a re-render to display the updated count.
+
+### Props vs. State in React Native
+* **Props** are passed to components, whereas state is managed within components.
+* **Props** are used to configure a component and should not change (immutable), while state is dynamic and can change over time (mutable).
+* Components re-render when their **state** changes, allowing the UI to reflect the latest data.
+
+### Handling User Input with State
+A common use case for state in React Native is managing user input, such as text entered into a TextInput field. Here's how you can handle and manage user input using state:
+
+```jsx
+import React, { useState } from 'react';
+import { View, TextInput, Text } from 'react-native';
+
+const InputComponent = () => {
+  const [inputValue, setInputValue] = useState('');
+
+  return (
+    <View>
+      <TextInput
+        value={inputValue}
+        onChangeText={text => setInputValue(text)}
+        placeholder="Type something..."
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 20 }}
+      />
+      <Text>You typed: {inputValue}</Text>
+    </View>
+  );
+};
+
+const App = () => {
+  return (
+    <View>
+      <InputComponent />
+    </View>
+  );
+};
+```
+
+In this example, the InputComponent manages the state of the TextInput value. As the user types, the inputValue state is updated via the onChangeText handler, and the component re-renders to display the current input.
+
+### Using State and Props Together
+Often, you'll use state in combination with props. For example, you might fetch data in a parent component, store it in the state, and then pass that data down to child components as props.
+
+```jsx
+import React, { useState, useEffect } from 'react';
+import { View, Text } from 'react-native';
+
+const DataDisplay = ({ data }) => {
+  return <Text>{data}</Text>;
+};
+
+const App = () => {
+  const [data, setData] = useState('Loading...');
+
+  useEffect(() => {
+    // Simulate fetching data
+    setTimeout(() => {
+      setData('Fetched Data');
+    }, 2000);
+  }, []);
+
+  return (
+    <View>
+      <DataDisplay data={data} />
+    </View>
+  );
+};
+```
+
+In this example, the **`App`** component fetches data and stores it in its state. The DataDisplay component receives the fetched data as a prop and displays it. Initially, the state is "Loading...", and after 2 seconds, it updates to "Fetched Data," demonstrating how state and props work together to manage and display dynamic data.
+
+Mastering state and props in React Native will enable you to build interactive and dynamic mobile applications, allowing components to communicate effectively and react to user interactions.
 
 ## 3. Navigation
 
