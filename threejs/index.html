@@ -1,0 +1,1857 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../sql/">
+      
+      
+        <link rel="next" href="../typescript/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.36">
+    
+    
+      
+        <title>Three.js Sparknotes - Dev Sparknotes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.06209087.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#threejs-sparknotes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Dev Sparknotes" class="md-header__button md-logo" aria-label="Dev Sparknotes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Sparknotes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Three.js Sparknotes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Dev Sparknotes" class="md-nav__button md-logo" aria-label="Dev Sparknotes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Sparknotes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blender
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Blender
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blender/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blender
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Github actions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Github actions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github-actions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Actions Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphql
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Graphql
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GraphQL Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React hooks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            React hooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react-hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React Hooks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React native
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            React native
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react-native/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React Native
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sql
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Sql
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Threejs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Threejs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Three.js Sparknotes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Three.js Sparknotes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Fundamentals
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Fundamentals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-scene" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Scene
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Camera
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-renderer" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Renderer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometry-and-meshes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geometry and Meshes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Geometry and Meshes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-geometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Geometries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-meshes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Meshes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-manipulating-geometries-and-meshes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Manipulating Geometries and Meshes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lighting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lighting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lighting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-of-lights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Lights
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-and-utilizing-shadows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding and Utilizing Shadows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#material-and-textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Material and Textures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Material and Textures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Materials:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Textures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Textures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#texture-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Texture Basics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading Textures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applying-textures-to-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applying Textures to Materials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-uses-of-textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Uses of Textures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Uses of Textures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-texture-mapping-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Texture Mapping Techniques
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#animation-and-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Animation and Interaction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Animation and Interaction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#animation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Animation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Animation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-an-animation-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an Animation Loop:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactivity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interactivity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handling-user-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling User Inputs:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#click-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Click Events:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Typescript
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Typescript
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../typescript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TypeScript Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Web performance optimization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Web performance optimization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-performance-optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Performance Optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Fundamentals
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Fundamentals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-scene" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Scene
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Camera
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-renderer" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Renderer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometry-and-meshes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geometry and Meshes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Geometry and Meshes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-geometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Geometries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-meshes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Meshes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-manipulating-geometries-and-meshes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Manipulating Geometries and Meshes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lighting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lighting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lighting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-of-lights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Lights
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-and-utilizing-shadows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding and Utilizing Shadows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#material-and-textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Material and Textures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Material and Textures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Materials:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Textures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Textures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#texture-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Texture Basics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading Textures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applying-textures-to-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applying Textures to Materials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-uses-of-textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Uses of Textures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Uses of Textures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-texture-mapping-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Texture Mapping Techniques
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#animation-and-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Animation and Interaction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Animation and Interaction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#animation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Animation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Animation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-an-animation-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an Animation Loop:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactivity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interactivity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handling-user-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling User Inputs:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#click-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Click Events:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="threejs-sparknotes">Three.js Sparknotes</h1>
+<p>Three.js is a powerful library for creating 3D graphics on the web, and grasping a few key topics can really help you get a significant understanding of its capabilities. According to the Pareto Principle, focusing on these core areas should provide the most substantial insight and functionality when using Three.js:</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>
+<p><a href="#core-fundamentals">Core Fundamentals</a>:</p>
+</li>
+<li>
+<p><strong>Scene</strong>: Understanding what a scene is and how to add objects to it. This is the basic container for all your 3D objects.</p>
+</li>
+<li><strong>Camera</strong>: Learn about different types of cameras in Three.js, particularly the PerspectiveCamera, as it's most commonly used for 3D graphics. Knowing how to manipulate the camera’s position and viewing direction is crucial.</li>
+<li>
+<p><strong>Renderer</strong>: Get familiar with the WebGLRenderer, which handles the rendering of the scene as seen from the camera on a canvas.</p>
+</li>
+<li>
+<p><a href="#geometries-and-meshes">Geometry and Meshes</a>:</p>
+</li>
+<li><strong>Basic Geometries</strong>: Start with basic shapes like boxes, spheres, and planes. Knowing how to manipulate these can help you create more complex forms.</li>
+<li>
+<p><strong>Mesh</strong>: Understand what meshes are and how they are used to create 3D objects by combining geometry and materials.</p>
+</li>
+<li>
+<p><a href="#lighting">Lighting</a>:</p>
+</li>
+<li><strong>Types of Light</strong>: Learn about various types of lights such as AmbientLight, PointLight, DirectionalLight, and SpotLight. Lighting is critical for enhancing the mood, depth, and realism of a scene.</li>
+<li>
+<p><strong>Shadows</strong>: Understanding how to cast and receive shadows can significantly impact the visual fidelity of your scene.</p>
+</li>
+<li>
+<p><a href="#material-and-textures">Materials and Textures</a>:</p>
+</li>
+<li>
+<p><strong>Standard Materials</strong>: Learn about the basic materials like <code>MeshBasicMaterial</code>, <code>MeshLambertMaterial</code>, and <code>MeshPhongMaterial</code>, and when to use each.</p>
+</li>
+<li>
+<p><strong>Textures</strong>: Know how to apply textures to materials. Textures can dramatically change the appearance of objects and add details without increasing the geometric complexity.</p>
+</li>
+<li>
+<p><a href="#animation-and-interaction">Animation and Interaction</a>:</p>
+</li>
+<li>
+<p><strong>Animation Loops</strong>: Learn how to use the animation loop to create movements and continuously render changes in your scene.</p>
+</li>
+<li><strong>Interactivity</strong>: Understand how to handle user inputs, such as mouse movements or clicks, to interact with objects in the scene.</li>
+</ol>
+<p>By focusing on these key areas, you should be able to handle a wide range of tasks in Three.js and develop a solid understanding of how to create and manipulate 3D scenes in web environments. There are many more advanced topics and nuances within these categories, but mastering these fundamentals will give you a strong foundation in Three.js.</p>
+<h2 id="core-fundamentals">Core Fundamentals</h2>
+<h3 id="1-scene">1. Scene</h3>
+<p>The scene in Three.js acts like a stage in theatre. It's an abstract space where all your 3D objects are placed and arranged. Everything you want to render or display using Three.js must be added to the scene. The scene object itself is a container for all types of objects such as lights, cameras, and mesh objects (which are combinations of a geometry and a material). To create and start using a scene, you typically initialize it with:</p>
+<pre><code class="language-javascript">    const scene = new THREE.Scene();
+</code></pre>
+<p>This object is then populated with various 3D objects, lights, and other components.</p>
+<h3 id="2-camera">2. Camera</h3>
+<p>Cameras in Three.js define the perspective from which the scene is viewed. One of the most commonly used cameras is the <code>PerspectiveCamera</code>, which simulates the way the human eye sees. It's characterized by a field of view, aspect ratio, near clipping plane, and far clipping plane. Here's how you might set up a perspective camera:</p>
+<pre><code class="language-javascript">const camera = new THREE.PerspectiveCamera(
+  75, // field of view (degrees)
+  window.innerWidth / window.innerHeight, // aspect ratio
+  0.1, // near clipping plane
+  1000 // far clipping plane
+);
+camera.position.set(0, 0, 5); // position the camera in space (x, y, z)
+</code></pre>
+<p>Understanding how to manipulate the camera's position and where it is looking is critical for navigating a 3D space visually.</p>
+<h3 id="3-renderer">3. Renderer</h3>
+<p>The renderer in Three.js takes the scene and a camera as inputs and renders that scene from the perspective of the camera onto a canvas. The most commonly used renderer is WebGLRenderer, which leverages WebGL to draw the scene. Here's a basic setup:</p>
+<pre><code class="language-javascript">const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight); // set the size of the rendering window
+document.body.appendChild(renderer.domElement); // add the renderer to the HTML document
+</code></pre>
+<p>The renderer's <code>render</code> method is called inside an animation loop or in response to user interaction or scene changes, to update what the user sees:</p>
+<pre><code class="language-javascript">function animate() {
+  requestAnimationFrame(animate); // create a loop that causes the renderer to draw the scene every time the screen is refreshed (about 60 fps)
+  renderer.render(scene, camera);
+}
+animate();
+</code></pre>
+<p>Each of these components plays a crucial role. The scene is your world, the camera is your eye, and the renderer is the tool that brings everything to the viewer. By mastering these three aspects, you can begin to explore the rich possibilities of creating 3D web experiences with Three.js.</p>
+<h2 id="geometry-and-meshes">Geometry and Meshes</h2>
+<p>In Three.js, geometries and meshes are fundamental concepts used to create and manipulate 3D shapes. Understanding these concepts is crucial for effectively building and visualizing 3D models. Let's dive deeper into each of these aspects:</p>
+<h3 id="1-geometries">1. Geometries</h3>
+<p>Geometry in Three.js represents the shape or structure of a 3D object. It defines the vertices and faces (triangles) that make up the shape. Three.js comes with several predefined geometries that you can use to quickly create standard shapes. Here are a few common ones:</p>
+<ul>
+<li><strong>BoxGeometry</strong>: Used to create a cube or rectangular prism.</li>
+<li><strong>SphereGeometry</strong>: Used to create a spherical object.</li>
+<li><strong>PlaneGeometry</strong>: Used to create a flat surface.</li>
+<li><strong>CylinderGeometry</strong>: Used to create a cylindrical object.</li>
+<li><strong>TorusGeometry</strong>: Used to create a donut-shaped object.</li>
+</ul>
+<p>Here's an example of how to create a simple box geometry:</p>
+<pre><code class="language-javascript">const geometry = new THREE.BoxGeometry(1, 1, 1); // parameters: width, height, depth
+</code></pre>
+<p>Each geometry type takes specific parameters that define its size and shape. Customizing these parameters allows you to tailor the object's appearance to your needs.</p>
+<h3 id="2-meshes">2. Meshes</h3>
+<p>A mesh in Three.js is an object that combines geometry with material. Materials describe the appearance of the surface of the mesh, such as its color, texture, or reflectiveness. Here are some common materials:</p>
+<p>MeshBasicMaterial: A material that is not affected by lights in the scene.
+MeshLambertMaterial: A material that reflects light in a way that appears non-shiny (diffuse reflection).
+MeshPhongMaterial: A material that simulates shiny surfaces with specular highlights.
+Here’s how you create a mesh by combining geometry and material:</p>
+<pre><code class="language-javascript">const material = new THREE.MeshPhongMaterial({ color: 0x00ff00 }); // bright green
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+</code></pre>
+<p>In this example, a cube mesh is created using the previously defined BoxGeometry and a green MeshPhongMaterial. This mesh is then added to the scene.</p>
+<h3 id="3-manipulating-geometries-and-meshes">3. Manipulating Geometries and Meshes</h3>
+<p>Once you have a mesh, you can manipulate its position, rotation, and scale, which are crucial for arranging objects within the scene:</p>
+<pre><code class="language-javascript">cube.position.set(0, 0, 0);
+cube.rotation.set(Math.PI / 4, 0, Math.PI / 4); // rotating the cube
+cube.scale.set(2, 2, 2); // scaling the cube to double its size
+</code></pre>
+<p>These transformations are essential for creating dynamic and interactive 3D scenes. By understanding how to create and manipulate geometries and meshes, you can build complex and visually appealing 3D environments in your applications. This knowledge forms a foundational part of mastering Three.js, enabling you to develop more sophisticated 3D visualizations as you explore further into the library's capabilities.</p>
+<h2 id="lighting">Lighting</h2>
+<p>Lighting is an essential aspect of Three.js and 3D graphics in general, as it adds realism and depth to scenes by defining how objects are illuminated. Let's delve deeper into the types of lights available in Three.js and their applications, as well as the concept of shadows which can greatly enhance the visual quality of your scene.</p>
+<h3 id="types-of-lights">Types of Lights</h3>
+<p>Three.js offers several types of lights that simulate real-world lighting conditions. Each type affects the scene and the materials in different ways:</p>
+<ol>
+<li>
+<p>Ambient Light:</p>
+<ul>
+<li>This light globally illuminates all objects in the scene equally and without direction.</li>
+<li>It’s useful for ensuring that no parts of the scene are completely dark.</li>
+<li>Example:
+    <code>javascript
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // color and intensity
+    scene.add(ambientLight);</code></li>
+</ul>
+</li>
+<li>
+<p>Point Light:</p>
+</li>
+<li>A light that emits from a single point in all directions, similar to a light bulb.</li>
+<li>Useful for creating realistic lighting effects and highlights on objects.</li>
+<li>Example:
+       <code>javascript
+       const pointLight = new THREE.PointLight(0xffffff, 1, 100); // color, intensity, and distance
+       pointLight.position.set(10, 10, 10);
+       scene.add(pointLight);</code></li>
+<li>Directional Light:</li>
+<li>Emulates sunlight, casting parallel light rays across the scene.</li>
+<li>Great for simulating a light source that is very far away, like the sun.</li>
+<li>Example:
+        <code>javascript
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(0, 1, 0);
+        scene.add(directionalLight);</code></li>
+<li>Spot Light:<ul>
+<li>A light that casts light in a cone shape.</li>
+<li>Perfect for creating focused lighting effects or simulating flashlights or stage lights.</li>
+<li>Example:
+    <code>javascript
+    const spotLight = new THREE.SpotLight(0xffffff, 1);
+    spotLight.position.set(15, 40, 35);
+    spotLight.angle = Math.PI / 4;
+    spotLight.penumbra = 0.1; // how much the light fades at the edges of the cone
+    scene.add(spotLight);</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="understanding-and-utilizing-shadows">Understanding and Utilizing Shadows</h3>
+<p>Shadows add an extra layer of depth and realism to the scene. In Three.js, shadows are not automatically calculated due to performance reasons and need to be explicitly enabled both in the renderer and for each light and mesh that should cast or receive shadows.</p>
+<ul>
+<li>Enabling Shadows in the Renderer:<ul>
+<li>You must enable shadow mapping in the renderer:
+    <code>javascript
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // softer edges</code></li>
+</ul>
+</li>
+<li>Configuring Lights to Cast Shadows:<ul>
+<li>Not all lights can cast shadows. Directional, point, and spot lights can cast shadows, but ambient lights cannot.</li>
+<li>Example for a directional light:
+    <code>javascript
+    directionalLight.castShadow = true;
+    directionalLight.shadow.mapSize.width = 1024; // shadow resolution
+    directionalLight.shadow.mapSize.height = 1024;</code></li>
+</ul>
+</li>
+<li>Configuring Objects to Cast and Receive Shadows:</li>
+<li>You also need to specify which objects in the scene can cast and receive shadows:
+    <code>javascript
+    Copy code
+    mesh.castShadow = true; // the object casts shadows
+    mesh.receiveShadow = true; // the object receives shadows</code></li>
+</ul>
+<p>Understanding these lighting and shadow techniques will significantly impact the visual quality of your 3D scenes. By carefully placing lights and configuring shadows, you can create dramatic, lifelike, and visually rich environments in Three.js.</p>
+<h2 id="material-and-textures">Material and Textures</h2>
+<p>In Three.js, materials and textures are vital components that define the surface appearance of 3D objects. Understanding these elements is key to creating visually engaging and realistic scenes. Let's explore more about materials and textures in Three.js:</p>
+<h3 id="materials">Materials:</h3>
+<p>Materials in Three.js determine how the geometry of a 3D object interacts with light and what it looks like visually. Here are some of the most commonly used materials and their characteristics:
+1. MeshBasicMaterial:</p>
+<pre><code>* This material does not react to any lighting, meaning it will not show shadows or highlights. It's useful for objects that you want to be uniformly lit regardless of lighting in the scene.
+* Example:
+    ```javascript
+    const material = new THREE.MeshBasicMaterial({ color: 0xff0000 }); // red color
+    ```
+</code></pre>
+<ol>
+<li>
+<p>MeshLambertMaterial:</p>
+</li>
+<li>
+<p>This is a good general-purpose material with diffuse (non-shiny) reflection, ideal for matte surfaces.</p>
+</li>
+<li>It reacts to light in the scene, which can give a more realistic appearance under varied lighting conditions.</li>
+<li>Example:
+       <code>javascript
+       const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 }); // green color</code></li>
+<li>
+<p>MeshPhongMaterial:</p>
+<ul>
+<li>Suitable for shiny surfaces with specular highlights.</li>
+<li>It simulates the light reflection you might see on glossy objects.</li>
+<li>Example:
+    <code>javascript
+    const material = new THREE.MeshPhongMaterial({ color: 0x0000ff, shininess: 100 }); // blue color, high shininess</code></li>
+<li>
+<p>MeshStandardMaterial (Physically-Based Rendering Material):</p>
+</li>
+<li>
+<p>This is a physically accurate material suitable for all types of surfaces, from matte to shiny. It provides more realistic rendering by accurately simulating the interaction of light with surfaces.</p>
+</li>
+<li>Example:
+    <code>javascript
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.5, roughness: 0.5 });</code></li>
+</ul>
+<h3 id="textures">Textures</h3>
+</li>
+</ol>
+<p>Textures in Three.js are powerful tools used to add visual complexity to objects without adding additional polygons, making scenes more efficient and detailed. Here’s a more detailed exploration of how textures work in Three.js and how to effectively use them.</p>
+<h4 id="texture-basics">Texture Basics</h4>
+<p>A texture is essentially an image applied to the surface of a 3D object. This is done by mapping the 2D image over the object’s geometry in a process known as UV mapping, where each vertex in the geometry is assigned a coordinate in the image.</p>
+<h3 id="loading-textures">Loading Textures</h3>
+<p>To use textures, you first need to load them with the TextureLoader class, which is asynchronous and ensures that the texture is fully loaded before it's used in the scene:</p>
+<pre><code class="language-javascript">const textureLoader = new THREE.TextureLoader();
+const texture = textureLoader.load('path/to/your/image.jpg', function(texture) {
+    // update materials or refresh the scene after the texture is loaded
+    scene.add(mesh); // example of using the texture once it's ready
+});
+</code></pre>
+<h3 id="applying-textures-to-materials">Applying Textures to Materials</h3>
+<p>Once the texture is loaded, you can apply it to any material that accepts a map property, such as MeshBasicMaterial, MeshLambertMaterial, or MeshPhongMaterial. Here’s an example using MeshBasicMaterial:</p>
+<pre><code class="language-javascript">Copy code
+const material = new THREE.MeshBasicMaterial({ map: texture });
+const mesh = new THREE.Mesh(geometry, material);
+</code></pre>
+<h3 id="common-uses-of-textures">Common Uses of Textures</h3>
+<p>Textures can be used for various effects in a 3D scene:</p>
+<ul>
+<li><strong>Diffuse Maps</strong>: These are the most common type of texture that define the object's surface color and details.</li>
+<li><strong>Bump Maps</strong>: These simulate small-scale bumpiness on surfaces, affecting the material's normal at each point but not altering the geometry itself.</li>
+<li><strong>Normal Maps</strong>: More complex than bump maps, normal maps alter the normals across the surface to simulate complex details like wrinkles or bumps, which affect how light reflects off the surface and do not change the object's actual shape.</li>
+<li><strong>Specular Maps</strong>: These define the shininess and highlight colors on materials, telling the renderer which parts of the object are glossy.</li>
+<li><strong>Displacement Maps</strong>: Unlike bump and normal maps, displacement maps actually modify the geometry, moving vertices based on the texture to create real geometric detail. This is more performance-intensive.</li>
+</ul>
+<h4 id="advanced-texture-mapping-techniques">Advanced Texture Mapping Techniques</h4>
+<ul>
+<li><strong>UV Mapping</strong>: Properly mapping the texture coordinates is crucial. You can adjust UV coordinates in the geometry to control how the image wraps around the 3D shape.</li>
+<li>
+<p><strong>Texture Wrapping and Repeat</strong>: You can control how textures repeat (or tile) and how they behave at the edges. This is useful for creating seamless surfaces using a smaller texture image repeated multiple times.</p>
+<p><code>javascript
+Copy code
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+texture.repeat.set(4, 4); // repeating the texture 4 times on each axis</code>
+* <strong>Mipmaps and Filtering</strong>: These are techniques used to improve texture appearance when viewed at a distance or at steep angles. Three.js automatically generates mipmaps for textures loaded via TextureLoader, which helps in scaling down textures smoothly.</p>
+</li>
+</ul>
+<p>By mastering these texturing techniques, you can significantly enhance the visual quality and performance of your 3D scenes in Three.js. Textures not only bring realism but also add a layer of depth and detail that can make simple geometries look incredibly complex and engaging.</p>
+<h2 id="animation-and-interaction">Animation and Interaction</h2>
+<p>In Three.js, animation and interaction are key aspects that can significantly enhance the engagement and realism of your 3D scenes. Let's delve deeper into how you can use these features to create dynamic and interactive experiences.</p>
+<h3 id="animation">Animation</h3>
+<p>Three.js provides a straightforward way to animate objects within the scene, which can include transformations such as translations, rotations, scaling, and changes in object properties like color or transparency. Animation is typically handled within the rendering loop, which updates the scene in real-time.</p>
+<h4 id="creating-an-animation-loop">Creating an Animation Loop:</h4>
+<p>The animation loop is where you update the positions, rotations, or other properties of objects before re-rendering the scene. This loop runs continuously at a high frame rate to create smooth animations.</p>
+<p>Here’s how you can set up a basic animation loop in Three.js:</p>
+<pre><code class="language-javascript">function animate() {
+    requestAnimationFrame(animate); // Tell the browser you want to perform an animation
+
+    // Update object properties
+    mesh.rotation.x += 0.01;
+    mesh.rotation.y += 0.01;
+
+    // Render the scene again with the updated object properties
+    renderer.render(scene, camera);
+}
+animate();
+</code></pre>
+<p>This loop continuously rotates a mesh around the x and y axes, creating a spinning effect.</p>
+<h3 id="interactivity">Interactivity</h3>
+<p>Interactivity involves responding to user inputs such as mouse clicks, mouse movements, keyboard presses, or touchscreen gestures to manipulate objects in the scene or change the camera's view.</p>
+<h4 id="handling-user-inputs">Handling User Inputs:</h4>
+<p>You can add event listeners to the canvas or the document to capture and respond to user actions. Here’s a basic example of handling mouse movement to rotate a camera:</p>
+<pre><code class="language-javascript">function onDocumentMouseMove(event) {
+    event.preventDefault();
+
+    const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    camera.position.x += (mouseX - camera.position.x) * 0.05;
+    camera.position.y += (mouseY - camera.position.y) * 0.05;
+    camera.lookAt(scene.position);
+}
+
+document.addEventListener('mousemove', onDocumentMouseMove, false);
+</code></pre>
+<p>This script makes the camera subtly follow the mouse position, creating a more interactive viewing experience.</p>
+<h4 id="click-events">Click Events:</h4>
+<p>To make objects in the scene interactive (e.g., clicking on objects), you can use raycasting, which involves projecting a ray from the camera through the mouse position into the scene and detecting which objects it intersects.</p>
+<pre><code class="language-javascript">const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+function onDocumentMouseClick(event) {
+    event.preventDefault();
+
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(scene.children);
+
+    if (intersects.length &gt; 0) {
+        console.log('Object clicked:', intersects[0].object);
+    }
+}
+
+document.addEventListener('click', onDocumentMouseClick, false);
+</code></pre>
+<p>In this setup, clicking on an object in the scene logs that object to the console, which could be expanded to trigger other actions like opening an information panel or changing the object's color.</p>
+<p>By combining animation and interactivity, you can create compelling 3D experiences that are both visually dynamic and engaging for users. These capabilities are crucial for applications in gaming, virtual reality, data visualization, and interactive web content.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

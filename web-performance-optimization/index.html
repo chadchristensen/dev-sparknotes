@@ -1,0 +1,2332 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../typescript/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.36">
+    
+    
+      
+        <title>Web Performance Optimization - Dev Sparknotes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.06209087.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#web-performance-optimization" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Dev Sparknotes" class="md-header__button md-logo" aria-label="Dev Sparknotes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Sparknotes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Web Performance Optimization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Dev Sparknotes" class="md-nav__button md-logo" aria-label="Dev Sparknotes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Sparknotes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blender
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Blender
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blender/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blender
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Github actions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Github actions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github-actions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Actions Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphql
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Graphql
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GraphQL Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React hooks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            React hooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react-hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React Hooks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React native
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            React native
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react-native/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React Native
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sql
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Sql
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Threejs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Threejs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threejs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Three.js Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Typescript
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Typescript
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../typescript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TypeScript Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Web performance optimization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Web performance optimization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Web Performance Optimization
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Web Performance Optimization
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table of Contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-minimize-http-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Minimize HTTP Requests:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-optimize-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Optimize Images:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-enable-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Enable Compression:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-leverage-browser-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Leverage Browser Caching:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-minify-css-javascript-and-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Minify CSS, JavaScript, and HTML:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-reduce-server-response-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Reduce Server Response Time:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-enable-keep-alive" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Enable Keep-Alive:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-optimize-css-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Optimize CSS Delivery:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-prioritize-above-the-fold-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Prioritize Above-the-Fold Content:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-use-asynchronous-loading-for-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Use Asynchronous Loading for JavaScript:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-reduce-redirects" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Reduce Redirects:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-optimize-web-fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Optimize Web Fonts:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-implement-lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Implement Lazy Loading:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-monitor-performance-regularly" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Monitor Performance Regularly:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-optimize-third-party-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Optimize Third-Party Scripts:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-use-http2" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Use HTTP/2:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-reduce-dns-lookups" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. Reduce DNS Lookups:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-implement-content-delivery-networks-cdns" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. Implement Content Delivery Networks (CDNs):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-avoid-inline-javascript-and-css" class="md-nav__link">
+    <span class="md-ellipsis">
+      19. Avoid Inline JavaScript and CSS:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-improve-server-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      20. Improve Server Performance:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-minimize-http-requests_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Minimize HTTP Requests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Minimize HTTP Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combine-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combine Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Combine Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-css-and-javascript-bundling" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. CSS and JavaScript Bundling:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-css-sprites" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. CSS Sprites:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-inline-small-css-and-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Inline Small CSS and JavaScript
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-the-number-of-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reduce the Number of Images
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reduce the Number of Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-use-css-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Use CSS Effects:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-icon-fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Icon Fonts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimize-image-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimize Image Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimize Image Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-responsive-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Responsive Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-data-uris-for-small-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Data URIs for Small Images:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leverage-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leverage Caching
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Leverage Caching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-set-long-cache-expiry-for-static-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Set Long Cache Expiry for Static Resources:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-versioning-static-assets" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Versioning Static Assets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-the-number-of-plugins-and-third-party-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reduce the Number of Plugins and Third-Party Scripts:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reduce the Number of Plugins and Third-Party Scripts:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-evaluate-necessity" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Evaluate Necessity:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-load-third-party-scripts-asynchronously" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Load Third-Party Scripts Asynchronously:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-content-delivery-networks-cdns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Content Delivery Networks (CDNs):
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use Content Delivery Networks (CDNs):">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-host-static-assets-on-a-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Host Static Assets on a CDN:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-optimize-cdn-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Optimize CDN Configuration:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-optimize-images_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Optimize Images:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-enable-compression_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Enable Compression:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-leverage-browser-caching_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Leverage Browser Caching:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-minify-css-javascript-and-html_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Minify CSS, JavaScript, and HTML:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-reduce-server-response-time_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Reduce Server Response Time:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-enable-keep-alive_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Enable Keep-Alive:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-optimize-css-delivery_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Optimize CSS Delivery:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-prioritize-above-the-fold-content_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Prioritize Above-the-Fold Content:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-use-asynchronous-loading-for-javascript_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Use Asynchronous Loading for JavaScript:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-reduce-redirects_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Reduce Redirects:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-optimize-web-fonts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Optimize Web Fonts:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-implement-lazy-loading_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Implement Lazy Loading:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-monitor-performance-regularly_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Monitor Performance Regularly:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-optimize-third-party-scripts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Optimize Third-Party Scripts:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-use-http2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Use HTTP/2:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-reduce-dns-lookups_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. Reduce DNS Lookups:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-implement-content-delivery-networks-cdns_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. Implement Content Delivery Networks (CDNs):
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-avoid-inline-javascript-and-css_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      19. Avoid Inline JavaScript and CSS:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-improve-server-performance_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      20. Improve Server Performance:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table of Contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-minimize-http-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Minimize HTTP Requests:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-optimize-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Optimize Images:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-enable-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Enable Compression:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-leverage-browser-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Leverage Browser Caching:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-minify-css-javascript-and-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Minify CSS, JavaScript, and HTML:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-reduce-server-response-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Reduce Server Response Time:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-enable-keep-alive" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Enable Keep-Alive:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-optimize-css-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Optimize CSS Delivery:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-prioritize-above-the-fold-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Prioritize Above-the-Fold Content:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-use-asynchronous-loading-for-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Use Asynchronous Loading for JavaScript:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-reduce-redirects" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Reduce Redirects:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-optimize-web-fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Optimize Web Fonts:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-implement-lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Implement Lazy Loading:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-monitor-performance-regularly" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Monitor Performance Regularly:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-optimize-third-party-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Optimize Third-Party Scripts:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-use-http2" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Use HTTP/2:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-reduce-dns-lookups" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. Reduce DNS Lookups:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-implement-content-delivery-networks-cdns" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. Implement Content Delivery Networks (CDNs):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-avoid-inline-javascript-and-css" class="md-nav__link">
+    <span class="md-ellipsis">
+      19. Avoid Inline JavaScript and CSS:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-improve-server-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      20. Improve Server Performance:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-minimize-http-requests_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Minimize HTTP Requests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Minimize HTTP Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combine-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combine Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Combine Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-css-and-javascript-bundling" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. CSS and JavaScript Bundling:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-css-sprites" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. CSS Sprites:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-inline-small-css-and-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Inline Small CSS and JavaScript
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-the-number-of-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reduce the Number of Images
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reduce the Number of Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-use-css-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Use CSS Effects:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-icon-fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Icon Fonts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimize-image-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimize Image Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimize Image Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-responsive-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Responsive Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-data-uris-for-small-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Data URIs for Small Images:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leverage-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leverage Caching
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Leverage Caching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-set-long-cache-expiry-for-static-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Set Long Cache Expiry for Static Resources:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-versioning-static-assets" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Versioning Static Assets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-the-number-of-plugins-and-third-party-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reduce the Number of Plugins and Third-Party Scripts:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reduce the Number of Plugins and Third-Party Scripts:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-evaluate-necessity" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Evaluate Necessity:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-load-third-party-scripts-asynchronously" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Load Third-Party Scripts Asynchronously:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-content-delivery-networks-cdns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Content Delivery Networks (CDNs):
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use Content Delivery Networks (CDNs):">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-host-static-assets-on-a-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Host Static Assets on a CDN:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-optimize-cdn-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Optimize CDN Configuration:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-optimize-images_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Optimize Images:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-enable-compression_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Enable Compression:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-leverage-browser-caching_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Leverage Browser Caching:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-minify-css-javascript-and-html_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Minify CSS, JavaScript, and HTML:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-reduce-server-response-time_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Reduce Server Response Time:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-enable-keep-alive_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Enable Keep-Alive:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-optimize-css-delivery_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Optimize CSS Delivery:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-prioritize-above-the-fold-content_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Prioritize Above-the-Fold Content:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-use-asynchronous-loading-for-javascript_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Use Asynchronous Loading for JavaScript:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-reduce-redirects_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Reduce Redirects:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-optimize-web-fonts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Optimize Web Fonts:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-implement-lazy-loading_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Implement Lazy Loading:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-monitor-performance-regularly_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Monitor Performance Regularly:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-optimize-third-party-scripts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Optimize Third-Party Scripts:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-use-http2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Use HTTP/2:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-reduce-dns-lookups_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. Reduce DNS Lookups:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-implement-content-delivery-networks-cdns_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. Implement Content Delivery Networks (CDNs):
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-avoid-inline-javascript-and-css_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      19. Avoid Inline JavaScript and CSS:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-improve-server-performance_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      20. Improve Server Performance:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="web-performance-optimization">Web Performance Optimization</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<h3 id="1-minimize-http-requests"><a href="#1-minimize-http-requests-1">1. Minimize HTTP Requests</a>:</h3>
+<ul>
+<li>Combine files (CSS, JavaScript) to reduce the number of requests.</li>
+<li>Use CSS sprites for images to combine multiple images into a single file.</li>
+</ul>
+<h3 id="2-optimize-images"><a href="#2-optimize-images-1">2. Optimize Images</a>:</h3>
+<ul>
+<li>Compress images without losing quality (use tools like TinyPNG or ImageOptim).</li>
+<li>Serve images in next-gen formats like WebP.</li>
+<li>Use responsive images (different sizes for different devices).</li>
+</ul>
+<h3 id="3-enable-compression"><a href="#3-enable-compression-1">3. Enable Compression</a>:</h3>
+<ul>
+<li>Use Gzip or Brotli to compress HTML, CSS, and JavaScript files.</li>
+</ul>
+<h3 id="4-leverage-browser-caching"><a href="#4-leverage-browser-caching-1">4. Leverage Browser Caching</a>:</h3>
+<ul>
+<li>Set appropriate cache headers (e.g., Cache-Control, Expires) for static assets to enable caching.</li>
+</ul>
+<h3 id="5-minify-css-javascript-and-html"><a href="#5-minify-css-javascript-and-html-1">5. Minify CSS, JavaScript, and HTML</a>:</h3>
+<ul>
+<li>Remove unnecessary characters, comments, and white spaces to reduce file sizes.</li>
+</ul>
+<h3 id="6-reduce-server-response-time"><a href="#6-reduce-server-response-time-1">6. Reduce Server Response Time</a>:</h3>
+<ul>
+<li>Optimize your server configuration.</li>
+<li>Use a fast web host and a content delivery network (CDN) to serve content faster.</li>
+</ul>
+<h3 id="7-enable-keep-alive"><a href="#7-enable-keep-alive-1">7. Enable Keep-Alive</a>:</h3>
+<p>Use persistent connections to reduce the latency of subsequent requests.</p>
+<h3 id="8-optimize-css-delivery"><a href="#8-optimize-css-delivery-1">8. Optimize CSS Delivery</a>:</h3>
+<p>Load critical CSS inline for above-the-fold content.
+Defer non-critical CSS to load later.</p>
+<h3 id="9-prioritize-above-the-fold-content"><a href="#9-prioritize-above-the-fold-content-1">9. Prioritize Above-the-Fold Content</a>:</h3>
+<ul>
+<li>Ensure that the content users see first is prioritized and loads quickly.</li>
+</ul>
+<h3 id="10-use-asynchronous-loading-for-javascript"><a href="#10-use-asynchronous-loading-for-javascript-1">10. Use Asynchronous Loading for JavaScript</a>:</h3>
+<ul>
+<li>Load JavaScript files asynchronously to prevent them from blocking the rendering of the page.</li>
+</ul>
+<h3 id="11-reduce-redirects"><a href="#11-reduce-redirects-1">11. Reduce Redirects</a>:</h3>
+<ul>
+<li>Minimize the use of redirects as each redirect increases load time.</li>
+</ul>
+<h3 id="12-optimize-web-fonts"><a href="#12-optimize-web-fonts-1">12. Optimize Web Fonts</a>:</h3>
+<ul>
+<li>Use modern font formats like WOFF2.</li>
+<li>Limit the number of different font families and weights.</li>
+</ul>
+<h3 id="13-implement-lazy-loading"><a href="#13-implement-lazy-loading-1">13. Implement Lazy Loading</a>:</h3>
+<ul>
+<li>Delay the loading of images and videos until they are needed (i.e., when they come into the viewport).</li>
+</ul>
+<h3 id="14-monitor-performance-regularly"><a href="#14-monitor-performance-regularly-1">14. Monitor Performance Regularly</a>:</h3>
+<ul>
+<li>Use tools like Google PageSpeed Insights, Lighthouse, or WebPageTest to regularly check and improve performance.</li>
+</ul>
+<h3 id="15-optimize-third-party-scripts"><a href="#15-optimize-third-party-scripts-1">15. Optimize Third-Party Scripts</a>:</h3>
+<ul>
+<li>Limit the use of third-party scripts.</li>
+<li>Load them asynchronously and defer their loading where possible.</li>
+</ul>
+<h3 id="16-use-http2"><a href="#16-use-http2-1">16. Use HTTP/2</a>:</h3>
+<ul>
+<li>Take advantage of HTTP/2 features for faster data transfer, such as multiplexing and server push.</li>
+</ul>
+<h3 id="17-reduce-dns-lookups"><a href="#17-reduce-dns-lookups-1">17. Reduce DNS Lookups</a>:</h3>
+<ul>
+<li>Minimize the number of unique domains requested to reduce DNS lookup time.</li>
+</ul>
+<h3 id="18-implement-content-delivery-networks-cdns"><a href="#18-implement-content-delivery-networks-cdns-1">18. Implement Content Delivery Networks (CDNs)</a>:</h3>
+<ul>
+<li>Use CDNs to deliver content from servers closer to the user’s location.</li>
+</ul>
+<h3 id="19-avoid-inline-javascript-and-css"><a href="#19-avoid-inline-javascript-and-css-1">19. Avoid Inline JavaScript and CSS</a>:</h3>
+<ul>
+<li>Separate JavaScript and CSS into external files to improve caching.</li>
+</ul>
+<h3 id="20-improve-server-performance"><a href="#20-improve-server-performance-1">20. Improve Server Performance</a>:</h3>
+<ul>
+<li>Optimize database queries and use efficient algorithms and data structures to reduce server processing time.</li>
+</ul>
+<h2 id="1-minimize-http-requests_1">1. Minimize HTTP Requests</h2>
+<h3 id="combine-files">Combine Files</h3>
+<h4 id="1-css-and-javascript-bundling">1. CSS and JavaScript Bundling:</h4>
+<ul>
+<li>Combine multiple CSS files into one and multiple JavaScript files into one. This reduces the number of requests the browser has to make.</li>
+<li>Use build tools like Webpack, Gulp, or Grunt to automate the bundling process.</li>
+<li>Example: Instead of loading <code>styles1.css</code>, <code>styles2.css</code>, and <code>styles3.css</code>, combine them into a single <code>styles.css</code>.</li>
+</ul>
+<h4 id="2-css-sprites">2. CSS Sprites:</h4>
+<ul>
+<li>Combine multiple small images into a single image sprite.</li>
+<li>Use CSS background positioning to display the correct part of the sprite.</li>
+<li>Example: If you have icons <code>icon1.png</code>, <code>icon2.png</code>, and <code>icon3.png</code>, combine them into icons.png and use CSS to display each icon.
+    <code>css
+    .icon1 {
+        background: url('icons.png') no-repeat 0 0;
+        width: 32px;
+        height: 32px;
+    }
+    .icon2 {
+        background: url('icons.png') no-repeat -32px 0;
+        width: 32px;
+        height: 32px;
+    }</code></li>
+</ul>
+<h4 id="3-inline-small-css-and-javascript">3. Inline Small CSS and JavaScript</h4>
+<ul>
+<li>For small amounts of CSS or JavaScript, consider inlining them directly in the HTML to avoid extra requests.</li>
+<li>Be cautious with this approach to avoid bloating the HTML file.</li>
+</ul>
+<h3 id="reduce-the-number-of-images">Reduce the Number of Images</h3>
+<h4 id="1-use-css-effects">1. Use CSS Effects:</h4>
+<ul>
+<li>Replace images with CSS effects where possible. For example, use CSS gradients instead of background images.</li>
+<li>Example: Instead of using a gradient image, use CSS to create the gradient.
+    <code>css
+    .background {
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+    }</code></li>
+</ul>
+<h4 id="2-icon-fonts">2. Icon Fonts</h4>
+<ul>
+<li>Use icon fonts (like Font Awesome) instead of image icons. Icon fonts are scalable and can be styled with CSS.</li>
+<li>Example: Replace image icons with icon font classes.
+    <code>html
+    &lt;i class="fa fa-home"&gt;&lt;/i&gt;</code></li>
+</ul>
+<h3 id="optimize-image-usage">Optimize Image Usage</h3>
+<h4 id="1-responsive-images">1. Responsive Images</h4>
+<ul>
+<li>Use the <code>srcset</code> attribute to provide multiple image sizes for different device resolutions.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-html">&lt;img src=&quot;image-small.jpg&quot; srcset=&quot;image-small.jpg 600w, image-medium.jpg 900w, image-large.jpg 1200w&quot; sizes=&quot;(max-width: 600px) 600px, (max-width: 900px) 900px, 1200px&quot; alt=&quot;Responsive Image&quot;&gt;
+</code></pre>
+<h4 id="2-data-uris-for-small-images">2. Data URIs for Small Images:</h4>
+<ul>
+<li>For very small images (e.g., icons), use data URIs to embed the image data directly into the HTML or CSS.</li>
+<li>Example:
+    <code>css
+    .icon {
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...') no-repeat;
+    }</code></li>
+</ul>
+<h3 id="leverage-caching">Leverage Caching</h3>
+<h4 id="1-set-long-cache-expiry-for-static-resources">1. Set Long Cache Expiry for Static Resources:</h4>
+<ul>
+<li>Configure your server to set long cache expiry times for static assets (CSS, JavaScript, images).</li>
+<li>Example (Apache):
+    <code>apache
+    &lt;filesMatch "\.(js|css|png|jpg|jpeg|gif|ico)$"&gt;
+        ExpiresActive On
+        ExpiresDefault "access plus 1 year"
+    &lt;/filesMatch&gt;</code></li>
+</ul>
+<h4 id="2-versioning-static-assets">2. Versioning Static Assets</h4>
+<ul>
+<li>Use file versioning (e.g., <code>styles.v1.css</code>) to force the browser to fetch updated files when they change while leveraging cache for unchanged files.</li>
+</ul>
+<h3 id="reduce-the-number-of-plugins-and-third-party-scripts">Reduce the Number of Plugins and Third-Party Scripts:</h3>
+<h4 id="1-evaluate-necessity">1. Evaluate Necessity:</h4>
+<ul>
+<li>Regularly review the plugins and third-party scripts you are using to ensure they are necessary.</li>
+<li>Remove or replace plugins that have a high performance cost with more efficient alternatives.</li>
+</ul>
+<h4 id="2-load-third-party-scripts-asynchronously">2. Load Third-Party Scripts Asynchronously:</h4>
+<ul>
+<li>Load third-party scripts asynchronously to prevent them from blocking the rendering of the page.</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-html">&lt;script async src=&quot;https://example.com/third-party-script.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3 id="use-content-delivery-networks-cdns">Use Content Delivery Networks (CDNs):</h3>
+<h4 id="1-host-static-assets-on-a-cdn">1. Host Static Assets on a CDN:</h4>
+<ul>
+<li>Use a CDN to host static assets, reducing the load on your server and speeding up delivery to users globally.</li>
+</ul>
+<h4 id="2-optimize-cdn-configuration">2. Optimize CDN Configuration:</h4>
+<ul>
+<li>Ensure your CDN is configured to serve assets with optimal settings, such as enabling HTTP/2, compression, and appropriate cache headers.</li>
+</ul>
+<h2 id="2-optimize-images_1">2. Optimize Images:</h2>
+<h2 id="3-enable-compression_1">3. Enable Compression:</h2>
+<h2 id="4-leverage-browser-caching_1">4. Leverage Browser Caching:</h2>
+<h2 id="5-minify-css-javascript-and-html_1">5. Minify CSS, JavaScript, and HTML:</h2>
+<h2 id="6-reduce-server-response-time_1">6. Reduce Server Response Time:</h2>
+<h2 id="7-enable-keep-alive_1">7. Enable Keep-Alive:</h2>
+<h2 id="8-optimize-css-delivery_1">8. Optimize CSS Delivery:</h2>
+<h2 id="9-prioritize-above-the-fold-content_1">9. Prioritize Above-the-Fold Content:</h2>
+<h2 id="10-use-asynchronous-loading-for-javascript_1">10. Use Asynchronous Loading for JavaScript:</h2>
+<h2 id="11-reduce-redirects_1">11. Reduce Redirects:</h2>
+<h2 id="12-optimize-web-fonts_1">12. Optimize Web Fonts:</h2>
+<h2 id="13-implement-lazy-loading_1">13. Implement Lazy Loading:</h2>
+<h2 id="14-monitor-performance-regularly_1">14. Monitor Performance Regularly:</h2>
+<h2 id="15-optimize-third-party-scripts_1">15. Optimize Third-Party Scripts:</h2>
+<h2 id="16-use-http2_1">16. Use HTTP/2:</h2>
+<h2 id="17-reduce-dns-lookups_1">17. Reduce DNS Lookups:</h2>
+<h2 id="18-implement-content-delivery-networks-cdns_1">18. Implement Content Delivery Networks (CDNs):</h2>
+<h2 id="19-avoid-inline-javascript-and-css_1">19. Avoid Inline JavaScript and CSS:</h2>
+<h2 id="20-improve-server-performance_1">20. Improve Server Performance:</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

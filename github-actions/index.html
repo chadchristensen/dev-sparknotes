@@ -1,0 +1,1575 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../docker/">
+      
+      
+        <link rel="next" href="../graphql/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.36">
+    
+    
+      
+        <title>GitHub Actions Sparknotes - Dev Sparknotes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.06209087.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#github-actions-sparknotes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Dev Sparknotes" class="md-header__button md-logo" aria-label="Dev Sparknotes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Sparknotes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GitHub Actions Sparknotes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Dev Sparknotes" class="md-nav__button md-logo" aria-label="Dev Sparknotes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Sparknotes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blender
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Blender
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blender/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blender
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Github actions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Github actions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    GitHub Actions Sparknotes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Actions Sparknotes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-github-actions-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding GitHub Actions Basics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workflow-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-that-trigger-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events that Trigger Workflows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-actions-and-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Actions and Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Actions and Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Actions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-inputs-outputs-and-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action Inputs, Outputs, and Secrets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-and-debugging-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing and Debugging Workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing and Debugging Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debugging-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Workflows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-workflows-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Workflows Locally
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices for Debugging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-features-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Features and Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Features and Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conditional-logic-in-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Logic in Workflows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizing-workflow-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizing Workflow Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-workflow-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices for Workflow Design
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphql
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Graphql
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GraphQL Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React hooks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            React hooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react-hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React Hooks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React native
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            React native
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react-native/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React Native
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sql
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Sql
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Threejs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Threejs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threejs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Three.js Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Typescript
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Typescript
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../typescript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TypeScript Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Web performance optimization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Web performance optimization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-performance-optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Performance Optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-github-actions-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding GitHub Actions Basics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workflow-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Syntax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-that-trigger-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events that Trigger Workflows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-actions-and-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Actions and Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Actions and Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Actions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-inputs-outputs-and-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action Inputs, Outputs, and Secrets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-and-debugging-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing and Debugging Workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing and Debugging Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debugging-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Workflows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-workflows-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Workflows Locally
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices for Debugging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-features-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Features and Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Features and Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conditional-logic-in-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Logic in Workflows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizing-workflow-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizing Workflow Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-workflow-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices for Workflow Design
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="github-actions-sparknotes">GitHub Actions Sparknotes</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<p>To effectively understand and use GitHub Actions, you can focus on a few key topics that will provide substantial knowledge and utility. These topics form the core of what GitHub Actions can do and will cover about 80% of the typical use cases. Here's a streamlined guide:</p>
+<ol>
+<li>
+<p><a href="#understanding-github-actions-basics">Understanding GitHub Actions Basics</a>:</p>
+</li>
+<li>
+<p>What are GitHub Actions? Learn what GitHub Actions are, including their purpose for automating tasks within your software development workflows directly in your GitHub repository.</p>
+</li>
+<li>
+<p>Components of GitHub Actions: Understand the key components such as workflows, events, jobs, steps, actions, and runners. Knowing what each component does is crucial for creating effective automation.</p>
+</li>
+<li>
+<p><a href="#creating-workflows">Creating Workflows</a>:</p>
+</li>
+<li>
+<p>Workflow Syntax: Study the YAML syntax used to define workflows. Learn how to structure a YAML file to create custom automated processes.</p>
+</li>
+<li>
+<p>Events that Trigger Workflows: Grasp the different types of events that can trigger a workflow, such as pushes, pull requests, or scheduled events. This knowledge lets you automate tasks based on specific repository activities.</p>
+</li>
+<li>
+<p><a href="#common-actions-and-usage">Common Actions and Usage</a>:</p>
+</li>
+<li>
+<p>Using Actions: Know how to use pre-built actions from the GitHub Marketplace or write your own custom actions. This includes understanding how to incorporate actions from other developers into your workflows.</p>
+</li>
+<li>
+<p>Action Inputs, Outputs, and Secrets: Learn how to pass data to and from actions, and how to use encrypted secrets for sensitive information like API keys.</p>
+</li>
+<li>
+<p><a href="#testing-and-debugging-workflows">Testing and Debugging Workflows</a>:</p>
+</li>
+<li>
+<p>Debugging: Understand the tools and techniques for debugging your workflows. This includes using runner diagnostic logs, understanding job status, and using actions to debug issues.</p>
+</li>
+<li>
+<p>Testing Workflows Locally: Learn about tools like act which can simulate GitHub Actions environment locally on your machine, allowing for faster iteration and testing without pushing every change.</p>
+</li>
+<li>
+<p><a href="#advanced-features-and-best-practices">Advanced Features and Best Practices</a>:</p>
+</li>
+<li>
+<p>Conditional Logic in Workflows: Understand how to control the flow of jobs and steps based on the outcomes of previous steps or the context of the event that triggered the workflow.</p>
+</li>
+<li>Optimizing Workflow Performance: Learn strategies for minimizing run times and costs, such as matrix builds, caching dependencies, and concurrency controls.</li>
+</ol>
+<p>By focusing on these areas, you’ll grasp the fundamental and most impactful aspects of GitHub Actions. This knowledge will enable you to automate testing, builds, deployments, and other common software development tasks directly within your GitHub projects.</p>
+<h2 id="understanding-github-actions-basics">Understanding GitHub Actions Basics</h2>
+<p>What are GitHub Actions?</p>
+<p>GitHub Actions is a CI/CD (Continuous Integration and Continuous Deployment) platform that allows you to automate your software development workflows directly within your GitHub repository. It's designed to help you automate tasks like testing code, deploying software, and managing project workflows. By defining specific rules and processes, GitHub Actions can automatically perform tasks when triggered by GitHub events like a push, a pull request, or any other event type specified in your workflow configuration.</p>
+<p>Components of GitHub Actions:</p>
+<p>Understanding each component of GitHub Actions is crucial for leveraging its capabilities effectively.</p>
+<ul>
+<li>
+<p><strong>Workflows</strong>: A workflow is an automated procedure that you add to your repository. Workflows are defined by a YAML file in the .github/workflows directory of your repository. A workflow file specifies what to do, when to do it, and how to do it. For example, you might have a workflow that compiles your code and runs tests every time someone pushes to the main branch.</p>
+</li>
+<li>
+<p><strong>Events</strong>: Events are specific activities or triggers that initiate a workflow. These can be GitHub events like push, pull_request, or issue_comment. Additionally, you can schedule events or trigger them manually. Understanding the variety of events available allows you to customize when your workflows run based on the needs of your project.</p>
+</li>
+<li>
+<p><strong>Jobs</strong>: A job is a set of steps in a workflow that execute on the same runner. By organizing tasks into jobs, you can structure complex workflows that perform multiple related actions. Jobs can run sequentially or in parallel depending on their dependencies defined in the workflow.</p>
+</li>
+<li>
+<p><strong>Steps</strong>: Each job consists of multiple steps. A step can either run a script or execute an action. By breaking down jobs into steps, you can sequence commands or actions that process your code, such as checking out your repository, installing dependencies, or deploying software.</p>
+</li>
+<li>
+<p><strong>Actions</strong>: Actions are individual tasks that you can combine as steps within a job. Actions can be reused across different workflows and can be found and shared in the GitHub Marketplace. You can use actions created by the community or create your own custom actions to perform specific tasks.</p>
+</li>
+<li>
+<p><strong>Runners</strong>: Runners are servers that have the GitHub Actions runner application installed. They are where your workflows actually run. GitHub provides hosted runners with different operating systems, or you can host your own runner to run jobs in a specific environment.</p>
+</li>
+</ul>
+<p>By mastering these components, you can design and implement powerful automation strategies within your GitHub repositories, reducing manual effort and increasing efficiency. Whether you're automating tests, deployments, or other tasks, understanding GitHub Actions basics is the first crucial step toward harnessing the full potential of this tool.</p>
+<h2 id="creating-workflows">Creating Workflows</h2>
+<h3 id="workflow-syntax">Workflow Syntax</h3>
+<p>Workflows are defined in YAML files located in the .github/workflows directory of your repository. A typical workflow file includes several key sections:</p>
+<ul>
+<li><strong>Name</strong>: You can name your workflow anything descriptive of its purpose, which appears in the GitHub UI when the workflow runs.</li>
+<li><strong>On</strong>: This section defines the event that triggers the workflow. You can specify one or several events, with additional conditions if necessary.</li>
+<li><strong>Jobs</strong>: This is where you define one or more jobs. Each job runs on a runner and contains steps that execute tasks.</li>
+<li>Here's a simple example of a workflow file:</li>
+</ul>
+<pre><code class="language-yaml">name: Example CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        echo Add other commands
+        echo Use this format to run multiple commands
+</code></pre>
+<ul>
+<li><strong><code>runs-on</code></strong>: Specifies the type of machine to run the job on. It can be a GitHub-hosted runner or a self-hosted runner.</li>
+<li><strong><code>steps</code></strong>: Each step can either run a script or an action. The <code>uses</code> keyword is for actions, while <code>run</code> is used for shell commands.</li>
+</ul>
+<h3 id="events-that-trigger-workflows">Events that Trigger Workflows</h3>
+<p>Events are central to triggering workflows. You can configure a workflow to start on specific GitHub activities, on a schedule, or even manually. Here are some common triggers:</p>
+<ul>
+<li><strong>Push</strong>: Triggers a workflow on any git push to a repository, with the ability to specify branches or paths.</li>
+<li><strong>Pull Request</strong>: Activates on pull request events, such as creation, synchronization, or closure.</li>
+<li><strong>Schedule</strong>: Uses POSIX cron syntax to schedule workflows, useful for nightly builds or regular maintenance jobs.</li>
+<li><strong>Manual triggers</strong>: You can also trigger workflows manually or via the GitHub API, which is helpful for workflows that need human decision points.</li>
+</ul>
+<p>Example for scheduled and manual triggers:</p>
+<pre><code class="language-yaml">Copy code
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs at midnight every day
+  workflow_dispatch:
+</code></pre>
+<p>Understanding how to effectively use these elements in your workflow definitions will allow you to automate a wide range of tasks in your development process, from simple code linting to complex deployment pipelines. By mastering the workflow syntax and knowing how to trigger workflows appropriately, you can optimize your development workflow, ensuring that your code is always tested, built, and deployed efficiently.</p>
+<h2 id="common-actions-and-usage">Common Actions and Usage</h2>
+<h3 id="using-actions">Using Actions</h3>
+<p>Actions are reusable components within GitHub Actions that can simplify and standardize your workflow configurations. Actions can be found in the GitHub Marketplace or created as custom scripts within your repository.</p>
+<ul>
+<li><strong>GitHub Marketplace</strong>: Here, you can browse and utilize a vast library of community and official actions for a variety of tasks like setting up environments, deploying code, automating releases, etc.</li>
+<li><strong>Custom Actions</strong>: You can create your own actions if you need something specific that isn’t available. These can be written in any programming language that can run on the GitHub Actions runner and are typically hosted in their own repository.</li>
+</ul>
+<p>Here is an example of using a popular action from the GitHub Marketplace:</p>
+<pre><code class="language-yaml">steps:
+- uses: actions/checkout@v2
+- uses: actions/setup-node@v2
+  with:
+    node-version: '14'
+- run: npm install
+- run: npm test
+</code></pre>
+<p>In this example, <code>actions/checkout</code> checks out your repository under <code>$GITHUB_WORKSPACE</code>, so your workflow can access it. <code>actions/setup-node</code> sets up a Node.js environment, specifying which version to use.</p>
+<h3 id="action-inputs-outputs-and-secrets">Action Inputs, Outputs, and Secrets</h3>
+<ul>
+<li><strong>Inputs</strong>: Actions can take inputs, which you define under with. These inputs can be used to customize the action’s behavior.</li>
+<li><strong>Outputs</strong>: Actions can also produce outputs that can be used by subsequent steps in your job.</li>
+<li><strong>Secrets</strong>: Secrets are used to store sensitive information, such as deployment credentials or API keys. You can add secrets in the repository settings, and they are encrypted. To use them in your workflow, refer to them using the <code>secrets</code> context.</li>
+</ul>
+<pre><code class="language-yaml">jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: Run tests
+      id: test
+      run: |
+        result=$(python test.py)
+        echo &quot;::set-output name=result::$result&quot;
+    - name: Deploy
+      if: steps.test.outputs.result == 'success'
+      run: echo &quot;Deploying to production&quot;
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+</code></pre>
+<p>In this workflow:</p>
+<ul>
+<li>Python is set up with a specified version.</li>
+<li>Outputs are used to pass results between steps.</li>
+<li>A secret API key is used to perform a deployment.</li>
+</ul>
+<p>By understanding how to utilize these features in GitHub Actions, you can significantly enhance your automation tasks. Whether it's through using pre-built actions to speed up common tasks or managing sensitive data securely with secrets, these tools provide powerful options for automating your development workflows.</p>
+<h2 id="testing-and-debugging-workflows">Testing and Debugging Workflows</h2>
+<h3 id="debugging-workflows">Debugging Workflows</h3>
+<p>When a GitHub Actions workflow fails or doesn't perform as expected, you'll need effective methods to diagnose and resolve issues. Here’s how you can approach debugging:</p>
+<ul>
+<li>
+<p><strong>Logs</strong>: Each step of a workflow run has detailed logs that can be accessed from the Actions tab in your GitHub repository. These logs are invaluable for tracing the execution path and understanding where things might be going wrong.</p>
+</li>
+<li>
+<p><strong>Step Results</strong>: Often, it's useful to insert echo statements or use specific actions designed to dump environment variables and running configurations to the log. This can provide clues about the state of your environment and variables at various points in the workflow.</p>
+</li>
+<li>
+<p><strong>Using Actions for Debugging</strong>: There are several community-created actions available in the GitHub Marketplace that can help with debugging, such as actions for sending notifications when errors occur or actions that can pause a workflow until you manually resume it, allowing you to inspect the current state.</p>
+</li>
+</ul>
+<p>Example of an action to dump GitHub context:</p>
+<pre><code class="language-yaml">steps:
+- name: Dump GitHub context
+  env:
+    GITHUB_CONTEXT: ${{ toJson(github) }}
+  run: echo &quot;$GITHUB_CONTEXT&quot;
+</code></pre>
+<h3 id="testing-workflows-locally">Testing Workflows Locally</h3>
+<p>While GitHub Actions primarily run on GitHub-hosted or self-hosted runners, developing complex workflows directly on GitHub can be slow and cumbersome due to the commit-push-run loop. Testing workflows locally can significantly speed up the development and debugging process.</p>
+<ul>
+<li><strong><code>act</code></strong>: One popular tool for locally testing GitHub Actions is act. It allows you to run your workflows on your own machine, simulating GitHub Actions. act can be particularly useful for iterative development of complex workflows.</li>
+</ul>
+<p>You install <code>act</code> on your development machine, and it reads your workflow files, uses Docker to run the jobs defined in your workflows on containers that simulate GitHub's virtual environments.</p>
+<p>Example of using <code>act</code>:</p>
+<pre><code class="language-bash"># Install act
+brew install act
+
+# Run workflows locally
+act push
+</code></pre>
+<ul>
+<li><strong>Security Considerations</strong>: When testing locally, ensure you handle secrets securely. Avoid hard-coding secrets in your workflow files. act supports using .secrets files to safely pass secrets during local runs.</li>
+</ul>
+<h3 id="best-practices-for-debugging">Best Practices for Debugging</h3>
+<ul>
+<li><strong>Minimize Complexity</strong>: Keep each step simple and focused on a single task. This makes it easier to identify which part of the workflow is failing.</li>
+<li><strong>Documenting Changes</strong>: When modifying workflows, document changes and reasoning in your commit messages or comments in the workflow file. This helps track what changes have been made and why, assisting in troubleshooting.</li>
+<li><strong>Incremental Testing</strong>: Test workflows incrementally. Build them step by step, testing at each stage, to ensure that each component functions correctly before adding more complexity.</li>
+</ul>
+<p>By incorporating these strategies and tools, you can effectively debug and optimize your GitHub Actions workflows, making them more robust, easier to maintain, and quicker to develop.</p>
+<h2 id="advanced-features-and-best-practices">Advanced Features and Best Practices</h2>
+<h3 id="conditional-logic-in-workflows">Conditional Logic in Workflows</h3>
+<p>Conditional logic is a powerful feature in GitHub Actions that allows you to control the flow of execution based on specific conditions. This can be particularly useful for making decisions in the workflow based on the outcome of previous steps, the branch being pushed, or other context-specific details.</p>
+<ul>
+<li>
+<p><strong>Conditional Syntax</strong>: Conditions can be set using the if key, and the syntax supports expressions similar to JavaScript. You can access the context and functions provided by GitHub to evaluate states.</p>
+</li>
+<li>
+<p>Common Use Cases:</p>
+<ul>
+<li>Skip steps: Skip certain steps unless the workflow is running on the main branch.</li>
+<li>Failure handling: Execute a set of steps only if a previous step fails.</li>
+<li>Pull request checks: Perform actions only if changes occur in specific directories or files.</li>
+</ul>
+</li>
+</ul>
+<p>Example of conditional logic:</p>
+<pre><code class="language-yaml">steps:
+  - name: Check code style
+    if: github.ref == 'refs/heads/main'
+    run: npm run lint
+
+  - name: Deploy
+    if: github.event_name == 'push' &amp;&amp; github.ref == 'refs/heads/main'
+    run: ./deploy.sh
+</code></pre>
+<h3 id="optimizing-workflow-performance">Optimizing Workflow Performance</h3>
+<p>Efficiency in workflows is crucial, especially as the number of actions and their complexity increase. Here are some strategies to optimize performance:</p>
+<ul>
+<li>
+<p><strong>Matrix Builds</strong>: This feature allows you to run multiple versions of a job in parallel, varying by one or more variables. It's especially useful for testing across different environments, such as multiple versions of a language or different operating systems.</p>
+</li>
+<li>
+<p><strong>Caching Dependencies</strong>: Most build processes download dependencies, which can be time-consuming. By caching these files between workflow runs, you can significantly reduce build time and network traffic.</p>
+</li>
+<li>
+<p><strong>Artifacts and Concurrency</strong>: Manage artifacts efficiently and use concurrency controls to manage how many runs can occur in parallel. This helps in resource allocation and can prevent bottlenecks when multiple workflows are triggered.</p>
+</li>
+</ul>
+<p>Example of caching and matrix strategy:</p>
+<pre><code class="language-yaml">jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Cache node modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - run: npm install
+    - run: npm test
+</code></pre>
+<h3 id="best-practices-for-workflow-design">Best Practices for Workflow Design</h3>
+<ul>
+<li><strong>Reusability</strong>: Create actions that are reusable across different workflows and projects. This reduces duplication and simplifies maintenance.</li>
+<li><strong>Security</strong>: Regularly review and minimize the use of secrets. Ensure that only necessary actions have access to sensitive information.</li>
+<li><strong>Documentation</strong>: Maintain good documentation both within workflow files (using comments) and in project documentation. This helps new contributors understand the purpose and function of each workflow.</li>
+</ul>
+<p>By leveraging these advanced features and best practices, you can craft sophisticated and efficient GitHub Actions workflows. These practices help manage complexity as your project grows and ensures that your CI/CD processes are both scalable and maintainable.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

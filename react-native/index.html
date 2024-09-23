@@ -1,0 +1,1759 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../react-hooks/">
+      
+      
+        <link rel="next" href="../sql/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.36">
+    
+    
+      
+        <title>React Native - Dev Sparknotes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.06209087.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#react-native" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Dev Sparknotes" class="md-header__button md-logo" aria-label="Dev Sparknotes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Sparknotes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              React Native
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Dev Sparknotes" class="md-nav__button md-logo" aria-label="Dev Sparknotes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Sparknotes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blender
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Blender
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blender/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blender
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Github actions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Github actions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github-actions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Actions Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphql
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Graphql
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GraphQL Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React hooks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            React hooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react-hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React Hooks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React native
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            React native
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    React Native
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    React Native
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table of Contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-components-and-jsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Components and JSX:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-state-and-props-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. State and Props Management:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Navigation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-styling-and-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Styling and Layout:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-api-integration-and-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. API Integration and Networking:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-native-modules-and-platform-specific-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Native Modules and Platform-Specific Code:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-debugging-and-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Debugging and Performance Optimization:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-state-management-libraries-eg-redux-or-context-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. State Management Libraries (e.g., Redux or Context API):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-components-and-jsx_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Components and JSX
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Components and JSX">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-components-and-jsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding Components and JSX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#react-native-specific-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      React Native-Specific Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-state-and-props-management_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. State and Props Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. State and Props Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#props-in-react-native" class="md-nav__link">
+    <span class="md-ellipsis">
+      Props in React Native
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Props in React Native">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-points-about-props" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Points about Props:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-in-react-native" class="md-nav__link">
+    <span class="md-ellipsis">
+      State in React Native
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="State in React Native">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-points-about-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Points about State:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#props-vs-state-in-react-native" class="md-nav__link">
+    <span class="md-ellipsis">
+      Props vs. State in React Native
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-user-input-with-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling User Input with State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-state-and-props-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using State and Props Together
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-navigation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Navigation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-styling-and-layout_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Styling and Layout
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-api-integration-and-networking_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. API Integration and Networking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-native-modules-and-platform-specific-code_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Native Modules and Platform-Specific Code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-debugging-and-performance-optimization_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Debugging and Performance Optimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-state-management-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. State Management Libraries
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sql
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Sql
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Threejs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Threejs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threejs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Three.js Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Typescript
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Typescript
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../typescript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TypeScript Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Web performance optimization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Web performance optimization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-performance-optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Performance Optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table of Contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-components-and-jsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Components and JSX:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-state-and-props-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. State and Props Management:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Navigation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-styling-and-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Styling and Layout:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-api-integration-and-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. API Integration and Networking:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-native-modules-and-platform-specific-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Native Modules and Platform-Specific Code:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-debugging-and-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Debugging and Performance Optimization:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-state-management-libraries-eg-redux-or-context-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. State Management Libraries (e.g., Redux or Context API):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-components-and-jsx_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Components and JSX
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Components and JSX">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-components-and-jsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding Components and JSX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#react-native-specific-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      React Native-Specific Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-state-and-props-management_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. State and Props Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. State and Props Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#props-in-react-native" class="md-nav__link">
+    <span class="md-ellipsis">
+      Props in React Native
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Props in React Native">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-points-about-props" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Points about Props:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-in-react-native" class="md-nav__link">
+    <span class="md-ellipsis">
+      State in React Native
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="State in React Native">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-points-about-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Points about State:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#props-vs-state-in-react-native" class="md-nav__link">
+    <span class="md-ellipsis">
+      Props vs. State in React Native
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-user-input-with-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling User Input with State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-state-and-props-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using State and Props Together
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-navigation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Navigation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-styling-and-layout_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Styling and Layout
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-api-integration-and-networking_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. API Integration and Networking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-native-modules-and-platform-specific-code_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Native Modules and Platform-Specific Code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-debugging-and-performance-optimization_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Debugging and Performance Optimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-state-management-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. State Management Libraries
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="react-native">React Native</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<h3 id="1-components-and-jsx">1. <a href="#1-components-and-jsx-1">Components and JSX</a>:</h3>
+<p>Understanding how to create and compose components using JSX is foundational. This includes functional components, class components, and props.</p>
+<h3 id="2-state-and-props-management">2. <a href="#2-state-and-props-management-1">State and Props Management</a>:</h3>
+<p>Mastering how to manage state within components, how to pass data via props, and how to handle user input and events.</p>
+<h3 id="3-navigation">3. <a href="#3-navigation-1">Navigation</a>:</h3>
+<p>Learn how to implement navigation between screens using libraries like React Navigation, including stack, tab, and drawer navigators.</p>
+<h3 id="4-styling-and-layout">4. <a href="#4-styling-and-layout-1">Styling and Layout</a>:</h3>
+<p>Get comfortable with React Native’s styling system, which is based on Flexbox, and how to create responsive designs that work on multiple screen sizes.</p>
+<h3 id="5-api-integration-and-networking">5. <a href="#5-api-integration-and-networking-1">API Integration and Networking</a>:</h3>
+<p>Understand how to make network requests using fetch or Axios, handle asynchronous data with Promises, and interact with APIs.</p>
+<h3 id="6-native-modules-and-platform-specific-code">6. <a href="#6-native-modules-and-platform-specific-code-1">Native Modules and Platform-Specific Code</a>:</h3>
+<p>Learn how to leverage platform-specific code (iOS and Android) and how to use native modules to access device features like the camera or GPS.</p>
+<h3 id="7-debugging-and-performance-optimization">7. <a href="#7-debugging-and-performance-optimization-1">Debugging and Performance Optimization</a>:</h3>
+<p>Get familiar with debugging tools (like React Native Debugger and Flipper) and learn how to optimize performance, such as handling large lists with FlatList and managing memory usage.</p>
+<h3 id="8-state-management-libraries-eg-redux-or-context-api">8. <a href="#8-state-management-libraries">State Management Libraries (e.g., Redux or Context API)</a>:</h3>
+<p>While basic state management can be done with React's built-in useState and useEffect, learning Redux or Context API will help manage more complex state across your application.</p>
+<h2 id="1-components-and-jsx_1">1. Components and JSX</h2>
+<h3 id="understanding-components-and-jsx">Understanding Components and JSX</h3>
+<p>Components are the building blocks of a React Native application. Each component in React Native is a self-contained piece of UI, which can be reused and combined to build complex user interfaces. JSX (JavaScript XML) is a syntax extension for JavaScript that looks similar to HTML but is used to describe what the UI should look like in React Native.</p>
+<h3 id="react-native-specific-components">React Native-Specific Components</h3>
+<p>React Native provides a set of built-in components that are specifically designed for mobile applications. Here are some of the most commonly used React Native components:</p>
+<ul>
+<li>
+<p><strong>View:</strong> The most fundamental component in React Native, similar to a div in web development. It’s used to create layout containers for other components.</p>
+<p>```jsx
+import { View } from 'react-native';</p>
+<p>const MyComponent = () =&gt; (
+<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    {/<em> Other components go here </em>/}
+</View>
+);
+```</p>
+</li>
+<li>
+<p><strong>Text:</strong> Used to display text in your app. In React Native, all text must be wrapped in a Text component.</p>
+<p>```jsx
+import { Text } from 'react-native';</p>
+<p>const MyText = () =&gt; <Text>Hello, React Native!</Text>;
+```</p>
+</li>
+<li>
+<p><strong>Image:</strong> Used to display images in your app. It supports various image formats and can load images from different sources (local or remote).</p>
+<p>```jsx
+import { Image } from 'react-native';</p>
+<p>const MyImage = () =&gt; (
+<Image
+    source={{ uri: 'https://example.com/my-image.png' }}
+    style={{ width: 100, height: 100 }}
+/>
+);
+```</p>
+</li>
+<li>
+<p><strong>ScrollView:</strong> A container that provides scrolling capabilities when the content inside it is too large to fit on the screen. It’s useful for creating vertically or horizontally scrollable content.</p>
+<p>```jsx
+import { ScrollView, Text } from 'react-native';</p>
+<p>const MyScrollView = () =&gt; (
+<ScrollView>
+    <Text>Content goes here...</Text>
+</ScrollView>
+);
+```</p>
+</li>
+<li>
+<p><strong>FlatList:</strong> An optimized component for rendering large lists of data efficiently. It’s highly customizable and supports features like infinite scrolling, pull-to-refresh, and item separators.</p>
+<p>```jsx
+import { FlatList, Text } from 'react-native';</p>
+<p>const MyList = () =&gt; {
+const data = [{ key: 'Item 1' }, { key: 'Item 2' }, { key: 'Item 3' }];</p>
+<p>return (
+    <FlatList
+    data={data}
+    renderItem={({ item }) => <Text>{item.key}</Text>}
+    /&gt;
+);
+};
+```</p>
+</li>
+<li>
+<p><strong>TouchableOpacity:</strong> A wrapper for making views respond to touches. When pressed, the opacity of the wrapped view is decreased, giving feedback to the user. This is commonly used for buttons.</p>
+<p>```jsx
+import { TouchableOpacity, Text } from 'react-native';</p>
+<p>const MyButton = () =&gt; (
+<TouchableOpacity onPress={() => alert('Button pressed!')}&gt;
+    <Text>Press Me</Text>
+</TouchableOpacity>
+);
+```</p>
+</li>
+<li>
+<p><strong>TextInput:</strong> A basic component for user input. It allows users to enter text, and you can handle the input using event handlers like onChangeText.</p>
+<p>```jsx
+import { TextInput } from 'react-native';
+import { useState } from 'react';</p>
+<p>const MyTextInput = () =&gt; {
+const [text, setText] = useState('');</p>
+<p>return (
+    <TextInput
+    value={text}
+    onChangeText={setText}
+    placeholder="Type something..."
+    />
+);
+};
+```</p>
+</li>
+<li>
+<p><strong>Button:</strong> A basic button component that displays a button with a label and triggers an action when pressed.</p>
+<p>```jsx</p>
+<p>import { Button } from 'react-native';</p>
+<p>const MyButton = () =&gt; (
+<Button
+    title="Press Me"
+    onPress={() => alert('Button pressed!')}
+/&gt;
+);
+```</p>
+</li>
+<li>
+<p><strong>Modal:</strong> A component used to present content above an enclosing view, often used for dialogs, prompts, or popups.</p>
+<p>```jsx
+import { Modal, View, Text, Button } from 'react-native';
+import { useState } from 'react';</p>
+<p>const MyModal = () =&gt; {
+const [modalVisible, setModalVisible] = useState(false);</p>
+<p>return (
+    <View>
+    <Button title="Show Modal" onPress={() => setModalVisible(true)} /&gt;
+    <Modal visible={modalVisible} transparent={true}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ backgroundColor: 'white', padding: 20 }}>
+            <Text>Modal Content</Text>
+            <Button title="Close" onPress={() => setModalVisible(false)} /&gt;
+        </View>
+        </View>
+    </Modal>
+    </View>
+);
+};
+```</p>
+</li>
+</ul>
+<h2 id="2-state-and-props-management_1">2. State and Props Management</h2>
+<p>State and props are crucial concepts in React Native (and React in general), as they determine how your app's UI behaves and responds to user interactions.</p>
+<h3 id="props-in-react-native">Props in React Native</h3>
+<p><strong>Props</strong> (short for "properties") are used to pass data from a parent component to a child component. They are read-only, meaning the child component cannot modify them; they are meant to configure the child component.</p>
+<h4 id="key-points-about-props">Key Points about Props:</h4>
+<ul>
+<li>Props are passed down from a parent component to a child component.</li>
+<li>They are immutable within the child component.</li>
+<li>Props allow you to pass data and event handlers to child components.</li>
+<li>A child component can access props via this.props in class components or directly as a parameter in functional components.</li>
+</ul>
+<p><strong>Example</strong></p>
+<pre><code class="language-jsx">import React from 'react';
+import { View, Text } from 'react-native';
+
+const Greeting = (props) =&gt; {
+  return (
+    &lt;Text&gt;Hello, {props.name}!&lt;/Text&gt;
+  );
+};
+
+const App = () =&gt; {
+  return (
+    &lt;View&gt;
+      &lt;Greeting name=&quot;John&quot; /&gt;
+      &lt;Greeting name=&quot;Jane&quot; /&gt;
+    &lt;/View&gt;
+  );
+};
+</code></pre>
+<p>In this example, the <code>Greeting</code> component receives the <code>name</code> prop from the parent component (<code>App</code>), allowing it to display different greetings based on the prop value.</p>
+<h3 id="state-in-react-native">State in React Native</h3>
+<p><strong>State</strong> is used to manage data that can change over time. Unlike props, state is mutable and can be updated based on user interactions, API responses, or other events within the component.</p>
+<h4 id="key-points-about-state">Key Points about State:</h4>
+<ul>
+<li>State is managed within the component and can be changed using the <code>setState</code> function in class components or the <code>useState</code> hook in functional components.</li>
+<li>Changes in state trigger a re-render of the component, allowing the UI to update in response to state changes.</li>
+<li>State is useful for handling dynamic data, such as user input, fetched data, or the result of user actions.</li>
+</ul>
+<p>Example using Functional Components with useState:</p>
+<pre><code class="language-jsx">import React, { useState } from 'react';
+import { View, Text, Button } from 'react-native';
+
+const Counter = () =&gt; {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;View&gt;
+      &lt;Text&gt;Count: {count}&lt;/Text&gt;
+      &lt;Button title=&quot;Increase&quot; onPress={() =&gt; setCount(count + 1)} /&gt;
+      &lt;Button title=&quot;Decrease&quot; onPress={() =&gt; setCount(count - 1)} /&gt;
+    &lt;/View&gt;
+  );
+};
+
+const App = () =&gt; {
+  return (
+    &lt;View&gt;
+      &lt;Counter /&gt;
+    &lt;/View&gt;
+  );
+};
+</code></pre>
+<p>In this example, the <strong><code>Counter</code></strong> component manages its own state (count). The state is initialized to 0 using the useState hook, and it's updated whenever the "Increase" or "Decrease" button is pressed, which triggers a re-render to display the updated count.</p>
+<h3 id="props-vs-state-in-react-native">Props vs. State in React Native</h3>
+<ul>
+<li><strong>Props</strong> are passed to components, whereas state is managed within components.</li>
+<li><strong>Props</strong> are used to configure a component and should not change (immutable), while state is dynamic and can change over time (mutable).</li>
+<li>Components re-render when their <strong>state</strong> changes, allowing the UI to reflect the latest data.</li>
+</ul>
+<h3 id="handling-user-input-with-state">Handling User Input with State</h3>
+<p>A common use case for state in React Native is managing user input, such as text entered into a TextInput field. Here's how you can handle and manage user input using state:</p>
+<pre><code class="language-jsx">import React, { useState } from 'react';
+import { View, TextInput, Text } from 'react-native';
+
+const InputComponent = () =&gt; {
+  const [inputValue, setInputValue] = useState('');
+
+  return (
+    &lt;View&gt;
+      &lt;TextInput
+        value={inputValue}
+        onChangeText={text =&gt; setInputValue(text)}
+        placeholder=&quot;Type something...&quot;
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 20 }}
+      /&gt;
+      &lt;Text&gt;You typed: {inputValue}&lt;/Text&gt;
+    &lt;/View&gt;
+  );
+};
+
+const App = () =&gt; {
+  return (
+    &lt;View&gt;
+      &lt;InputComponent /&gt;
+    &lt;/View&gt;
+  );
+};
+</code></pre>
+<p>In this example, the InputComponent manages the state of the TextInput value. As the user types, the inputValue state is updated via the onChangeText handler, and the component re-renders to display the current input.</p>
+<h3 id="using-state-and-props-together">Using State and Props Together</h3>
+<p>Often, you'll use state in combination with props. For example, you might fetch data in a parent component, store it in the state, and then pass that data down to child components as props.</p>
+<pre><code class="language-jsx">import React, { useState, useEffect } from 'react';
+import { View, Text } from 'react-native';
+
+const DataDisplay = ({ data }) =&gt; {
+  return &lt;Text&gt;{data}&lt;/Text&gt;;
+};
+
+const App = () =&gt; {
+  const [data, setData] = useState('Loading...');
+
+  useEffect(() =&gt; {
+    // Simulate fetching data
+    setTimeout(() =&gt; {
+      setData('Fetched Data');
+    }, 2000);
+  }, []);
+
+  return (
+    &lt;View&gt;
+      &lt;DataDisplay data={data} /&gt;
+    &lt;/View&gt;
+  );
+};
+</code></pre>
+<p>In this example, the <strong><code>App</code></strong> component fetches data and stores it in its state. The DataDisplay component receives the fetched data as a prop and displays it. Initially, the state is "Loading...", and after 2 seconds, it updates to "Fetched Data," demonstrating how state and props work together to manage and display dynamic data.</p>
+<p>Mastering state and props in React Native will enable you to build interactive and dynamic mobile applications, allowing components to communicate effectively and react to user interactions.</p>
+<h2 id="3-navigation_1">3. Navigation</h2>
+<h2 id="4-styling-and-layout_1">4. Styling and Layout</h2>
+<h2 id="5-api-integration-and-networking_1">5. API Integration and Networking</h2>
+<h2 id="6-native-modules-and-platform-specific-code_1">6. Native Modules and Platform-Specific Code</h2>
+<h2 id="7-debugging-and-performance-optimization_1">7. Debugging and Performance Optimization</h2>
+<h2 id="8-state-management-libraries">8. State Management Libraries</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,5791 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../react-native/">
+      
+      
+        <link rel="next" href="../threejs/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.36">
+    
+    
+      
+        <title>SQL - Dev Sparknotes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.06209087.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sql" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Dev Sparknotes" class="md-header__button md-logo" aria-label="Dev Sparknotes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Sparknotes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SQL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Dev Sparknotes" class="md-nav__button md-logo" aria-label="Dev Sparknotes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Sparknotes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blender
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Blender
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blender/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blender
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Github actions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Github actions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github-actions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Actions Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Graphql
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Graphql
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GraphQL Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React hooks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            React hooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react-hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React Hooks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    React native
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            React native
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react-native/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React Native
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sql
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Sql
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table of Contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-basic-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Basic Queries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-joins" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Joins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-aggregation-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Aggregation Functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-grouping-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Grouping Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-data-manipulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Data Manipulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Subqueries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Indexes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-query-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Query Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Normalization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-basic-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Basic Transactions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-database-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Database Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-more-performance-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. More Performance Tuning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-basic-queries_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Basic Queries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Basic Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Queries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-select-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. SELECT Statements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-from-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. FROM Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-where-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. WHERE Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-order-by-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. ORDER BY Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-limit-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. LIMIT Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-distinct-keyword" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. DISTINCT Keyword
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-aliasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Aliasing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-joins_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Joins
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Joins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#joins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Joins
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Joins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-inner-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. INNER JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-left-join-or-left-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. LEFT JOIN (or LEFT OUTER JOIN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-right-join-or-right-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. RIGHT JOIN (or RIGHT OUTER JOIN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-full-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. FULL OUTER JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-self-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Self Join
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-cross-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Cross Join
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aggregation-functions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Aggregation Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Aggregation Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggregation Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aggregation Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. COUNT()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. SUM()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-avg" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. AVG()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-max" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. MAX()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. MIN()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-grouping-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Grouping Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Grouping Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grouping-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grouping Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Grouping Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-group-by-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. GROUP BY Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-using-aggregate-functions-with-group-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Using Aggregate Functions with GROUP BY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-having-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. HAVING Clause
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-data-manipulation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Data Manipulation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Data Manipulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-manipulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Manipulation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Manipulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-insert-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. INSERT Statement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-update-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. UPDATE Statement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-delete-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. DELETE Statement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Transactions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-subqueries_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Subqueries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Subqueries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subqueries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subqueries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-subqueries-in-the-select-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Subqueries in the SELECT Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-subqueries-in-the-where-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Subqueries in the WHERE Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-subqueries-in-the-from-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Subqueries in the FROM Clause
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-of-subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Subqueries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of Subqueries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-row-subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single-Row Subqueries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-row-subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple-Row Subqueries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correlated-subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correlated Subqueries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-data-types_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Data Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-numeric-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Numeric Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-string-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. String Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-date-and-time-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Date and Time Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-binary-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Binary Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-boolean-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Boolean Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-enumerated-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Enumerated Data Types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-indexes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Indexes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Indexes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indexes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index Maintenance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Index Maintenance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rebuilding-indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rebuilding Indexes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-index-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Index Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-query-optimization_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Query Optimization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Query Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-normalization_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Normalization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Normalization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#items" class="md-nav__link">
+    <span class="md-ellipsis">
+      Items
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instructors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructors
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instructorrooms" class="md-nav__link">
+    <span class="md-ellipsis">
+      InstructorRooms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="InstructorRooms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#higher-normal-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Higher Normal Forms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customers_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#items_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Items
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customers_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Customers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summary_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-basic-transactions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Basic Transactions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Basic Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Transactions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-acid-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. ACID Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-basic-transaction-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Basic Transaction Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-using-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Using Transactions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-savepoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Savepoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-isolation-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Isolation Levels
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-database-views_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Database Views
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Database Views">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Views
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Views">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#querying-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Querying Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Views
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-more-performance-tuning_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. More Performance Tuning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. More Performance Tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-limitoffset-efficiently" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using LIMIT/OFFSET Efficiently
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching Strategies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Caching Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-of-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices for Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-using-redis-for-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Using Redis for Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-database-level-caching-mysql-query-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Database-Level Caching (MySQL Query Cache)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stored Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stored Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of Stored Procedures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Stored Procedures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executing-stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Executing Stored Procedures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-parameters-in-stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Parameters in Stored Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Parameters in Stored Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-with-input-and-output-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example with Input and Output Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executing-the-procedure-with-output-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Executing the Procedure with Output Parameter:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling-in-stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling in Stored Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling in Stored Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-with-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example with Error Handling:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Threejs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Threejs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threejs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Three.js Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Typescript
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Typescript
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../typescript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TypeScript Sparknotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Web performance optimization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Web performance optimization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-performance-optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Performance Optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table of Contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-basic-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Basic Queries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-joins" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Joins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-aggregation-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Aggregation Functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-grouping-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Grouping Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-data-manipulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Data Manipulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Subqueries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Indexes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-query-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Query Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Normalization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-basic-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Basic Transactions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-database-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Database Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-more-performance-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. More Performance Tuning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-basic-queries_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Basic Queries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Basic Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Queries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-select-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. SELECT Statements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-from-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. FROM Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-where-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. WHERE Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-order-by-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. ORDER BY Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-limit-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. LIMIT Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-distinct-keyword" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. DISTINCT Keyword
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-aliasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Aliasing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-joins_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Joins
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Joins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#joins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Joins
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Joins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-inner-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. INNER JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-left-join-or-left-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. LEFT JOIN (or LEFT OUTER JOIN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-right-join-or-right-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. RIGHT JOIN (or RIGHT OUTER JOIN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-full-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. FULL OUTER JOIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-self-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Self Join
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-cross-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Cross Join
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aggregation-functions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Aggregation Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Aggregation Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggregation Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aggregation Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. COUNT()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. SUM()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-avg" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. AVG()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-max" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. MAX()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. MIN()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-grouping-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Grouping Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Grouping Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grouping-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grouping Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Grouping Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-group-by-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. GROUP BY Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-using-aggregate-functions-with-group-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Using Aggregate Functions with GROUP BY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-having-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. HAVING Clause
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-data-manipulation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Data Manipulation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Data Manipulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-manipulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Manipulation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Manipulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-insert-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. INSERT Statement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-update-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. UPDATE Statement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-delete-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. DELETE Statement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Transactions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-subqueries_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Subqueries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Subqueries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subqueries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subqueries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-subqueries-in-the-select-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Subqueries in the SELECT Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-subqueries-in-the-where-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Subqueries in the WHERE Clause
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-subqueries-in-the-from-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Subqueries in the FROM Clause
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-of-subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Subqueries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of Subqueries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-row-subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single-Row Subqueries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-row-subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple-Row Subqueries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correlated-subqueries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correlated Subqueries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-data-types_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Data Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-numeric-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Numeric Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-string-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. String Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-date-and-time-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Date and Time Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-binary-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Binary Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-boolean-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Boolean Data Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-enumerated-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Enumerated Data Types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-indexes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Indexes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Indexes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indexes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index Maintenance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Index Maintenance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rebuilding-indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rebuilding Indexes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-index-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Index Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-query-optimization_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Query Optimization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Query Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-normalization_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Normalization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Normalization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#items" class="md-nav__link">
+    <span class="md-ellipsis">
+      Items
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instructors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructors
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instructorrooms" class="md-nav__link">
+    <span class="md-ellipsis">
+      InstructorRooms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="InstructorRooms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#higher-normal-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Higher Normal Forms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customers_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#items_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Items
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customers_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Customers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summary_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-basic-transactions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Basic Transactions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Basic Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Transactions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-acid-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. ACID Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-basic-transaction-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Basic Transaction Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-using-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Using Transactions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-savepoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Savepoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-isolation-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Isolation Levels
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-database-views_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Database Views
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Database Views">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Views
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Views">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#querying-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Querying Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Views
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-more-performance-tuning_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. More Performance Tuning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. More Performance Tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-limitoffset-efficiently" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using LIMIT/OFFSET Efficiently
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching Strategies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Caching Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-of-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices for Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-using-redis-for-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Using Redis for Caching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-database-level-caching-mysql-query-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Database-Level Caching (MySQL Query Cache)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stored Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stored Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of Stored Procedures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Stored Procedures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executing-stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Executing Stored Procedures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-parameters-in-stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Parameters in Stored Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Parameters in Stored Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-with-input-and-output-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example with Input and Output Parameters:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executing-the-procedure-with-output-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Executing the Procedure with Output Parameter:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling-in-stored-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling in Stored Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling in Stored Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-with-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example with Error Handling:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="sql">SQL</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<h3 id="1-basic-queries">1. <a href="#1-basic-queries">Basic Queries</a></h3>
+<ul>
+<li><a href="#1-select-statements">SELECT Statements:</a> How to retrieve data from a database.</li>
+<li><a href="#2-from-clause">FROM Clause</a>: Understanding tables and how to select them.</li>
+<li><a href="#3-where-clause">WHERE Clause</a>: Filtering data based on conditions.</li>
+</ul>
+<h3 id="2-joins">2. <a href="#2-joins">Joins</a></h3>
+<ul>
+<li><a href="#1-inner-join">INNER JOIN</a>: Combining rows from two or more tables based on a related column.</li>
+<li><a href="#2-left-join-or-left-outer-join">LEFT JOIN</a>: Returning all rows from the left table, and the matched rows from the right table.</li>
+<li><a href="#3-right-join-or-right-outer-join">RIGHT JOIN</a>: Returning all rows from the right table, and the matched rows from the left table.</li>
+<li><a href="#4-full-outer-join">FULL OUTER JOIN</a>: Returning all rows when there is a match in either left or right table.</li>
+</ul>
+<h3 id="3-aggregation-functions">3. <a href="#3-aggregation-functions">Aggregation Functions</a></h3>
+<ul>
+<li><a href="#1-count">COUNT()</a>: Counting the number of rows.</li>
+<li><a href="#2-sum">SUM()</a>: Summing the values of a column.</li>
+<li><a href="#3-avg">AVG()</a>: Calculating the average value of a column.</li>
+<li><a href="#5-min">MAX() and MIN()</a>: Finding the maximum and minimum values.</li>
+</ul>
+<h3 id="4-grouping-data">4. <a href="#4-grouping-data">Grouping Data</a></h3>
+<ul>
+<li><a href="#1-group-by-clause">GROUP BY</a>: Aggregating data across multiple records.</li>
+<li><a href="#3-having-clause">HAVING</a>: Filtering groups based on conditions.</li>
+</ul>
+<h3 id="5-data-manipulation">5. <a href="#5-data-manipulation">Data Manipulation</a></h3>
+<ul>
+<li><a href="#1-insert-statement">INSERT</a>: Adding new rows to a table.</li>
+<li><a href="#2-update-statement">UPDATE</a>: Modifying existing rows in a table.</li>
+<li><a href="#3-delete-statement">DELETE</a>: Removing rows from a table.</li>
+</ul>
+<h3 id="6-subqueries">6. <a href="#6-subqueries">Subqueries</a></h3>
+<ul>
+<li>Subqueries in SELECT: Using queries within other queries.</li>
+<li>Subqueries in WHERE: Filtering data based on subquery results.</li>
+</ul>
+<h3 id="7-data-types">7. <a href="#7-data-types">Data Types</a></h3>
+<ul>
+<li><a href="#1-numeric-data-types">Numeric Data Types</a></li>
+<li><a href="#2-string-data-types">String Data Types</a></li>
+<li><a href="#3-date-and-time-data-types">Date and Time Data Types</a></li>
+<li><a href="#4-binary-data-types">Binary Data Types</a></li>
+<li><a href="#5-boolean-data-types">Boolean Data Types</a></li>
+<li><a href="#6-enumerated-data-types">Enumerated Data Types</a></li>
+</ul>
+<h3 id="8-indexes">8. <a href="#8-indexes">Indexes</a></h3>
+<ul>
+<li>Basics of Indexing: Understanding how indexes work and their importance.</li>
+<li>Creating Indexes: How to create indexes to improve query performance.</li>
+<li>Composite Indexes: Using multiple columns in an index.</li>
+<li>Index Maintenance: Keeping indexes healthy and up-to-date.</li>
+</ul>
+<h3 id="9-query-optimization">9. <a href="#9-query-optimization">Query Optimization</a></h3>
+<ul>
+<li>EXPLAIN/EXPLAIN PLAN: Analyzing query execution plans to identify bottlenecks.</li>
+<li>Query Hints: Providing hints to the database engine for better query performance.</li>
+<li>Query Rewrite: Techniques to rewrite queries for better performance.</li>
+<li>Using LIMIT/OFFSET: Efficiently paging through large result sets.</li>
+</ul>
+<h3 id="10-normalization">10.  <a href="#10-normalization">Normalization</a></h3>
+<ul>
+<li>Basic concepts of database normalization and why it is important.</li>
+<li>Denormalization: When and how to denormalize for performance reasons.</li>
+</ul>
+<h3 id="11-basic-transactions">11.  <a href="#11-basic-transactions">Basic Transactions</a></h3>
+<ul>
+<li>BEGIN, COMMIT, ROLLBACK: Understanding transactions and how to ensure data integrity.</li>
+</ul>
+<h3 id="12-database-views">12.  <a href="#12-database-views">Database Views</a></h3>
+<ul>
+<li>Creating Views: Define virtual tables using SELECT queries to simplify data access and enhance security.</li>
+<li>Querying Views: Retrieve data from views, using them as virtual tables in your queries.</li>
+<li>Updating Views: Modifying underlying data through views and how to perform updates.</li>
+<li>Managing Views: Alter, replace, or drop views to maintain database structure and functionality.</li>
+</ul>
+<h3 id="13-more-performance-tuning">13.  <a href="#13-more-performance-tuning">More Performance Tuning</a></h3>
+<ul>
+<li>Avoiding SELECT *: Selecting only the necessary columns to reduce data load.</li>
+<li>Reducing Joins: Minimizing the number of joins in queries for better performance.</li>
+<li>Use of Stored Procedures: Using stored procedures to encapsulate complex logic.</li>
+<li>Proper Use of WHERE Clauses: Ensuring conditions are indexed properly.</li>
+<li>Index Scans vs. Table Scans: Understanding the difference and how to avoid full table scans.</li>
+<li>Caching Strategies: Using caching mechanisms to reduce database load.</li>
+<li>Partitioning: Implementing table partitioning to manage large datasets efficiently.</li>
+</ul>
+<h2 id="1-basic-queries_1">1. Basic Queries</h2>
+<p>Understanding basic queries is foundational to working with SQL databases. Here are the critical components:</p>
+<h3 id="basic-queries">Basic Queries</h3>
+<h4 id="1-select-statements">1. SELECT Statements</h4>
+<ul>
+<li>Syntax: The basic syntax for a SELECT statement is:</li>
+</ul>
+<p><code>SQL
+  SELECT column1, column2, ...
+  FROM table_name;</code>
+* Selecting Specific Columns: It’s essential to know how to select specific columns instead of using SELECT *. For example:
+  <code>SQL
+  SELECT first_name, last_name
+  FROM employees;</code></p>
+<h4 id="2-from-clause">2. FROM Clause</h4>
+<ul>
+<li>Syntax: Specifies the table from which to retrieve the data.
+    <code>SQL
+    SELECT column1, column2
+    FROM table_name;</code></li>
+<li>Example:
+    <code>SQL
+    SELECT product_name, price
+    FROM products;</code></li>
+</ul>
+<h4 id="3-where-clause">3. WHERE Clause</h4>
+<ul>
+<li>Syntax: Used to filter records that meet certain conditions.
+    <code>SQL
+    SELECT column1, column2
+    FROM table_name
+    WHERE condition;</code></li>
+<li>Operators: Common operators include =, !=, &gt;, &lt;, &gt;=, &lt;=, BETWEEN, LIKE, and IN.</li>
+<li>Equality:
+    <code>SQL
+    SELECT * FROM employees WHERE department = 'Sales';</code></li>
+<li>Range:
+    <code>SQL
+    SELECT * FROM products WHERE price BETWEEN 10 AND 20;</code></li>
+<li>Pattern Matching:
+    <code>SQL
+    SELECT * FROM customers WHERE name LIKE 'A%';</code></li>
+<li>Set Membership:
+    <code>SQL
+    SELECT * FROM orders WHERE status IN ('Shipped', 'Pending');</code></li>
+</ul>
+<h4 id="4-order-by-clause">4. ORDER BY Clause</h4>
+<ul>
+<li>Syntax: Used to sort the result set by one or more columns.
+    <code>SQL
+  SELECT column1, column2
+  FROM table_name
+  WHERE condition
+  ORDER BY column1 [ASC|DESC];</code></li>
+<li>Example:
+  <code>SQL
+  SELECT * FROM employees
+  WHERE department = 'Sales'
+  ORDER BY last_name ASC;</code></li>
+</ul>
+<h4 id="5-limit-clause">5. LIMIT Clause</h4>
+<ul>
+<li>Syntax: Used to specify the number of records to return.
+  <code>SQL
+  SELECT column1, column2
+  FROM table_name
+  WHERE condition
+  LIMIT number;</code></li>
+<li>Example:
+  <code>SQL
+  SELECT * FROM customers
+  ORDER BY sign_up_date DESC
+  LIMIT 10;</code></li>
+</ul>
+<h4 id="6-distinct-keyword">6. DISTINCT Keyword</h4>
+<ul>
+<li>Syntax: Used to return only distinct (different) values.</li>
+</ul>
+<p><code>SQL
+  SELECT DISTINCT column1, column2
+  FROM table_name;</code>
+* Example:
+  <code>SQL
+  SELECT DISTINCT country
+  FROM customers;</code></p>
+<h4 id="7-aliasing">7. Aliasing</h4>
+<ul>
+<li>Syntax: Used to give a table or a column a temporary name.
+  <code>SQL
+  SELECT column_name AS alias_name
+  FROM table_name;</code></li>
+<li>Example:
+  <code>SQL
+  SELECT first_name AS 'First Name', last_name AS 'Last Name'
+  FROM employees;</code></li>
+</ul>
+<p><strong>Summary</strong></p>
+<p>Mastering these basic query elements will provide a solid foundation for more complex SQL operations. These fundamentals are essential for effectively retrieving and manipulating data in a relational database.</p>
+<h2 id="2-joins_1">2. Joins</h2>
+<p>Joins are used in SQL to combine rows from two or more tables based on a related column between them. Here are the critical types of joins you need to know:</p>
+<h3 id="joins">Joins</h3>
+<h4 id="1-inner-join">1. INNER JOIN</h4>
+<ul>
+<li><strong>Syntax:</strong> Returns records that have matching values in both tables.
+  <code>SQL
+  SELECT columns
+  FROM table1
+  INNER JOIN table2
+  ON table1.common_column = table2.common_column;</code></li>
+<li>
+<p><strong>Example:</strong>
+  <code>SQL
+  SELECT employees.first_name, employees.last_name, departments.department_name
+  FROM employees
+  INNER JOIN departments
+  ON employees.department_id = departments.department_id;</code></p>
+</li>
+<li>
+<p><strong>Explanation:</strong> This query selects all employees and their respective department names where there is a match between employees.department_id and departments.department_id.</p>
+</li>
+</ul>
+<h4 id="2-left-join-or-left-outer-join">2. LEFT JOIN (or LEFT OUTER JOIN)</h4>
+<ul>
+<li><strong>Syntax</strong>: Returns all records from the left table, and the matched records from the right table. The result is NULL from the right side if there is no match.</li>
+</ul>
+<p><code>SQL
+  SELECT columns
+  FROM table1
+  LEFT JOIN table2
+  ON table1.common_column = table2.common_column;</code></p>
+<ul>
+<li>
+<p><strong>Example:</strong>
+  <code>SQL
+  SELECT employees.first_name, employees.last_name, departments.department_name
+  FROM employees
+  LEFT JOIN departments
+  ON employees.department_id = departments.department_id;</code></p>
+</li>
+<li>
+<p><strong>Explanation:</strong> This query returns all employees and their department names. If an employee is not assigned to any department, the department_name will be NULL.</p>
+</li>
+</ul>
+<h4 id="3-right-join-or-right-outer-join">3. RIGHT JOIN (or RIGHT OUTER JOIN)</h4>
+<ul>
+<li><strong>Syntax</strong>: Returns all records from the right table, and the matched records from the left table. The result is NULL from the left side if there is no match.</li>
+</ul>
+<p><code>SQL
+  SELECT columns
+  FROM table1
+  RIGHT JOIN table2
+  ON table1.common_column = table2.common_column;</code></p>
+<ul>
+<li><strong>Example:</strong></li>
+</ul>
+<p><code>SQL
+  SELECT employees.first_name, employees.last_name, departments.department_name
+  FROM employees
+  RIGHT JOIN departments
+  ON employees.department_id = departments.department_id;</code></p>
+<ul>
+<li><strong>Explanation:</strong> This query returns all departments and the employees in each department. If a department has no employees, the <code>first_name</code> and last_name will be NULL.</li>
+</ul>
+<h4 id="4-full-outer-join">4. FULL OUTER JOIN</h4>
+<ul>
+<li><strong>Syntax:</strong> Returns all records when there is a match in either left or right table. Records with no match in left or right tables will be included as well.</li>
+</ul>
+<p><code>SQL
+  SELECT columns
+  FROM table1
+  FULL OUTER JOIN table2
+  ON table1.common_column = table2.common_column;</code></p>
+<ul>
+<li>
+<p><strong>Example:</strong>
+  <code>SQL
+  SELECT employees.first_name, employees.last_name, departments.department_name
+  FROM employees
+  FULL OUTER JOIN departments
+  ON employees.department_id = departments.department_id;</code></p>
+</li>
+<li>
+<p><strong>Explanation:</strong> This query returns all employees and all departments, with NULL values in places where there is no match.</p>
+</li>
+</ul>
+<h4 id="5-self-join">5. Self Join</h4>
+<ul>
+<li><strong>Syntax:</strong> A self join is a regular join but the table is joined with itself.</li>
+</ul>
+<p><code>SQL
+  SELECT a.column_name, b.column_name
+  FROM table1 a, table1 b
+  WHERE condition;</code></p>
+<ul>
+<li>
+<p><strong>Example:</strong>
+  <code>SQL
+  SELECT e1.first_name AS 'Employee', e2.first_name AS 'Manager'
+  FROM employees e1
+  INNER JOIN employees e2
+  ON e1.manager_id = e2.employee_id;</code></p>
+</li>
+<li>
+<p><strong>Explanation:</strong> This query lists employees and their managers by joining the employees table with itself.</p>
+</li>
+</ul>
+<h4 id="6-cross-join">6. Cross Join</h4>
+<ul>
+<li>Syntax: Returns the Cartesian product of the two tables (i.e., every row in the first table is combined with every row in the second table).</li>
+</ul>
+<p><code>SQL
+  SELECT columns
+  FROM table1
+  CROSS JOIN table2;</code></p>
+<ul>
+<li><strong>Example:</strong></li>
+</ul>
+<p><code>SQL
+  SELECT products.product_name, categories.category_name
+  FROM products
+  CROSS JOIN categories;</code></p>
+<ul>
+<li><strong>Explanation:</strong> This query returns a combination of every product with every category.</li>
+</ul>
+<p><strong>Summary</strong></p>
+<p>Mastering joins is crucial for working with related data stored across multiple tables. Understanding these types of joins and when to use them will significantly enhance your ability to retrieve and analyze data effectively.</p>
+<h2 id="3-aggregation-functions_1">3. Aggregation Functions</h2>
+<p>Aggregation functions in SQL are used to perform calculations on multiple rows of a table’s column and return a single value. They are often used with the GROUP BY clause to group the results based on one or more columns. Here are the essential aggregation functions you need to know:</p>
+<h3 id="aggregation-functions">Aggregation Functions</h3>
+<h4 id="1-count">1. <strong>COUNT()</strong></h4>
+<ul>
+<li>Purpose: Returns the number of rows that match a specified condition.</li>
+<li>
+<p>Syntax:
+    <code>SQL
+  SELECT COUNT(column_name)
+  FROM table_name
+  WHERE condition;</code></p>
+</li>
+<li>
+<p>Example:
+  <code>SQL
+  SELECT COUNT(employee_id)
+  FROM employees
+  WHERE department_id = 1;</code></p>
+</li>
+<li>
+<p>Explanation: This query counts the number of employees in department 1.</p>
+</li>
+</ul>
+<h4 id="2-sum">2. SUM()</h4>
+<ul>
+<li>Purpose: Returns the total sum of a numeric column.</li>
+<li>
+<p>Syntax:
+    <code>SQL
+    SELECT SUM(column_name)
+    FROM table_name
+    WHERE condition;</code></p>
+</li>
+<li>
+<p>Example:
+  <code>SQL
+  SELECT SUM(salary)
+  FROM employees
+  WHERE department_id = 2;</code></p>
+</li>
+<li>
+<p>Explanation: This query calculates the total salary for all employees in department 2.</p>
+</li>
+</ul>
+<h4 id="3-avg">3. AVG()</h4>
+<ul>
+<li><strong>Purpose:</strong> Returns the average value of a numeric column.</li>
+<li>
+<p><strong>Syntax:</strong>
+    <code>SQL
+    SELECT AVG(column_name)
+    FROM table_name
+    WHERE condition;</code></p>
+</li>
+<li>
+<p><strong>Example:</strong>
+    <code>SQL
+   SELECT AVG(salary)
+  FROM employees
+  WHERE department_id = 3;</code></p>
+</li>
+<li>
+<p>Explanation: This query calculates the average salary for all employees in department 3.</p>
+</li>
+</ul>
+<h4 id="4-max">4. MAX()</h4>
+<ul>
+<li>Purpose: Returns the maximum value of a column.</li>
+<li>Syntax:
+    <code>SQL
+    SELECT MAX(column_name)
+    FROM table_name
+    WHERE condition;</code></li>
+<li>
+<p>Example: 
+    <code>SQL
+    SELECT MAX(salary)
+    FROM employees
+    WHERE department_id = 4;</code></p>
+</li>
+<li>
+<p>Explanation: This query finds the highest salary in department 4.</p>
+</li>
+</ul>
+<h4 id="5-min">5. MIN()</h4>
+<ul>
+<li>Purpose: Returns the minimum value of a column.</li>
+<li>Syntax: 
+    <code>SQL
+    SELECT MIN(column_name)
+    FROM table_name
+    WHERE condition;</code></li>
+<li>
+<p>Example:
+    <code>SQL
+    SELECT MIN(salary)
+    FROM employees
+    WHERE department_id = 5;</code></p>
+</li>
+<li>
+<p>Explanation: This query finds the lowest salary in department 5.</p>
+</li>
+</ul>
+<h2 id="4-grouping-data_1">4. Grouping Data</h2>
+<p>Aggregation functions are often used in conjunction with the <code>GROUP BY</code> clause to group the results based on one or more columns.</p>
+<h3 id="grouping-data">Grouping Data</h3>
+<h4 id="1-group-by-clause">1. GROUP BY Clause</h4>
+<ul>
+<li>Purpose: Groups rows that have the same values into summary rows, like “find the number of employees in each department”.</li>
+<li>Syntax:
+      <code>SQL
+      SELECT column1, aggregation_function(column2)
+      FROM table_name
+      WHERE condition
+      GROUP BY column1;</code></li>
+<li>
+<p>Example:
+      <code>SQL
+      SELECT department_id, COUNT(employee_id)
+      FROM employees
+      GROUP BY department_id;</code></p>
+</li>
+<li>
+<p>Explanation: This query counts the number of employees in each department.</p>
+</li>
+</ul>
+<h4 id="2-using-aggregate-functions-with-group-by">2. Using Aggregate Functions with GROUP BY</h4>
+<ul>
+<li>COUNT(): Counts the number of rows.
+     <code>SQL
+     SELECT department_id, COUNT(employee_id) AS employee_count
+     FROM employees
+     GROUP BY department_id;</code></li>
+<li>SUM(): Sums the values in a column.
+     <code>SQL
+     SELECT department_id, SUM(salary) AS total_salary
+     FROM employees
+     GROUP BY department_id;</code></li>
+<li>AVG(): Calculates the average value of a column.
+     <code>SQL
+     SELECT department_id, AVG(salary) AS average_salary
+     FROM employees
+     GROUP BY department_id;</code></li>
+<li>MAX(): Finds the maximum value in a column.
+     <code>SQL
+     SELECT department_id, MAX(salary) AS highest_salary
+     FROM employees
+     GROUP BY department_id;</code></li>
+<li>MIN(): Finds the minimum value in a column.
+     <code>SQL
+     SELECT department_id, MIN(salary) AS lowest_salary
+     FROM employees
+     GROUP BY department_id;</code></li>
+</ul>
+<h4 id="3-having-clause">3. <code>HAVING</code> Clause</h4>
+<ul>
+<li>Purpose: Filters records that work on summarized <code>GROUP BY</code> results. It’s similar to the <code>WHERE</code> clause but used for aggregate functions.</li>
+<li>Syntax:
+     <code>SQL
+     SELECT column1, aggregate_function(column2)
+     FROM table_name
+     WHERE condition
+     GROUP BY column1
+     HAVING aggregate_function(column2) condition;</code></li>
+<li>Example:
+     <code>SQL
+     SELECT department_id, COUNT(employee_id) AS employee_count
+     FROM employees
+     GROUP BY department_id
+     HAVING COUNT(employee_id) &gt; 10;</code></li>
+<li>
+<p>Explanation: This query groups employees by department and then filters to show only those departments with more than 10 employees.</p>
+</li>
+<li>
+<p>Combining <code>GROUP BY</code> with <code>ORDER BY</code></p>
+</li>
+<li>Purpose: You can order the results of your grouped data.</li>
+<li>Syntax:
+     <code>SQL
+     SELECT column1, aggregate_function(column2)
+     FROM table_name
+     WHERE condition
+     GROUP BY column1
+     ORDER BY column1 [ASC|DESC];</code></li>
+<li>Example:
+     <code>SQL
+     SELECT department_id, COUNT(employee_id) AS employee_count
+     FROM employees
+     GROUP BY department_id
+     ORDER BY employee_count DESC;</code></li>
+<li>Explanation: This query groups employees by department, counts them, and then orders the results by the number of employees in descending order.</li>
+</ul>
+<h3 id="summary">Summary</h3>
+<p>Mastering the <code>GROUP BY</code> and <code>HAVING</code> clauses in conjunction with aggregate functions is essential for effective data summarization and analysis in SQL. These tools allow you to perform complex queries that can provide valuable insights from your data.</p>
+<h2 id="5-data-manipulation_1">5. Data Manipulation</h2>
+<h3 id="data-manipulation">Data Manipulation</h3>
+<p>Data manipulation in SQL involves performing operations to modify the data stored in a database. The three primary operations for data manipulation are INSERT, UPDATE, and DELETE.</p>
+<h4 id="1-insert-statement">1. INSERT Statement</h4>
+<ul>
+<li>Purpose: Adds new rows of data to a table.</li>
+<li>Syntax:
+      <code>SQL
+      INSERT INTO table_name (column1, column2, column3, ...)
+      VALUES (value1, value2, value3, ...);</code></li>
+<li>Example:
+    <code>SQL
+    INSERT INTO employees (first_name, last_name, department_id, salary)
+    VALUES ('John', 'Doe', 1, 60000);</code></li>
+<li>Explanation: This query inserts a new row into the employees table with the specified values for <code>first_name</code>, <code>last_name</code>, <code>department_id</code>, and <code>salary</code>.</li>
+<li>Inserting Multiple Rows:
+    <code>SQL
+    INSERT INTO employees (first_name, last_name, department_id, salary)
+    VALUES 
+    ('Jane', 'Smith', 2, 75000),
+    ('Bill', 'Jones', 1, 65000),
+    ('Mary', 'Brown', 3, 80000);</code></li>
+<li>Explanation: This query inserts multiple rows into the employees table in a single <code>INSERT</code> statement.</li>
+</ul>
+<h4 id="2-update-statement">2. UPDATE Statement</h4>
+<ul>
+<li>Purpose: Modifies existing rows in a table.</li>
+<li>Syntax: 
+      <code>SQL
+      UPDATE table_name
+      SET column1 = value1, column2 = value2, ...
+      WHERE condition;</code></li>
+<li>Example: 
+      <code>SQL
+      UPDATE employees
+      SET salary = 70000
+      WHERE employee_id = 1;</code></li>
+<li>Explanation: This query updates the salary of the employee with employee_id 1 to 70000.</li>
+<li>Updating Multiple Columns:
+      <code>SQL
+      UPDATE employees
+      SET salary = 75000, department_id = 2
+      WHERE employee_id = 2;</code></li>
+<li>Explanation: This query updates both the <code>salary</code> and <code>department_id</code> of the <code>employee</code> with <code>employee_id</code> 2.</li>
+<li>Updating Multiple Rows:
+    <code>SQL
+    UPDATE employees
+    SET salary = salary * 1.1
+    WHERE department_id = 3;</code></li>
+<li>Explanation: This query gives a 10% salary increase to all employees in department 3.</li>
+</ul>
+<h4 id="3-delete-statement">3. DELETE Statement</h4>
+<ul>
+<li>Purpose: Removes rows from a table.</li>
+<li>Syntax:
+    <code>SQL
+    DELETE FROM table_name
+    WHERE condition;</code></li>
+<li>Example:
+    <code>SQL
+    DELETE FROM employees
+    WHERE employee_id = 3;</code></li>
+<li>Explanation: This query deletes all employees who are in department 4.</li>
+<li>Deleting All Rows (Use with caution):
+    <code>SQL
+    DELETE FROM employees;</code></li>
+<li>Explanation: This query deletes all rows from the employees table. It does not delete the table itself, only the data within it.</li>
+</ul>
+<h3 id="using-transactions">Using Transactions</h3>
+<p>Transactions in SQL ensure that a series of operations are completed successfully before making any changes permanent. They are essential for maintaining data integrity.</p>
+<ul>
+<li>Syntax:
+  ```SQL
+  BEGIN TRANSACTION;</li>
+</ul>
+<p>-- Insert a new employee
+  INSERT INTO employees (first_name, last_name, department_id, salary)
+  VALUES ('Alice', 'Williams', 5, 90000);</p>
+<p>-- Update another employee's salary
+  UPDATE employees
+  SET salary = 95000
+  WHERE employee_id = 4;</p>
+<p>-- Delete an employee
+  DELETE FROM employees
+  WHERE employee_id = 6;</p>
+<p>COMMIT;
+  ```</p>
+<ul>
+<li>Explanation:
+    •   <code>BEGIN TRANSACTION</code> starts a transaction block.
+    •   Multiple <code>SQL</code> operations are performed within the transaction.
+    •   <code>COMMIT</code> makes all changes permanent. If any of the operations fail, you can use <code>ROLLBACK</code> to undo all changes within the transaction block.</li>
+</ul>
+<h3 id="summary_1">Summary</h3>
+<p>Mastering data manipulation commands in SQL is crucial for effectively managing and modifying data within a database. Understanding how to use INSERT, UPDATE, and DELETE statements allows you to add, change, and remove data as needed, ensuring that your database remains accurate and up-to-date. Using transactions helps maintain data integrity by ensuring that a series of related operations are all completed successfully.</p>
+<h2 id="6-subqueries_1">6. Subqueries</h2>
+<h3 id="subqueries">Subqueries</h3>
+<p>A subquery, also known as an inner query or nested query, is a query within another SQL query and embedded within the WHERE clause, the FROM clause, or the SELECT clause. Subqueries can be used to return data that will be used in the main query as a condition to further restrict the data to be retrieved.</p>
+<h4 id="1-subqueries-in-the-select-clause">1. Subqueries in the SELECT Clause</h4>
+<ul>
+<li>Purpose: To include a value in the SELECT list that is computed from another query.</li>
+<li>
+<p>Syntax:
+  <code>SQL
+  SELECT column1, (SELECT column2 FROM table2 WHERE condition) AS alias_name
+  FROM table1;</code></p>
+</li>
+<li>
+<p>Example:
+  <code>SQL
+  SELECT employee_id, first_name,
+       (SELECT department_name FROM departments WHERE departments.department_id = employees.department_id) AS department_name
+  FROM employees;</code></p>
+</li>
+<li>
+<p>Explanation: This query selects the <code>employee_id</code> and <code>first_name</code> from the employees table and also retrieves the <code>department_name</code> from the departments table based on the matching <code>department_id</code>.</p>
+</li>
+</ul>
+<h4 id="2-subqueries-in-the-where-clause">2. Subqueries in the WHERE Clause</h4>
+<ul>
+<li>Purpose: o use the result of another query to filter the results of the main query.</li>
+<li>
+<p>Syntax:
+  <code>SQL
+  SELECT column1, column2
+  FROM table1
+  WHERE column3 = (SELECT column4 FROM table2 WHERE condition);</code></p>
+</li>
+<li>
+<p>Example:
+  <code>SQL
+  SELECT first_name, last_name
+  FROM employees
+  WHERE department_id = (SELECT department_id FROM departments WHERE department_name = 'Sales');</code></p>
+</li>
+<li>
+<p>Explanation: This query selects the <code>first_name</code> and <code>last_name</code> of employees who are in the department named ‘Sales’.</p>
+</li>
+<li>
+<p>Using Subqueries with IN:
+  <code>SQL
+  SELECT first_name, last_name
+  FROM employees
+  WHERE department_id IN (SELECT department_id FROM departments WHERE location = 'New York');</code></p>
+</li>
+<li>
+<p>Explanation: This query selects the <code>first_name</code> and <code>last_name</code> of employees who work in departments located in ‘New York’.</p>
+</li>
+</ul>
+<h4 id="3-subqueries-in-the-from-clause">3. Subqueries in the FROM Clause</h4>
+<ul>
+<li>Purpose: To use the result of another query as a table in the main query.</li>
+<li>Syntax:
+    <code>SQL
+    SELECT column1, column2
+    FROM (SELECT column3, column4 FROM table2 WHERE condition) AS alias_name
+    WHERE condition;</code></li>
+<li>
+<p>Example:
+  <code>SQL
+  SELECT sub.department_name, COUNT(sub.employee_id) AS employee_count
+  FROM (SELECT department_id, department_name FROM departments) AS sub
+  INNER JOIN employees ON sub.department_id = employees.department_id
+  GROUP BY sub.department_name;</code></p>
+</li>
+<li>
+<p>Explanation: This query creates a subquery that selects the <code>department_id</code> and <code>department_name</code> from the departments table. The main query then counts the number of employees in each department.</p>
+</li>
+</ul>
+<h3 id="types-of-subqueries">Types of Subqueries</h3>
+<h4 id="single-row-subqueries">Single-Row Subqueries</h4>
+<ul>
+<li>Purpose: Returns only one row:</li>
+<li>
+<p>Example:
+  <code>SQL
+  SELECT first_name, last_name
+  FROM employees
+  WHERE salary &gt; (SELECT AVG(salary) FROM employees);</code></p>
+</li>
+<li>
+<p>Explanation: This query selects the first_name and last_name of employees whose salary is greater than the average salary of all employees.</p>
+</li>
+</ul>
+<h4 id="multiple-row-subqueries">Multiple-Row Subqueries</h4>
+<ul>
+<li>Purpose: Returns more than one row.</li>
+<li>Example:
+  <code>SQL
+  SELECT first_name, last_name
+  FROM employees
+  WHERE department_id IN (SELECT department_id FROM departments WHERE location = 'Chicago');</code></li>
+<li>Explanation: This query selects the first_name and last_name of employees who work in departments located in ‘Chicago’.</li>
+</ul>
+<h4 id="correlated-subqueries">Correlated Subqueries</h4>
+<ul>
+<li>Purpose: References columns from the outer query. It is evaluated once for each row processed by the outer query.</li>
+<li>Syntax: 
+    <code>SQL
+    SELECT column1, column2
+    FROM table1 outer
+    WHERE column3 operator (SELECT column4 FROM table2 WHERE table2.column5 = outer.column6);</code></li>
+<li>Example:
+  <code>SQL
+  SELECT e1.first_name, e1.last_name, e1.salary
+  FROM employees e1
+  WHERE e1.salary &gt; (SELECT AVG(e2.salary) FROM employees e2 WHERE e2.department_id = e1.department_id);</code></li>
+</ul>
+<h3 id="summary_2">Summary</h3>
+<p>Subqueries are a powerful feature in SQL that allow you to perform complex queries by embedding one query within another. Understanding how to use subqueries in the SELECT, WHERE, and FROM clauses, as well as the differences between single-row, multiple-row, and correlated subqueries, will significantly enhance your ability to retrieve and analyze data effectively.</p>
+<h2 id="7-data-types_1">7. Data Types</h2>
+<h3 id="data-types">Data Types</h3>
+<p>Data types define the type of data that a column can hold in a SQL database. Choosing the correct data type for each column is crucial for data integrity, performance, and storage efficiency. Here’s a comprehensive look at common data types:</p>
+<h4 id="1-numeric-data-types">1. Numeric Data Types</h4>
+<ul>
+<li>INT (INTEGER): Stores whole numbers.</li>
+<li>Syntax:
+      <code>SQL
+      column_name INT;</code></li>
+<li>Example:
+      <code>SQL
+      age INT;</code></li>
+<li>FLOAT: Stores floating-point numbers, which are numbers with a decimal point.</li>
+<li>Syntax:
+    <code>sql
+    column_name FLOAT;</code></li>
+<li>Example:
+    <code>sql
+    price FLOAT;</code></li>
+<li>DOUBLE: Stores double-precision floating-point numbers, offering more precision than FLOAT.</li>
+<li>Syntax:
+    <code>SQL
+    column_name DOUBLE;</code></li>
+<li>Example:
+    <code>sql
+    distance DOUBLE;</code></li>
+<li>DECIMAL (NUMERIC): Stores exact numeric data with a fixed precision and scale. Ideal for monetary values.</li>
+<li>Syntax:
+    <code>sql
+    column_name DECIMAL(precision, scale);</code></li>
+<li>Example:
+    <code>sql
+    salary DECIMAL(10, 2);</code></li>
+<li>Explanation: DECIMAL(10, 2) means the number can have up to 10 digits, with 2 digits after the decimal point.</li>
+</ul>
+<h4 id="2-string-data-types">2. String Data Types</h4>
+<ul>
+<li>CHAR: Stores fixed-length strings.</li>
+<li>Syntax:
+    <code>sql
+    column_name CHAR(length);</code></li>
+<li>Example:
+    <code>sql
+    gender CHAR(1);</code></li>
+<li>Explanation: CHAR(1) can store a single character.</li>
+<li>VARCHAR: Stores variable-length strings.</li>
+<li>Syntax:
+    <code>sql
+    column_name VARCHAR(length);</code></li>
+<li>Example:
+    <code>sql
+    name VARCHAR(100);</code></li>
+<li>Explanation: VARCHAR(100) can store a string with up to 100 characters.</li>
+<li>TEXT: Stores large amounts of text.</li>
+<li>Syntax:
+    <code>sql
+      column_name TEXT;</code></li>
+<li>Example:
+    <code>sql
+    description TEXT;</code></li>
+<li>Explanation: TEXT can store a string of any length (subject to the database system's limit).</li>
+</ul>
+<h4 id="3-date-and-time-data-types">3. Date and Time Data Types</h4>
+<ul>
+<li>DATE: Stores dates in the format YYYY-MM-DD.</li>
+<li>Syntax:
+    <code>sql
+    column_name DATE;</code></li>
+<li>Example:
+    <code>sql
+    birth_date DATE;</code></li>
+<li>TIME: Stores time in the format HH:MM:SS.</li>
+<li>Syntax:
+    <code>sql
+    column_name TIME;</code></li>
+<li>Example:
+    <code>sql
+    start_time TIME;</code></li>
+<li>DATETIME: Stores both date and time in the format YYYY-MM-DD HH:MM:SS.</li>
+<li>Syntax:
+    <code>sql
+    column_name DATETIME;</code></li>
+<li>Example:
+    <code>sql
+    created_at DATETIME;</code></li>
+<li>TIMESTAMP: Stores both date and time, typically used for tracking changes in records.</li>
+<li>Syntax:
+    <code>sql
+    column_name TIMESTAMP;</code></li>
+<li>Example:
+    <code>sql
+    last_updated TIMESTAMP;</code></li>
+</ul>
+<h4 id="4-binary-data-types">4. Binary Data Types</h4>
+<ul>
+<li>BLOB: Stores binary large objects, such as images or other multimedia files.</li>
+<li>Syntax:
+    <code>sql
+    column_name BLOB;</code></li>
+<li>Example:
+    <code>sql
+    profile_picture BLOB;</code></li>
+</ul>
+<h4 id="5-boolean-data-types">5. Boolean Data Types</h4>
+<ul>
+<li>BOOLEAN: Stores true or false values.</li>
+<li>Syntax:
+    <code>sql
+    column_name BOOLEAN;</code></li>
+<li>Example:
+    <code>sql
+    is_active BOOLEAN;</code></li>
+</ul>
+<h4 id="6-enumerated-data-types">6. Enumerated Data Types</h4>
+<ul>
+<li>ENUM: Stores one value from a defined list of values.</li>
+<li>Syntax:
+    <code>sql
+    column_name ENUM('value1', 'value2', ...);</code></li>
+<li>Example:
+    <code>sql
+    status ENUM('active', 'inactive', 'pending');</code></li>
+</ul>
+<h3 id="practical-examples">Practical Examples</h3>
+<ul>
+<li>
+<p>Creating a Table with Various Data Types:
+  <code>sql
+  CREATE TABLE employees (
+      employee_id INT PRIMARY KEY,
+      first_name VARCHAR(50),
+      last_name VARCHAR(50),
+      birth_date DATE,
+      salary DECIMAL(10, 2),
+      is_active BOOLEAN,
+      profile_picture BLOB,
+      status ENUM('active', 'inactive', 'pending')
+  );</code></p>
+</li>
+<li>
+<p>Inserting Data with Various Data Types:
+  <code>sql
+  INSERT INTO employees (employee_id, first_name, last_name, birth_date, salary, is_active, profile_picture, status)
+  VALUES (1, 'John', 'Doe', '1980-05-15', 75000.00, TRUE, LOAD_FILE('/path/to/picture.jpg'), 'active');</code></p>
+</li>
+<li>
+<p>Selecting Data with Various Data Types:
+  <code>sql
+  SELECT employee_id, first_name, last_name, birth_date, salary, is_active, status
+  FROM employees;</code></p>
+</li>
+<li>
+<p>Updating Data with Various Data Types:
+  <code>sql
+  UPDATE employees
+  SET salary = 80000.00, is_active = FALSE
+  WHERE employee_id = 1;</code></p>
+</li>
+<li>
+<p>Deleting Data with Various Data Types:
+  <code>sql
+  DELETE FROM employees
+  WHERE is_active = FALSE;</code></p>
+</li>
+</ul>
+<h3 id="summary_3">Summary</h3>
+<p>Understanding and correctly using data types in SQL is fundamental for effective database design and operation. Different data types serve different purposes, and selecting the appropriate type for each column ensures that the database performs efficiently and maintains data integrity. Knowing how to define and manipulate various data types will significantly enhance your SQL skills and database management capabilities.</p>
+<h2 id="8-indexes_1">8. Indexes</h2>
+<h3 id="indexes">Indexes</h3>
+<p>Indexes in SQL are special lookup tables that the database search engine can use to speed up data retrieval. An index on a column or set of columns can drastically improve the performance of query operations. However, indexes also introduce overhead for data modification operations such as INSERT, UPDATE, and DELETE. Here’s an in-depth look at indexes:</p>
+<ol>
+<li>Basics of Indexing:</li>
+<li>Purpose: To speed up the retrieval of rows by using a pointer.</li>
+<li>Syntax:
+    <code>sql
+    CREATE INDEX index_name
+    ON table_name (column1, column2, ...);</code></li>
+<li>Example:
+    <code>sql
+    CREATE INDEX idx_last_name
+    ON employees (last_name);</code></li>
+<li>Explanation: This query creates an index named <code>idx_last_name</code> on the <code>last_name</code> column of the employees table. This index will speed up searches based on <code>last_name</code>.</li>
+<li>Creating Indexes</li>
+<li>Single-Column Index:
+     <code>sql
+     CREATE INDEX idx_employee_id
+     ON employees (employee_id);</code></li>
+<li>Composite Index (Multi-Column Index):
+      <code>sql
+      CREATE INDEX idx_name_department
+      ON employees (last_name, department_id);</code></li>
+<li>
+<p>Explanation: This index speeds up queries that filter on both last_name and department_id.</p>
+</li>
+<li>
+<p>Unique Indexes</p>
+</li>
+<li>Purpose: Ensures that all values in the index key are unique.</li>
+<li>Syntax:
+      <code>sql
+      CREATE UNIQUE INDEX index_name
+      ON table_name (column1, column2, ...);</code></li>
+<li>Example:
+      <code>sql
+      CREATE UNIQUE INDEX idx_unique_email
+      ON employees (email);</code></li>
+<li>
+<p>Explanation: This query creates a unique index on the email column to ensure that no two employees can have the same email address.</p>
+</li>
+<li>
+<p>Primary Key Indexes</p>
+</li>
+<li>Purpose: Automatically created when a primary key constraint is defined.</li>
+<li>Syntax:
+      <code>sql
+      CREATE TABLE employees (
+          employee_id INT PRIMARY KEY,
+          first_name VARCHAR(50),
+          last_name VARCHAR(50)
+      );</code></li>
+<li>
+<p>Explanation: The PRIMARY KEY constraint automatically creates a unique index on the employee_id column.</p>
+</li>
+<li>
+<p>Foreign Key Indexes</p>
+</li>
+<li>Purpose: Often created on foreign key columns to speed up joins.</li>
+<li>
+<p>Example:
+      ```sql
+      CREATE TABLE departments (
+          department_id INT PRIMARY KEY,
+          department_name VARCHAR(50)
+      );</p>
+<p>CREATE TABLE employees (
+      employee_id INT PRIMARY KEY,
+      first_name VARCHAR(50),
+      last_name VARCHAR(50),
+      department_id INT,
+      FOREIGN KEY (department_id) REFERENCES departments(department_id)
+  );</p>
+<p>CREATE INDEX idx_department_id
+  ON employees (department_id);
+  <code>* Explanation: The index on `department_id` improves join performance between employees and departments tables.
+6. Full-Text Indexes
+   * Purpose: Used for full-text searches.
+   * Syntax:</code>sql
+  CREATE FULLTEXT INDEX index_name
+  ON table_name (column1, column2, ...);
+  <code>* Example:</code>sql
+  CREATE FULLTEXT INDEX idx_fulltext_description
+  ON products (description);
+  <code>* Explanation: This index allows for efficient full-text search queries on the description column.
+7. Dropping Indexes
+   * Purpose: To remove an index that is no longer needed.
+   * Syntax:</code>sql
+  DROP INDEX index_name ON table_name;
+  <code>* Example:</code>sql
+  DROP INDEX idx_last_name ON employees;
+  ```
+   * Explanation: This query drops the idx_last_name index from the employees table.</p>
+</li>
+</ol>
+<h3 id="index-maintenance">Index Maintenance</h3>
+<h4 id="rebuilding-indexes">Rebuilding Indexes</h4>
+<ul>
+<li>Purpose: To optimize performance by reorganizing index data.</li>
+<li>Syntax:
+      <code>sql
+      ALTER INDEX index_name REBUILD;</code></li>
+<li>Example:
+      <code>sql
+      ALTER INDEX idx_last_name REBUILD;</code></li>
+<li>Explanation: This query rebuilds the idx_last_name index, which can improve performance if the index has become fragmented.</li>
+</ul>
+<h4 id="monitoring-index-usage">Monitoring Index Usage</h4>
+<ul>
+<li>Purpose: To analyze index usage and determine if indexes are effective.</li>
+<li>Example Tools:<ul>
+<li>SQL Server: <code>sys.dm_db_index_usage_stats</code> view.</li>
+<li>MySQL: <code>SHOW INDEX FROM table_name;</code> command.</li>
+<li>PostgreSQL: <code>pg_stat_user_indexes</code> view.</li>
+</ul>
+</li>
+</ul>
+<h3 id="practical-examples_1">Practical Examples</h3>
+<ol>
+<li>
+<p>Creating an Index:
+    <code>sql
+    CREATE INDEX idx_last_name
+    ON employees (last_name);</code></p>
+</li>
+<li>
+<p>Creating a Composite Index:
+    <code>sql
+    CREATE INDEX idx_name_department
+    ON employees (last_name, department_id);</code></p>
+</li>
+<li>
+<p>Creating a Unique Index:
+    <code>sql
+    CREATE UNIQUE INDEX idx_unique_email
+    ON employees (email);</code></p>
+</li>
+<li>
+<p>Creating a Full-Text Index:
+    <code>sql
+    CREATE FULLTEXT INDEX idx_fulltext_description
+    ON products (description);</code></p>
+</li>
+<li>
+<p>Dropping an Index:
+    <code>sql
+    DROP INDEX idx_last_name ON employees;</code></p>
+</li>
+<li>
+<p>Rebuilding an Index:
+    <code>sql
+    ALTER INDEX idx_last_name REBUILD;</code></p>
+</li>
+</ol>
+<h3 id="summary_4">Summary</h3>
+<p>Indexes are critical for enhancing the performance of SQL queries by allowing the database to find rows more quickly. Understanding when and how to use different types of indexes—single-column, composite, unique, primary key, foreign key, and full-text indexes—can significantly optimize your database operations. However, it's important to balance the benefits of faster query performance with the overhead that indexes introduce for data modification operations. Regular maintenance and monitoring of indexes ensure they continue to provide performance benefits.</p>
+<h2 id="9-query-optimization_1">9. Query Optimization</h2>
+<h3 id="query-optimization">Query Optimization</h3>
+<p>Optimizing SQL queries is crucial for ensuring that your database performs efficiently, especially as the volume of data and the complexity of queries increase. Here are several key techniques and best practices for query optimization:</p>
+<ol>
+<li>EXPLAIN/EXPLAIN PLAN</li>
+<li>Purpose: Analyze how a SQL query will be executed by the database. It provides insights into the query execution plan, such as which indexes are used and the join order of tables.</li>
+<li>Syntax:
+      <code>sql
+      EXPLAIN SELECT column1, column2 FROM table_name WHERE condition;</code></li>
+<li>Example:
+      <code>sql
+      EXPLAIN SELECT first_name, last_name FROM employees WHERE department_id = 1;</code></li>
+<li>
+<p>Explanation: This command returns the execution plan for the query, showing details like the type of join, possible keys, key used, and rows examined.</p>
+</li>
+<li>
+<p>Query Hints</p>
+</li>
+<li>Purpose: Provide the database engine with instructions on how to execute a query. These are specific to the database management system (DBMS).</li>
+<li>Syntax (MySQL Example):
+      <code>sql
+      SELECT /*+ MAX_EXECUTION_TIME(1000) */ column1, column2 FROM table_name WHERE condition;</code></li>
+<li>Example (Oracle Example):
+      <code>sql
+      SELECT /*+ INDEX(employees idx_department_id) */ first_name, last_name FROM employees WHERE department_id = 1;</code></li>
+<li>Explanation: The hint tells the Oracle DBMS to use the idx_department_id index for the query.</li>
+<li>Query Rewrite</li>
+<li>Purpose: Modify queries to improve performance, often by simplifying complex queries or breaking them into smaller, more efficient parts.</li>
+<li>Example:<ul>
+<li>Original Query:
+    <code>sql
+    SELECT * FROM orders WHERE YEAR(order_date) = 2023;</code></li>
+<li>Rewritten Query:
+    <code>sql
+    SELECT * FROM orders WHERE order_date BETWEEN '2023-01-01' AND '2023-12-31';</code></li>
+<li>Explanation: The rewritten query uses a range condition instead of a function on the column, making it easier for the database to use indexes.</li>
+</ul>
+</li>
+<li>Using LIMIT/OFFSET</li>
+<li>Purpose: Efficiently handle large result sets by fetching only the necessary rows.</li>
+<li>Syntax:
+      <code>sql
+      SELECT column1, column2 FROM table_name ORDER BY column1 LIMIT 10 OFFSET 20;</code></li>
+<li>Example:
+      <code>sql
+      SELECT first_name, last_name FROM employees ORDER BY hire_date DESC LIMIT 10 OFFSET 20;</code></li>
+<li>Explanation: This query fetches 10 rows starting from the 21st row, which is useful for paginating results in applications.</li>
+<li>Avoiding SELECT *</li>
+<li>Purpose: Reduce the amount of data retrieved by specifying only the necessary columns.</li>
+<li>Example:<ul>
+<li>Inefficient Query:
+    <code>sql
+    SELECT * FROM employees WHERE department_id = 1;</code></li>
+<li>Efficient Query:
+    <code>sql
+    SELECT first_name, last_name, hire_date FROM employees WHERE department_id = 1;</code></li>
+</ul>
+</li>
+<li>Explanation: By selecting only the required columns, you reduce the amount of data transferred and processed.</li>
+<li>Reducing Joins</li>
+<li>Purpose: Minimize the number of joins to reduce complexity and improve performance.</li>
+<li>Example:<ul>
+<li>Complex Query:
+    <code>sql
+    SELECT e.first_name, e.last_name, d.department_name, p.project_name
+    FROM employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN projects p ON e.project_id = p.project_id;</code></li>
+<li>Simplified Query:
+    <code>sql
+    SELECT e.first_name, e.last_name, d.department_name
+    FROM employees e
+    JOIN departments d ON e.department_id = d.department_id;</code></li>
+<li>Explanation: The simplified query joins only two tables instead of three, reducing the complexity and improving performance.</li>
+</ul>
+</li>
+<li>Proper Use of WHERE Clauses</li>
+<li>Purpose: Ensure conditions are properly indexed and avoid using functions on indexed columns.</li>
+<li>Example:<ul>
+<li>Inefficient Query:
+    <code>sql
+    SELECT * FROM employees WHERE UPPER(last_name) = 'SMITH';</code></li>
+<li>Efficient Query:
+    <code>sql
+    SELECT * FROM employees WHERE last_name = 'Smith';</code></li>
+<li>Explanation: The efficient query allows the use of an index on the last_name column, whereas the inefficient query does not.</li>
+</ul>
+</li>
+<li>Index Scans vs. Table Scans</li>
+<li>Purpose: Prefer index scans over table scans for faster data retrieval.</li>
+<li>
+<p>Example:</p>
+<ul>
+<li>Table Scan:
+    <code>sql
+    SELECT * FROM employees WHERE department_id = 1;</code></li>
+<li>Index Scan (Assuming index on department_id):
+    <code>sql
+    CREATE INDEX idx_department_id ON employees (department_id);
+    SELECT * FROM employees WHERE department_id = 1;</code></li>
+</ul>
+</li>
+<li>
+<p>Explanation: Creating an index on department_id allows the database to perform an index scan, which is faster than a table scan.</p>
+</li>
+<li>Caching Strategies</li>
+<li>Purpose: Use caching to reduce database load by storing frequently accessed data in memory.</li>
+<li>Example:<ul>
+<li>Use a caching layer like Redis or Memcached to store frequently accessed query results.
+    <code>sql
+    -- Assuming you have a caching mechanism in place
+    -- Pseudo-code example
+    IF cache_exists('employees_department_1') THEN
+        RETURN cache('employees_department_1');
+    ELSE
+        result = SELECT * FROM employees WHERE department_id = 1;
+        cache('employees_department_1', result);
+        RETURN result;
+    END IF;</code></li>
+</ul>
+</li>
+<li>Explanation: This pseudo-code checks if the result is already in the cache and returns it if available. If not, it queries the database, caches the result, and then returns it.</li>
+<li>Partitioning<ul>
+<li>Purpose: Break down a large table into smaller, more manageable pieces to improve query performance.</li>
+<li>Syntax (MySQL Example):
+  <code>sql
+  CREATE TABLE orders (
+      order_id INT,
+      order_date DATE,
+      ...
+  )
+  PARTITION BY RANGE (YEAR(order_date)) (
+      PARTITION p0 VALUES LESS THAN (2021),
+      PARTITION p1 VALUES LESS THAN (2022),
+      PARTITION p2 VALUES LESS THAN (2023),
+      PARTITION p3 VALUES LESS THAN (2024)
+  );</code></li>
+<li>Explanation: This query partitions the orders table by year, allowing the database to access only the relevant partition when querying by order_date.</li>
+</ul>
+</li>
+</ol>
+<h3 id="practical-examples_2">Practical Examples</h3>
+<ol>
+<li>
+<p>Using EXPLAIN to Analyze a Query:
+    <code>sql
+    EXPLAIN SELECT first_name, last_name FROM employees WHERE department_id = 1;</code></p>
+</li>
+<li>
+<p>Using Query Hints (MySQL Example):
+    <code>sql
+    SELECT /*+ MAX_EXECUTION_TIME(1000) */ first_name, last_name FROM employees WHERE department_id = 1;</code></p>
+</li>
+<li>
+<p>Rewriting Queries for Optimization:
+    ```sql
+    -- Original Query
+    SELECT * FROM orders WHERE YEAR(order_date) = 2023;</p>
+<p>-- Rewritten Query
+SELECT * FROM orders WHERE order_date BETWEEN '2023-01-01' AND '2023-12-31';
+```</p>
+</li>
+<li>
+<p>Using LIMIT and OFFSET for Pagination:
+    <code>sql
+    SELECT first_name, last_name FROM employees ORDER BY hire_date DESC LIMIT 10 OFFSET 20;</code></p>
+</li>
+<li>
+<p>Selecting Specific Columns Instead of *:
+    <code>sql
+    SELECT first_name, last_name, hire_date FROM employees WHERE department_id = 1;</code></p>
+</li>
+<li>
+<p>Reducing Joins in Queries:
+    ```sql
+    -- Complex Query with Multiple Joins
+    SELECT e.first_name, e.last_name, d.department_name, p.project_name
+    FROM employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN projects p ON e.project_id = p.project_id;</p>
+<p>-- Simplified Query with Fewer Joins
+SELECT e.first_name, e.last_name, d.department_name
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id;
+```</p>
+</li>
+<li>
+<p>Optimizing WHERE Clauses:
+    ```sql
+    -- Inefficient Query
+    SELECT * FROM employees WHERE UPPER(last_name) = 'SMITH';</p>
+<p>-- Efficient Query
+SELECT * FROM employees WHERE last_name = 'Smith';
+```</p>
+</li>
+<li>
+<p>Creating and Using Indexes:
+    <code>sql
+    CREATE INDEX idx_department_id ON employees (department_id);
+    SELECT * FROM employees WHERE department_id = 1;</code></p>
+</li>
+<li>
+<p>Implementing Caching Strategies:
+    <code>sql
+    -- Pseudo-code for caching query results
+    IF cache_exists('employees_department_1') THEN
+        RETURN cache('employees_department_1');
+    ELSE
+        result = SELECT * FROM employees WHERE department_id = 1;
+        cache('employees_department_1', result);
+        RETURN result;
+    END IF;</code></p>
+</li>
+<li>
+<p>Partitioning Tables:
+    <code>sql
+    CREATE TABLE orders (
+        order_id INT,
+        order_date DATE,
+        ...
+    )
+    PARTITION BY RANGE (YEAR(order_date)) (
+        PARTITION p0 VALUES LESS THAN (2021),
+        PARTITION p1 VALUES LESS THAN (2022),
+        PARTITION p2 VALUES LESS THAN (2023),
+        PARTITION p3 VALUES LESS THAN (2024)
+    );</code></p>
+</li>
+</ol>
+<h3 id="summary_5">Summary</h3>
+<p>Optimizing SQL queries involves various techniques aimed at improving performance and efficiency. Understanding and utilizing tools like EXPLAIN, rewriting queries, using appropriate indexes, leveraging caching strategies, and partitioning tables can significantly enhance query performance. By applying these optimization strategies, you can ensure your database operations are fast, efficient, and scalable, especially as your data grows and query complexity increases.</p>
+<h2 id="10-normalization_1">10. Normalization</h2>
+<h3 id="normalization">Normalization</h3>
+<p>Normalization is a database design technique that organizes tables in a way that reduces redundancy and dependency. The goal is to decompose a table into smaller, more manageable pieces without losing data integrity. This is achieved through a series of normalization forms (NFs). Each form has specific rules and purposes.</p>
+<ol>
+<li>First Normal Form (1NF)</li>
+<li>Purpose: Ensures that the table is organized in such a way that each column contains atomic (indivisible) values, and each column contains only one type of data.</li>
+<li>Rules:<ul>
+<li>Each table must have a primary key.</li>
+<li>Each column should contain atomic values (no repeating groups or arrays).</li>
+<li>Each column should contain values of a single type.</li>
+</ul>
+</li>
+<li>Example:<ul>
+<li>Non-1NF Table:
+    <code>plaintext
+    Orders
+    --------------------------------
+    OrderID | CustomerName | Items
+    1       | John Doe     | Pen, Pencil
+    2       | Jane Smith   | Notebook</code></li>
+<li>1NF Table:
+    <code>plaintext
+    Orders
+    --------------------------------
+    OrderID | CustomerName | Item
+    1       | John Doe     | Pen
+    1       | John Doe     | Pencil
+    2       | Jane Smith   | Notebook</code></li>
+</ul>
+</li>
+<li>Second Normal Form (2NF)</li>
+<li>Purpose: Ensures that the table is in 1NF and that all non-key attributes are fully functional dependent on the primary key.</li>
+<li>Rules:<ul>
+<li>Must meet all the requirements of 1NF.</li>
+<li>All non-key attributes must be fully functional dependent on the primary key.</li>
+<li>Remove partial dependencies (a non-key attribute depends only on part of the composite primary key).</li>
+</ul>
+</li>
+<li>
+<p>Example:</p>
+<ul>
+<li>Non-2NF Table:
+    <code>plaintext
+    Orders
+    --------------------------------------
+    OrderID | CustomerID | CustomerName  | ItemID | ItemName
+    1       | 1          | John Doe      | 1      | Pen
+    1       | 1          | John Doe      | 2      | Pencil
+    2       | 2          | Jane Smith    | 3      | Notebook</code></li>
+<li>
+<p>2NF Tables:
+    ```plaintext
+    Orders
+    ----------------------------------
+    OrderID | CustomerID | ItemID
+    1       | 1          | 1
+    1       | 1          | 2
+    2       | 2          | 3</p>
+<h2 id="customers">Customers</h2>
+<p>CustomerID | CustomerName
+1          | John Doe
+2          | Jane Smith</p>
+<h2 id="items">Items</h2>
+<p>ItemID | ItemName
+1      | Pen
+2      | Pencil
+3      | Notebook
+<code>3. Third Normal Form (3NF)
+   * Purpose: Ensures that the table is in 2NF and that all the attributes are only dependent on the primary key.
+   * Rules:
+      * Must meet all the requirements of 2NF.
+      * Remove transitive dependencies (non-key attributes should not depend on other non-key attributes).
+   * Example:
+     * Non-3NF Table:</code>plaintext
+Orders</p>
+<hr />
+<p>OrderID | CustomerID | CustomerName | CustomerAddress
+1       | 1          | John Doe     | 123 Main St
+2       | 2          | Jane Smith   | 456 Oak St
+```</p>
+</li>
+<li>
+<p>3NF Tables:
+    ```plaintext
+    Orders
+    ---------------------------
+    OrderID | CustomerID
+    1       | 1
+    2       | 2</p>
+<h2 id="customers_1">Customers</h2>
+<p>CustomerID | CustomerName | CustomerAddress
+1          | John Doe     | 123 Main St
+2          | Jane Smith   | 456 Oak St
+<code>4. Boyce-Codd Normal Form (BCNF)
+   * Purpose: A stronger version of 3NF. Ensures that every determinant is a candidate key.
+   * Rules:
+     * Must meet all the requirements of 3NF.
+     * For every functional dependency (X -&gt; Y), X should be a super key.
+   * Example:
+     * Non-BCNF Table:</code>plaintext
+Courses</p>
+<hr />
+<p>CourseID | Instructor | Room
+1        | Smith      | 101
+2        | Jones      | 102
+3        | Smith      | 103
+```</p>
+</li>
+<li>
+<p>BCNF Tables:
+    ```plaintext
+    Courses
+    -------------------------
+    CourseID | InstructorID
+    1        | 1
+    2        | 2
+    3        | 1</p>
+<h2 id="instructors">Instructors</h2>
+<p>InstructorID | InstructorName
+1            | Smith
+2            | Jones</p>
+<h2 id="instructorrooms">InstructorRooms</h2>
+<p>InstructorID | Room
+1            | 101
+1            | 103
+2            | 102
+```</p>
+<h3 id="higher-normal-forms">Higher Normal Forms</h3>
+<p>While the first three normal forms and BCNF are the most commonly used, there are higher normal forms such as Fourth Normal Form (4NF) and Fifth Normal Form (5NF), which deal with more complex scenarios involving multi-valued dependencies and join dependencies. These are less commonly needed in typical database design.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Denormalization</strong>
+   * Purpose: Sometimes, to improve query performance, you may denormalize the data. This involves adding redundancy to the database to avoid complex joins and improve read performance.
+   * Trade-offs: While denormalization can improve read performance, it may increase storage requirements and complicate data modification operations.</p>
+<h3 id="practical-examples_3">Practical Examples</h3>
+<ul>
+<li>
+<p>1NF Example:</p>
+<ul>
+<li>Original Table (Not in 1NF):
+  ```plaintext
+  Orders</li>
+</ul>
+<hr />
+<p>OrderID | Customer | Items
+  1       | John Doe | Pen, Pencil
+  ```</p>
+</li>
+<li>
+<p>Normalized Table (1NF):
+    <code>plaintext
+    Orders
+    ---------------------------
+    OrderID | Customer | Item
+    1       | John Doe | Pen
+    1       | John Doe | Pencil</code></p>
+</li>
+<li>
+<p>2NF Example:</p>
+</li>
+<li>Original Table (Not in 2NF):
+    <code>plaintext
+    Orders
+    --------------------------------------
+    OrderID | CustomerID | CustomerName  | ItemID | ItemName
+    1       | 1          | John Doe      | 1      | Pen</code></li>
+<li>
+<p>Normalized Tables (2NF):
+    ```plaintext
+    Orders
+    ---------------------------
+    OrderID | CustomerID | ItemID
+    1       | 1          | 1</p>
+<h2 id="customers_2">Customers</h2>
+<p>CustomerID | CustomerName
+1          | John Doe</p>
+<h2 id="items_1">Items</h2>
+<p>ItemID | ItemName
+1      | Pen
+```</p>
+</li>
+<li>
+<p>3NF Example:</p>
+</li>
+<li>Original Table (Not in 3NF):
+    <code>plaintext
+    Orders
+    ----------------------------------------------
+    OrderID | CustomerID | CustomerName | Address
+    1       | 1          | John Doe     | 123 Main St</code></li>
+<li>
+<p>Normalized Tables (3NF):
+    ```plaintext
+    Orders
+    ---------------------------
+    OrderID | CustomerID
+    1       | 1</p>
+<h2 id="customers_3">Customers</h2>
+<p>CustomerID | CustomerName | Address
+1          | John Doe     | 123 Main St
+```</p>
+</li>
+</ul>
+<h3 id="summary_6">Summary</h3>
+<p>Normalization is essential for designing efficient and scalable databases. By following normalization principles, you can reduce redundancy, improve data integrity, and ensure that your database is easy to maintain. However, understanding when to denormalize for performance reasons is also crucial, as overly normalized databases can sometimes lead to complex and slow queries. Balancing normalization and denormalization based on your specific use case and performance requirements will help you design optimal database schemas.</p>
+<h2 id="11-basic-transactions_1">11. Basic Transactions</h2>
+<h3 id="basic-transactions">Basic Transactions</h3>
+<p>Transactions in SQL are a sequence of one or more SQL operations treated as a single unit of work. They ensure data integrity and consistency, especially in environments where multiple users may be accessing and modifying the database simultaneously. Transactions follow the ACID properties: Atomicity, Consistency, Isolation, and Durability.</p>
+<h4 id="1-acid-properties">1. ACID Properties</h4>
+<ul>
+<li>Atomicity: Ensures that all operations within a transaction are completed successfully; otherwise, the transaction is aborted and no operations are applied.</li>
+<li>Consistency: Ensures that the database transitions from one valid state to another valid state.</li>
+<li>Isolation: Ensures that concurrent execution of transactions leaves the database in the same state as if the transactions were executed sequentially.</li>
+<li>Durability: Ensures that once a transaction is committed, the changes are permanent, even in the event of a system failure.</li>
+</ul>
+<h4 id="2-basic-transaction-commands">2. Basic Transaction Commands</h4>
+<ul>
+<li>BEGIN/START TRANSACTION: Starts a new transaction.
+      <code>sql
+      BEGIN TRANSACTION;</code></li>
+<li>COMMIT: Saves all changes made during the transaction.
+      <code>sql
+      COMMIT;</code></li>
+<li>ROLLBACK: Undoes all changes made during the transaction.
+      <code>sql
+      ROLLBACK;</code></li>
+</ul>
+<h4 id="3-using-transactions">3. Using Transactions</h4>
+<p>Transactions are used to ensure data integrity and consistency. They are especially useful for operations that involve multiple steps, such as transferring money between bank accounts, updating inventory, or placing an order.</p>
+<p><strong>Example Scenario: Transferring Money Between Bank Accounts</strong>
+1. BEGIN TRANSACTION
+   * Starts the transaction.
+2. Update Account Balances
+   * Deducts the amount from one account and adds it to another.
+3. COMMIT
+   * Saves the changes if both updates are successful.
+4. ROLLBACK
+   * Undoes the changes if any update fails.</p>
+<p>```sql
+  BEGIN TRANSACTION;</p>
+<p>UPDATE accounts
+  SET balance = balance - 100
+  WHERE account_id = 1;</p>
+<p>UPDATE accounts
+  SET balance = balance + 100
+  WHERE account_id = 2;</p>
+<p>COMMIT;
+  ```</p>
+<p><strong>Handling Errors with Transactions</strong>
+If an error occurs during a transaction, you can use ROLLBACK to revert all changes made up to that point, ensuring that the database remains in a consistent state.
+  ```sql
+  BEGIN TRANSACTION;</p>
+<p>BEGIN TRY
+      UPDATE accounts
+      SET balance = balance - 100
+      WHERE account_id = 1;</p>
+<pre><code>  UPDATE accounts
+  SET balance = balance + 100
+  WHERE account_id = 2;
+
+  COMMIT;
+</code></pre>
+<p>END TRY
+  BEGIN CATCH
+      ROLLBACK;
+  END CATCH;
+  ```</p>
+<h4 id="4-savepoints">4. Savepoints</h4>
+<p>Savepoints allow you to create points within a transaction to which you can roll back without affecting the entire transaction. They are useful for complex transactions where you want to partially commit some changes while retaining the option to roll back others.</p>
+<ul>
+<li>
+<p>SAVEPOINT: Creates a savepoint within the transaction.
+    <code>sql
+    SAVEPOINT savepoint_name;</code></p>
+</li>
+<li>
+<p>ROLLBACK TO SAVEPOINT: Rolls back the transaction to the specified savepoint.
+    <code>sql
+    ROLLBACK TO SAVEPOINT savepoint_name;</code></p>
+</li>
+<li>
+<p>RELEASE SAVEPOINT: Removes the specified savepoint.
+    <code>sql
+    RELEASE SAVEPOINT savepoint_name;</code>
+Example:</p>
+</li>
+</ul>
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+UPDATE accounts
+SET balance = balance - 100
+WHERE account_id = 1;
+
+SAVEPOINT sp1;
+
+UPDATE accounts
+SET balance = balance + 100
+WHERE account_id = 2;
+
+-- An error occurs, rollback to savepoint
+ROLLBACK TO SAVEPOINT sp1;
+
+-- Continue with other operations
+UPDATE accounts
+SET balance = balance + 50
+WHERE account_id = 3;
+
+COMMIT;
+</code></pre>
+<h4 id="5-isolation-levels">5. Isolation Levels</h4>
+<p>Isolation levels control the visibility of changes made by one transaction to other concurrent transactions. SQL defines several isolation levels, each with different trade-offs between performance and consistency.</p>
+<ul>
+<li>READ UNCOMMITTED: Allows a transaction to read data that has not yet been committed by other transactions. This isolation level can lead to dirty reads.
+sql</li>
+</ul>
+<p><code>sql
+  SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;</code></p>
+<ul>
+<li>READ COMMITTED: Ensures that a transaction cannot read data that has not been committed by other transactions. This isolation level prevents dirty reads.
+sql</li>
+</ul>
+<p><code>sql
+  SET TRANSACTION ISOLATION LEVEL READ COMMITTED;</code></p>
+<ul>
+<li>
+<p>REPEATABLE READ: Ensures that if a transaction reads the same row twice, the values are the same each time. This isolation level prevents non-repeatable reads but not phantom reads.
+  <code>sql
+  SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;</code></p>
+</li>
+<li>
+<p>SERIALIZABLE: Ensures complete isolation from other transactions. This isolation level prevents dirty reads, non-repeatable reads, and phantom reads.
+  <code>sql
+  SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;</code></p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-sql">SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+BEGIN TRANSACTION;
+
+SELECT balance
+FROM accounts
+WHERE account_id = 1;
+
+-- Perform other operations...
+
+COMMIT;
+</code></pre>
+<h3 id="practical-examples_4">Practical Examples</h3>
+<ol>
+<li>
+<p>Basic Transaction:</p>
+<p>```sql
+BEGIN TRANSACTION;</p>
+<p>INSERT INTO orders (customer_id, order_date, total)
+VALUES (1, '2024-07-20', 150.00);</p>
+<p>UPDATE inventory
+SET quantity = quantity - 1
+WHERE product_id = 101;</p>
+<p>COMMIT;
+```</p>
+</li>
+<li>
+<p>Transaction with Error Handling:
+    ```sql
+    BEGIN TRANSACTION;</p>
+<p>BEGIN TRY
+    INSERT INTO orders (customer_id, order_date, total)
+    VALUES (2, '2024-07-20', 200.00);</p>
+<pre><code>UPDATE inventory
+SET quantity = quantity - 1
+WHERE product_id = 102;
+
+COMMIT;
+</code></pre>
+<p>END TRY
+BEGIN CATCH
+    ROLLBACK;
+END CATCH;
+```</p>
+</li>
+<li>
+<p>Using Savepoints:</p>
+<p>```sql
+BEGIN TRANSACTION;</p>
+<p>UPDATE accounts
+SET balance = balance - 50
+WHERE account_id = 1;</p>
+<p>SAVEPOINT sp1;</p>
+<p>UPDATE accounts
+SET balance = balance + 50
+WHERE account_id = 2;</p>
+<p>-- An error occurs
+ROLLBACK TO SAVEPOINT sp1;</p>
+<p>UPDATE accounts
+SET balance = balance + 25
+WHERE account_id = 3;</p>
+<p>COMMIT;
+```</p>
+</li>
+<li>
+<p>Setting Isolation Levels:
+    ```sql
+    SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;</p>
+<p>BEGIN TRANSACTION;</p>
+<p>SELECT balance
+FROM accounts
+WHERE account_id = 1;</p>
+<p>-- Perform other operations...</p>
+<p>COMMIT;
+```</p>
+</li>
+</ol>
+<h3 id="summary_7">Summary</h3>
+<p>Transactions are essential for ensuring data integrity and consistency in SQL databases, particularly in multi-user environments. By understanding and effectively using transaction commands (BEGIN TRANSACTION, COMMIT, ROLLBACK), savepoints, and isolation levels, you can manage complex operations and handle errors gracefully. Mastery of these concepts will help you maintain a robust and reliable database system.</p>
+<h2 id="12-database-views_1">12. Database Views</h2>
+<h3 id="database-views">Database Views</h3>
+<p>A database view is a virtual table that provides a way to present data from one or more tables in a specific, pre-defined format. Views do not store data themselves; instead, they store a query that retrieves data from the underlying tables. This can simplify complex queries, enhance security by restricting access to certain data, and provide a consistent, abstracted way to access data.</p>
+<h4 id="benefits-of-views">Benefits of Views</h4>
+<ul>
+<li>Simplification: Simplify complex queries by encapsulating them in a view.</li>
+<li>Security: Restrict access to specific rows and columns in the tables by providing selective access through views.</li>
+<li>Consistency: Ensure that users see consistent, formatted data.
+Abstraction: Hide the complexity of the underlying database schema.</li>
+</ul>
+<h4 id="creating-views">Creating Views</h4>
+<ul>
+<li>
+<p>Syntax:
+    <code>sql
+    CREATE VIEW view_name AS
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition;</code></p>
+</li>
+<li>
+<p>Example:
+    <code>sql
+    CREATE VIEW EmployeeDetails AS
+    SELECT first_name, last_name, department_id, salary
+    FROM employees
+    WHERE status = 'Active';</code></p>
+</li>
+<li>Explanation: This view, EmployeeDetails, selects the first name, last name, department ID, and salary of active employees.</li>
+</ul>
+<h4 id="querying-views">Querying Views</h4>
+<ul>
+<li>
+<p>Syntax:
+    <code>sql  
+    SELECT column1, column2, ...
+    FROM view_name
+    WHERE condition;</code></p>
+</li>
+<li>
+<p>Example:
+    <code>sql
+    SELECT * FROM EmployeeDetails WHERE department_id = 2;</code></p>
+</li>
+<li>
+<p>Explanation: This query retrieves all columns from the EmployeeDetails view for employees in department 2.</p>
+</li>
+</ul>
+<h4 id="updating-views">Updating Views</h4>
+<p>Views can sometimes be updatable, allowing you to insert, update, or delete rows in the underlying tables through the view. However, certain conditions must be met for a view to be updatable, such as not using aggregate functions, DISTINCT, GROUP BY, etc.</p>
+<ul>
+<li>
+<p>Example:
+    <code>sql
+    UPDATE EmployeeDetails
+    SET salary = salary + 5000
+    WHERE department_id = 2;</code></p>
+</li>
+<li>
+<p>Explanation: This query increases the salary of employees in department 2 by 5000 through the EmployeeDetails view.</p>
+</li>
+</ul>
+<h4 id="managing-views">Managing Views</h4>
+<ul>
+<li>
+<p>Altering Views:
+    <code>sql
+    CREATE OR REPLACE VIEW view_name AS
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE condition;</code></p>
+</li>
+<li>
+<p>Dropping Views:
+    <code>sql
+    DROP VIEW view_name;</code></p>
+</li>
+<li>Example:
+    <code>sql
+    DROP VIEW EmployeeDetails;</code></li>
+<li>Explanation: This query removes the EmployeeDetails view from the database.</li>
+</ul>
+<h3 id="practical-examples_5">Practical Examples</h3>
+<ol>
+<li>
+<p>Creating a View:
+    <code>sql
+    CREATE VIEW ActiveEmployees AS
+    SELECT employee_id, first_name, last_name, department_id
+    FROM employees
+    WHERE status = 'Active';</code></p>
+</li>
+<li>
+<p>Querying a View:
+    <code>sql
+    SELECT * FROM ActiveEmployees WHERE department_id = 3;</code></p>
+</li>
+<li>
+<p>Updating Data Through a View:
+    <code>sql
+    UPDATE ActiveEmployees
+    SET department_id = 4
+    WHERE employee_id = 10;</code></p>
+</li>
+<li>
+<p>Creating a Complex View:
+    <code>sql
+    CREATE VIEW DepartmentSummary AS
+    SELECT d.department_id, d.department_name, COUNT(e.employee_id) AS employee_count, AVG(e.salary) AS average_salary
+    FROM departments d
+    LEFT JOIN employees e ON d.department_id = e.department_id
+    GROUP BY d.department_id, d.department_name;</code></p>
+</li>
+<li>
+<p>Querying the Complex View:
+    <code>sql
+    SELECT * FROM DepartmentSummary WHERE employee_count &gt; 10;</code></p>
+</li>
+<li>
+<p>Altering a View:
+    <code>sql
+    CREATE OR REPLACE VIEW ActiveEmployees AS
+    SELECT employee_id, first_name, last_name, department_id, hire_date
+    FROM employees
+    WHERE status = 'Active';</code></p>
+</li>
+<li>
+<p>Dropping a View:
+    <code>sql
+    DROP VIEW ActiveEmployees;</code></p>
+</li>
+</ol>
+<h3 id="summary_8">Summary</h3>
+<p>Database views are powerful tools that provide a way to simplify complex queries, enhance security, ensure consistent data presentation, and abstract the underlying database schema. By using views, you can create virtual tables that encapsulate query logic, making it easier to manage and access data. Understanding how to create, query, update, and manage views is essential for effective database management and optimization.</p>
+<h2 id="13-more-performance-tuning_1">13. More Performance Tuning</h2>
+<h3 id="using-limitoffset-efficiently">Using LIMIT/OFFSET Efficiently</h3>
+<p>The LIMIT and OFFSET clauses are used to paginate through a large dataset by specifying the number of rows to return and the starting point within the result set. This is particularly useful for displaying results in a user-friendly way, such as in web applications.</p>
+<ul>
+<li>Syntax</li>
+<li>LIMIT: Specifies the maximum number of rows to return.</li>
+<li>OFFSET: Specifies the number of rows to skip before starting to return rows.</li>
+<li>
+<p>Example
+    <code>sql
+    SELECT column1, column2
+    FROM table_name
+    ORDER BY column1
+    LIMIT 10 OFFSET 20;</code></p>
+</li>
+<li>
+<p>Explanation: This query retrieves 10 rows starting from the 21st row of the result set.</p>
+</li>
+<li>Best Practices for Using LIMIT/OFFSET</li>
+<li>Order By Clause: Always use ORDER BY with LIMIT and OFFSET to ensure consistent and predictable results.</li>
+<li>Indexing: Ensure the columns used in the ORDER BY clause are indexed to improve performance.</li>
+<li>Avoid Large OFFSETs: Large offsets can be inefficient because the database engine still processes the skipped rows. Consider using an alternative approach for deep pagination.</li>
+<li>
+<p>Keyset Pagination: For more efficient pagination, use keyset pagination instead of OFFSET for large datasets. This approach involves using a WHERE clause to filter results based on the last retrieved row.</p>
+</li>
+<li>
+<p>Keyset Pagination Example
+    <code>sql
+    SELECT column1, column2
+    FROM table_name
+    WHERE column1 &gt; last_retrieved_value
+    ORDER BY column1
+    LIMIT 10;</code></p>
+</li>
+<li>
+<p>Explanation: This query retrieves the next set of rows starting after the last retrieved value, which is more efficient than using large offsets.</p>
+</li>
+</ul>
+<h3 id="caching-strategies">Caching Strategies</h3>
+<p>Caching is a technique to store frequently accessed data in a fast storage medium (like memory) to reduce the load on the database and improve query performance. Effective caching strategies can significantly enhance the performance of your application.</p>
+<h4 id="types-of-caching">Types of Caching</h4>
+<ul>
+<li>Application-Level Caching: Cache data within the application layer using tools like Memcached or Redis.</li>
+<li>Database-Level Caching: Some databases support internal caching mechanisms to store query results.</li>
+<li>HTTP Caching: For web applications, use HTTP headers to cache responses at the client or proxy level.</li>
+</ul>
+<h4 id="best-practices-for-caching">Best Practices for Caching</h4>
+<ul>
+<li>Cache Frequently Accessed Data: Identify and cache data that is frequently read but infrequently updated.</li>
+<li>Invalidate Cache When Data Changes: Ensure that the cache is invalidated or updated when the underlying data changes to maintain consistency.</li>
+<li>Use Appropriate Expiry Times: Set expiry times for cached data to ensure it is refreshed periodically.</li>
+<li>Cache Key Design: Use a consistent and efficient key naming convention for caching.</li>
+</ul>
+<h4 id="example-using-redis-for-caching">Example: Using Redis for Caching</h4>
+<ul>
+<li>
+<p>Pseudo-Code:</p>
+<p>```sql</p>
+<p>-- Check if the result is in the cache
+IF cache_exists('employees_department_1') THEN
+    RETURN cache('employees_department_1');
+ELSE
+    -- Query the database
+    result = SELECT * FROM employees WHERE department_id = 1;
+    -- Store the result in the cache
+    cache('employees_department_1', result);
+    RETURN result;
+END IF;
+```</p>
+</li>
+<li>
+<p>Explanation: This pseudo-code checks if the query result is already cached. If it is, the result is returned from the cache. If not, the database is queried, the result is cached, and then returned.</p>
+</li>
+</ul>
+<h4 id="example-database-level-caching-mysql-query-cache">Example: Database-Level Caching (MySQL Query Cache)</h4>
+<ul>
+<li>
+<p>Enabling Query Cache:
+    <code>sql
+    SET GLOBAL query_cache_size = 1048576;  -- 1MB cache size
+    SET GLOBAL query_cache_type = 1;        -- Enable query cache</code></p>
+</li>
+<li>
+<p>Using SQL_CACHE Hint:
+    <code>sql
+    SELECT SQL_CACHE * FROM employees WHERE department_id = 1;</code></p>
+</li>
+<li>
+<p>Explanation: This query instructs MySQL to cache the result of the query. Subsequent identical queries will return the cached result instead of querying the database again.</p>
+</li>
+</ul>
+<h3 id="stored-procedures">Stored Procedures</h3>
+<p>Stored procedures are precompiled collections of one or more SQL statements that are stored in the database. They can be used to encapsulate complex business logic, improve performance, and ensure consistent execution of operations.</p>
+<h4 id="benefits-of-stored-procedures">Benefits of Stored Procedures</h4>
+<ul>
+<li>Performance: Stored procedures are precompiled and stored in the database, which can lead to faster execution compared to ad-hoc queries.</li>
+<li>Security: Stored procedures can help protect against SQL injection attacks by parameterizing inputs. Additionally, you can grant execute permissions to users without giving them direct access to the underlying tables.</li>
+<li>Maintainability: Encapsulating complex logic within stored procedures makes it easier to maintain and update the logic without changing the application code.</li>
+<li>Reusability: Once created, stored procedures can be reused across different applications and by different users.</li>
+</ul>
+<h4 id="creating-stored-procedures">Creating Stored Procedures</h4>
+<ul>
+<li>Syntax:</li>
+</ul>
+<p><code>sql
+  CREATE PROCEDURE procedure_name (parameters)
+  BEGIN
+      -- SQL statements
+  END;</code>
+* Example:</p>
+<p><code>sql
+  CREATE PROCEDURE GetEmployeeDetails (IN emp_id INT)
+  BEGIN
+      SELECT first_name, last_name, department_id, salary
+      FROM employees
+      WHERE employee_id = emp_id;
+  END;</code>
+* Explanation: This stored procedure, GetEmployeeDetails, takes an employee ID as an input parameter and retrieves the corresponding employee details.</p>
+<h4 id="executing-stored-procedures">Executing Stored Procedures</h4>
+<ul>
+<li>Syntax:</li>
+</ul>
+<p><code>sql
+  CALL procedure_name (parameters);</code>
+* Example:
+  <code>sql
+  CALL GetEmployeeDetails(1);</code></p>
+<ul>
+<li>Explanation: This command executes the GetEmployeeDetails stored procedure with the employee ID 1.</li>
+</ul>
+<h4 id="using-parameters-in-stored-procedures">Using Parameters in Stored Procedures</h4>
+<ul>
+<li>
+<p>Input Parameters (IN): Used to pass values into the procedure.</p>
+</li>
+<li>
+<p>Output Parameters (OUT): Used to return values from the procedure.</p>
+</li>
+<li>
+<p>Input/Output Parameters (INOUT): Used to pass values into the procedure and return updated values.</p>
+</li>
+</ul>
+<h5 id="example-with-input-and-output-parameters">Example with Input and Output Parameters:</h5>
+<pre><code class="language-sql">CREATE PROCEDURE GetEmployeeSalary (IN emp_id INT, OUT emp_salary DECIMAL(10, 2))
+BEGIN
+    SELECT salary INTO emp_salary
+    FROM employees
+    WHERE employee_id = emp_id;
+END;
+</code></pre>
+<h5 id="executing-the-procedure-with-output-parameter">Executing the Procedure with Output Parameter:</h5>
+<pre><code class="language-sql">DECLARE @salary DECIMAL(10, 2);
+CALL GetEmployeeSalary(1, @salary);
+SELECT @salary;
+</code></pre>
+<ul>
+<li>Explanation: This stored procedure, GetEmployeeSalary, takes an employee ID as an input parameter and returns the corresponding salary as an output parameter.</li>
+</ul>
+<h4 id="error-handling-in-stored-procedures">Error Handling in Stored Procedures</h4>
+<h5 id="example-with-error-handling">Example with Error Handling:</h5>
+<pre><code class="language-sql">CREATE PROCEDURE UpdateEmployeeSalary (IN emp_id INT, IN new_salary DECIMAL(10, 2))
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- Rollback any changes on error
+        ROLLBACK;
+    END;
+
+    START TRANSACTION;
+    UPDATE employees
+    SET salary = new_salary
+    WHERE employee_id = emp_id;
+    COMMIT;
+END;
+</code></pre>
+<ul>
+<li>Explanation: This stored procedure, UpdateEmployeeSalary, updates an employee's salary within a transaction. If an error occurs, the transaction is rolled back to ensure data integrity.</li>
+</ul>
+<h4 id="practical-examples_6">Practical Examples</h4>
+<ol>
+<li>
+<p>Creating a Simple Stored Procedure:</p>
+<p><code>sql
+CREATE PROCEDURE ListAllEmployees()
+BEGIN
+    SELECT * FROM employees;
+END;</code></p>
+</li>
+<li>
+<p>Executing the Simple Stored Procedure:</p>
+<p><code>sql
+CALL ListAllEmployees();</code>
+3. Stored Procedure with Input Parameter:</p>
+<p><code>sql
+  CREATE PROCEDURE GetDepartmentEmployees (IN dept_id INT)
+  BEGIN
+      SELECT first_name, last_name
+      FROM employees
+      WHERE department_id = dept_id;
+  END;</code>
+4. Executing the Stored Procedure with Input Parameter:</p>
+<p><code>sql
+CALL GetDepartmentEmployees(2);</code></p>
+</li>
+<li>
+<p>Stored Procedure with Input and Output Parameters:</p>
+<p><code>sql
+CREATE PROCEDURE CountDepartmentEmployees (IN dept_id INT, OUT emp_count INT)
+BEGIN
+    SELECT COUNT(*) INTO emp_count
+    FROM employees
+    WHERE department_id = dept_id;
+END;</code>
+6. Executing the Stored Procedure with Output Parameter:</p>
+<p><code>sql
+DECLARE @count INT;
+CALL CountDepartmentEmployees(2, @count);
+SELECT @count;</code></p>
+</li>
+<li>
+<p>Stored Procedure with Error Handling:</p>
+<p>```sql
+CREATE PROCEDURE DeleteEmployee (IN emp_id INT)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- Rollback any changes on error
+        ROLLBACK;
+    END;</p>
+<pre><code>START TRANSACTION;
+DELETE FROM employees
+WHERE employee_id = emp_id;
+COMMIT;
+</code></pre>
+<p>END;
+<code>8. Executing the Stored Procedure with Error Handling:</code>sql
+CALL DeleteEmployee(3);
+```</p>
+</li>
+</ol>
+<h3 id="summary_9">Summary</h3>
+<p>Efficiently using LIMIT and OFFSET clauses for pagination and implementing effective caching strategies are essential techniques for optimizing SQL query performance. Proper pagination ensures that queries are manageable and performant, even for large datasets. Caching reduces the load on the database and accelerates data retrieval by storing frequently accessed data in a faster storage medium. Combining these techniques can significantly enhance the performance and scalability of your database-driven applications.</p>
+<p>Stored procedures are a powerful tool in SQL that can encapsulate complex business logic, improve performance, enhance security, and ensure consistent execution of operations. By using stored procedures, you can create reusable, maintainable, and efficient database operations that can be executed by different applications and users. Understanding how to create, execute, and manage stored procedures, along with proper error handling and use of parameters, is essential for effective database management and optimization.</p>
+<h2 id="notes">Notes:</h2>
+<ul>
+<li>In Postgres, SERIAL is now</li>
+</ul>
+<h2 id="resources">Resources</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>
